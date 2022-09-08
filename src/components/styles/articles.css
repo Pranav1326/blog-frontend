@@ -1,0 +1,31 @@
+.articles{
+    display: flex;
+    flex-direction: row;
+}
+
+.section-1{
+    width: 90%;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 2rem;
+}
+
+.section-2{
+    width: 30%;
+    padding-left: 2rem;
+}
+
+.cards{
+    width: 34rem;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.taglist{
+    margin-top: 2rem;
+    border: 1px solid #fff;
+    width: 15rem;
+}

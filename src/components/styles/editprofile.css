@@ -1,0 +1,93 @@
+.edit-profile-main{
+    margin: 2rem auto;
+    align-self: center;
+    width: 40rem;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    box-shadow: 1px 1px 5px #000;
+}
+
+.edit-profile-box{
+    color: #fff;
+    padding: 1rem 4rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.user-details,
+.basic-details{
+    /* border: 1px solid #fff; */
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+}
+
+.user-details h1,
+.basic-details h1{
+    text-align: center;
+}
+
+.user-details-section{
+    display: flex;
+    flex-direction: column;
+}
+
+.name,
+.email,
+.username,
+.image-profile,
+.location,
+.bio,
+.work{
+    display: flex;
+    flex-direction: column;
+}
+
+.name input,
+.email input,
+.username input,
+.image-profile input,
+.location input,
+.bio input,
+.work input{
+    font-size: 1.2rem;
+    border: 1px solid #fff;
+    padding: 0.2rem 0.5rem;
+    background: rgba(0, 0, 0, 0.4);
+    color: #fff;
+    margin-bottom: 1rem;
+    border-radius: 5px;
+}
+
+.username input{
+    margin-bottom: 0.1rem;
+}
+
+.warning{
+    margin-top: 0;
+    font-size: 0.8rem;
+}
+
+#profile-image::-webkit-file-upload-button{
+    display: hidden;
+}
+
+#save-profile-btn,
+#profile-image{
+    font-size: 1.2rem;
+    padding: 0.5rem;
+    /* width: 10rem; */
+    margin: 1rem 0;
+    align-self: center;
+    border-radius: 5px;
+    border: none;
+    background-color: #fff;
+    color: #000;
+}
+
+#save-profile-btn:hover,
+#profile-image:hover{
+    cursor: pointer;
+    background-color: #000;
+    color: #fff;
+}

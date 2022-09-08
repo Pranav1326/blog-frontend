@@ -1,0 +1,19 @@
+.main{
+    min-height: calc(100vh - 4rem);
+    background: linear-gradient(45deg, rgba(0, 70, 111, 0.5), rgba(14, 215, 191, 0.5));
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    position: relative;
+}
+
+.main::before{
+    content: '';
+    z-index: -2;
+    inset: 0.5rem;
+    position: absolute;
+    height: calc(100% - 1rem);
+    width: calc(100% - 1rem);
+    background: rgba(0, 0, 0, 1);
+}

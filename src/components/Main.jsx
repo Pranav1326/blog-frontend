@@ -6,16 +6,18 @@ import Articles from './Articles';
 import Profile from './Profile';
 import EditProfile from './EditProfile';
 import CreatePost from './CreatePost';
+import Article from './Article';
 
 const Main = () => {
   return (
     <div className='main'>
         {/* <Login /> */}
-        <Register />
+        {/* <Register /> */}
         {/* <Articles /> */}
         {/* <Profile /> */}
         {/* <EditProfile /> */}
         {/* <CreatePost /> */}
+        <Article />
     </div>
   )
 }

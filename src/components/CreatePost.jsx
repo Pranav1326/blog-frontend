@@ -1,5 +1,18 @@
 import React from 'react';
 import './styles/createpost.css';
+import B from '../icons/png/007-bold.png';
+import I from '../icons/png/008-italic.png';
+import T from '../icons/png/001-terminal.png';
+import C from '../icons/png/002-coding.png';
+import H from '../icons/png/003-heading.png';
+import N from '../icons/png/004-number.png';
+import L from '../icons/png/005-list.png';
+import U from '../icons/png/006-underline.png';
+import Link from '../icons/png/009-link.png';
+import Q from '../icons/png/010-left-quote.png';
+import P from '../icons/png/011-photo.png';
+import ST from '../icons/png/012-strikethrough.png';
+import HR from '../icons/png/013-line-break-symbol.png';
 
 const CreatePost = () => {
   return (
@@ -17,7 +30,19 @@ const CreatePost = () => {
                 </div>
                 <div className="create-post-editing">
                     <div className="editing-panel">
-                        {/* <FontAwesomeIcon icon="fa-solid fa-bold" /> */}
+                        <img src={B} alt="" />
+                        <img src={I} alt="" />
+                        <img src={U} alt="" />
+                        <img src={Link} alt="" />
+                        <img src={L} alt="" />
+                        <img src={N} alt="" />
+                        <img src={H} alt="" />
+                        <img src={Q} alt="" />
+                        <img src={C} alt="" />
+                        <img src={T} alt="" />
+                        <img src={P} alt="" />
+                        <img src={ST} alt="" />
+                        <img src={HR} alt="" />
                     </div>
                 </div>
             </div>

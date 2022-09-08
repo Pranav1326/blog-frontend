@@ -23,7 +23,7 @@ const [isNavExpanded, setIsNavExpanded] = useState(false);
                         </div>
                     </li>
                     <li>
-                        <a href="/about">Register</a>
+                        <a href="/about">About</a>
                     </li>
                     <li>
                         <a href="/login">Login</a>

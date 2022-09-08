@@ -35,7 +35,12 @@ const Register = () => {
     }
     const handleSubmit = e => {
         e.preventDefault();
-        console.log(registerData);
+        if(registerData.mobile.length !== 10){
+            alert(`Please enter valid mobile number!`);
+        }
+        else{
+            console.log(registerData);
+        }
     }
     return (
         <div className='register-box'>
@@ -51,7 +56,7 @@ const Register = () => {
                 </div>
                 <div className="mobile-div">
                     <label htmlFor="mobileno">Mobile no</label>
-                    <input type="number" name="mobile" id="mobile" required value={registerData.mobile} onChange={handleChange} />
+                    <input type="number" name="mobile" id="mobile" required value={registerData.mobile} onChange={handleChange} minLength='10' maxLength='10'/>
                 </div>
                 <div className="btn-div">
                     <button type='Submit' className='btn'>Register</button>

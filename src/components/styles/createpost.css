@@ -55,6 +55,7 @@
 
 .create-post-section-1{
     padding: 3rem;
+    padding-bottom: 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -110,4 +111,17 @@
 .editing-panel{
     width: 100%;
     background: #fff;
+}
+
+.editing-panel img{
+    margin: 0.5rem;
+    padding: 0.5rem;
+    height: 24px;
+    width: 24px;
+    border: 1px solid #fff;
+}
+
+.editing-panel img:hover{
+    cursor: pointer;
+    border-color: #000;
 }

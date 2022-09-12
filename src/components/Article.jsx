@@ -1,16 +1,49 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './styles/article.css';
 import Taglist from './Taglist';
-import CoverImg from '../images/Node.js.png';
+import CoverImg from '../images/introduction-to-web-development-social.png';
 import ProfilePic from '../images/Profile-Pic.jpg';
+import axios from 'axios';
+import { useParams } from 'react-router-dom';
+import ReactMarkdown from 'react-markdown';
 
 const Article = () => {
 
 const [isLiked, setIsliked] = useState(false);
 const [copyStatus, setCopyStatus] = useState(false);
 
-const handleToggle = () => {
-    setIsliked(!isLiked);
+const handleToggle = () => {setIsliked(!isLiked)}
+
+const { id } = useParams();
+
+const baseUrl = `http://localhost:5000/api/`;
+
+const [post, setPost] = useState([]);
+const [userData, setUserData] = useState(null);
+
+const fetchPostData = async () => {
+    const res = await axios.get(baseUrl + `articles/${id}`);
+    setPost(res.data);
+}
+
+useEffect(() => {
+    fetchPostData();
+    const fetchUserData = async () => {
+        if(post){
+            const author = await axios.get(baseUrl + `user/${post.authorId}`);
+            if(author){
+                setUserData(author.data);
+            }
+            else{
+                setUserData(`Author not found!`);
+            }
+        }
+    }
+    fetchUserData();
+});
+
+if(userData === null){
+    return "Loading...";
 }
 
 return (
@@ -32,7 +65,6 @@ return (
                 <path d="M7 6V3a1 1 0 011-1h12a1 1 0 011 1v14a1 1 0 01-1 1h-3v3c0 .552-.45 1-1.007 1H4.007A1 1 0 013 21l.003-14c0-.552.45-1 1.007-1H7zm2 0h8v10h2V4H9v2zm-2 5v2h6v-2H7zm0 4v2h6v-2H7z"></path>
                 </svg>
                 {copyStatus ? "Copied" : ""}
-                {/* "Copied" */}
             </div>
         </div>
         <div className="single-article-main-box">
@@ -40,25 +72,24 @@ return (
                 <img src={CoverImg} alt="Cover_Image" className='single-article-cover-image'/>
                 <div className="single-article-wrapper">
                     <div className="article-user-details">
-                        <img src={ProfilePic} alt="" className='single-article-user-profile-img'/>
+                        <img src={userData.profilepic} alt="" className='single-article-user-profile-img'/>
                         <div className="single-article-user-publish-date">
-                            <h3>Pranav1326</h3>
-                            <p>14 Aug 2022</p>
+                            <h3>{post.author}</h3>
+                            <p>{new Date(post.createdAt).toDateString()}</p>
                         </div>
                     </div>
                     <div className="single-article-title">
-                        <h1>Node.js File System API - beginner-friendly guide </h1>
+                        <h1>{post.title}</h1>
                     </div>
                     <div className="single-article-tags">
-                        <p>node</p>
-                        <p>javascript</p>
-                        <p>tutorial</p>
+                        {/* {post.tags.forEach(function(e){
+                            return <p>{e}</p>
+                        })} */}
                     </div>
                     <div className="single-article-content">
-                        <h2>File System API</h2>
-                        <p>
-                            Accessing file system, managing and editing files is probably one of the most important tasks that are done on the server-side. Thus, Node.js is deemed to provide such functionality. It does so in the form of File System (FS) API, containing a vast number of methods and properties. While casual use of this API is usually limited to just reading and writing files, there's still much, much more to discover...
-                        </p>
+                        <ReactMarkdown>
+                            {post.content}
+                        </ReactMarkdown>
                     </div>
                 </div>
             </div>
@@ -66,17 +97,19 @@ return (
         <div className="single-article-user-tags">
             <div className="single-article-user-card-details">
                 <div className="article-user-card-details">
-                    <img src={ProfilePic} alt="" />
-                    <h4>Pranav1326</h4>
+                    <img src={userData.profilepic} alt="" />
+                    <h4>{userData.username}</h4>
                 </div>
-                <p className="single-article-user-bio">Hobbyist. Web Developer. 👨‍💻 Freelancer. Blogger. Making awesome websites. </p>
+                <p className="single-article-user-bio">
+                    {userData.bio}
+                </p>
                 <div className="single-article-user-location">
                     <span>Location</span>
-                    <p>Gujarart, India</p>
+                    <p>{userData.location}</p>
                 </div>
                 <div className="single-article-user-joined">
                     <span>Joined</span>
-                    <p>31 Jul 2022</p>
+                    <p>{new Date(userData.createdAt).toDateString()}</p>
                 </div>
             </div>
             <div className="single-article-popular-tags">
@@ -84,7 +117,7 @@ return (
             </div>
         </div>
     </div>
-  );
+    );
 }
 
 export default Article;

@@ -3,12 +3,14 @@
     width: 100%;
     display: flex;
     align-items: center;
-    position: relative;
+    position: sticky;
+    top: 0;
     padding: 0.5rem 0rem;
     background: linear-gradient(90deg, rgba(0, 70, 111, 0.5), rgba(14, 215, 191, 0.5));
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(0, 0, 0, 0.3);
     background-blend-mode: multiply;
     color: #fff;
+    z-index: 5;
 }
 
 .brand-name {
@@ -43,6 +45,7 @@
     margin: 0 2rem;
 }
 
+
 .navigation-menu li div #search{
     width: 100%;
     height: 100%;
@@ -55,7 +58,8 @@
 }
 
 .navigation-menu li a,
-.navigation-menu li div #search 
+.navigation-menu li div #search,
+.navigation-menu li button
 {
     font-size: 1.2rem;
     color: #fff;
@@ -65,7 +69,8 @@
     border-radius: 2px;
 }
 
-.navigation-menu li a:hover {
+.navigation-menu li a:hover,
+.navigation-menu li button:hover {
     color: rgba(0, 0, 0, 0.8);
     background: transparent;
     border: 2px solid rgba(0, 0, 0, 0.8);

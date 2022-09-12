@@ -1,69 +1,86 @@
 import React, { useState } from 'react'
 import './styles/register.css';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const Register = () => {
-    const [registerData, setRegisterData] = useState({
-        username: "",
-        password: "",
-        mobile: ""
+const navigate = useNavigate();
+const [registerData, setRegisterData] = useState({
+    username: "",
+    password: "",
+    email: ""
+});
+const handleChange = e => {
+    const {name, value} = e.target;
+    setRegisterData(preValue => {
+        if(name === "username"){
+            return{
+                username: value,
+                password: preValue.password,
+                email: preValue.email
+            };
+        }
+        else if(name === "password"){
+            return {
+                username: preValue.username,
+                password: value,
+                email: preValue.email
+            };
+        }
+        else if(name === "email"){
+            return {
+                username: preValue.username,
+                password: preValue.password,
+                email: value
+            };
+        }
     });
-    const handleChange = e => {
-        const {name, value} = e.target;
-        setRegisterData(preValue => {
-            if(name === "username"){
-                return{
-                    username: value,
-                    password: preValue.password,
-                    mobile: preValue.mobile
-                };
-            }
-            else if(name === "password"){
-                return {
-                    username: preValue.username,
-                    password: value,
-                    mobile: preValue.mobile
-                };
-            }
-            else if(name === "mobile"){
-                return {
-                    username: preValue.username,
-                    password: preValue.password,
-                    mobile: value
-                };
-            }
-        });
+}
+const baseUrl = `http://localhost:5000/api/user/register`;
+const handleSubmit = async e => {
+    e.preventDefault();
+    if(registerData === null){
+        alert(`Please enter valid details!`);
     }
-    const handleSubmit = e => {
-        e.preventDefault();
-        if(registerData.mobile.length !== 10){
-            alert(`Please enter valid mobile number!`);
-        }
-        else{
-            console.log(registerData);
+    else{
+        try {
+	        const result = await axios.post(baseUrl, registerData)
+            console.log(result);
+            result.data && alert(`User ${registerData.username} created successfully.`); navigate('/login');
+        } catch (error) {
+            console.log(error);
+            if(error.response.status === 400 || error.response.status === 500){
+                alert(`User already exist!`);
+            }
         }
     }
-    return (
-        <div className='register-box'>
-            <form action="/" method='post' onSubmit={handleSubmit}>
-                <h1>Register</h1>
-                <div className="username-div">
-                    <label htmlFor="username">Username</label>
-                    <input type="text" name="username" id="username" required value={registerData.username} onChange={handleChange} />
-                </div>
-                <div className="password-div">
-                    <label htmlFor="password">Password</label>
-                    <input type="password" name="password" id="password" required value={registerData.password} onChange={handleChange} />
-                </div>
-                <div className="mobile-div">
-                    <label htmlFor="mobileno">Mobile no</label>
-                    <input type="number" name="mobile" id="mobile" required value={registerData.mobile} onChange={handleChange} minLength='10' maxLength='10'/>
-                </div>
-                <div className="btn-div">
-                    <button type='Submit' className='btn'>Register</button>
-                </div>
-            </form>
-        </div>
-    )
+}
+const handleLogin = () => {
+    navigate('/login');
+}
+return (
+    <div className='register-box'>
+        <form action="/" method='post' onSubmit={handleSubmit}>
+            <h1>Register</h1>
+            <div className="username-div">
+                <label htmlFor="username">Username</label>
+                <input type="text" name="username" id="username" required value={registerData.username} onChange={handleChange} />
+            </div>
+            <div className="password-div">
+                <label htmlFor="password">Password</label>
+                <input type="password" name="password" id="password" required value={registerData.password} onChange={handleChange} />
+            </div>
+            <div className="email-div">
+                <label htmlFor="email">Email</label>
+                <input type="email" name="email" id="email" required value={registerData.email} onChange={handleChange} />
+            </div>
+            <div className="btn-div">
+                <button type='Submit' className='btn'>Register</button>
+                <button className='btn' onClick={handleLogin}>Login</button>
+            </div>
+        </form>
+    </div>
+);
 }
 
 export default Register;

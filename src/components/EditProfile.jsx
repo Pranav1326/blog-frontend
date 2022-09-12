@@ -18,7 +18,7 @@ const EditProfile = () => {
                     </div>
                     <div className="username">
                         <label htmlFor="username">Username</label>
-                        <input type="text" name="username" id="username" contentEditable="false" value="Pranav1326"/>
+                        <input type="text" name="username" id="username" value="Pranav1326" readOnly/>
                         <p className="warning">*Username cannot be changed after user is created</p>
                     </div>
                     <div className="image-profile">
@@ -43,7 +43,7 @@ const EditProfile = () => {
                     </div>
                 </div>
             </div>
-            <button type='submit' id='save-profile-btn'>Save Profile</button>
+            <button type='submit' id='save-profile-btn' >Save Profile</button>
         </div>
     </div>
   )

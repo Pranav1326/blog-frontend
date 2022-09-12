@@ -1,31 +1,31 @@
-import React, { useState } from 'react';
+import React, { useContext, useRef } from 'react';
 import './styles/login.css';
+import {useNavigate} from 'react-router-dom';
+import { Context } from '../context/Context';
+import axios from 'axios';
 
 const Login = () => {
-    const [loginData, setLoginData] = useState({
-        username: "",
-        password: ""
-    });
-    const handleChange = e => {
-        const {name, value} = e.target;
-        setLoginData(preValue => {
-            if(name === "username"){
-                return{
-                    username: value,
-                    password: preValue.password
-                };
-            }
-            else if(name === "password"){
-                return {
-                    username: preValue.username,
-                    password: value
-                };
-            }
-        });
-    }
-    const handleSubmit = e => {
+    const userRef = useRef();
+    const passwordRef = useRef();
+    const navigate = useNavigate();
+    const { user, dispatch  } = useContext(Context);
+    const baseUrl = `http://localhost:5000/api/user/login`;
+    const handleSubmit = async e => {
         e.preventDefault();
-        console.log(loginData);
+        dispatch({type: "LOGIN_START"});
+        try {
+            const res = await axios.post(baseUrl, {
+                username: userRef.current.value,
+                password: passwordRef.current.value
+            });
+            dispatch({type: "LOGIN_SUCCESS", payload: res.data});
+            navigate('/');
+        } catch (error) {
+            dispatch({type: "LOGIN_FAILURE"});
+        }
+    }
+    const handleRegister = () => {
+        navigate('/register');
     }
     return (
         <div className='login-box'>
@@ -33,17 +33,22 @@ const Login = () => {
                 <h1>Login</h1>
                 <div className="username-div">
                     <label htmlFor="username">Username</label>
-                    <input type="text" name="username" id="username" required autoComplete='off' value={loginData.username} onChange={handleChange} />
+                    <input type="text" name="username" id="username" required autoComplete='off' 
+                         ref={userRef}
+                     />
                 </div>
                 <div className="password-div">
                     <label htmlFor="password">Password</label>
-                    <input type="password" name="password" id="password" required autoComplete='off' value={loginData.password} onChange={handleChange}/>
+                    <input type="password" name="password" id="password" required autoComplete='off' 
+                        ref={passwordRef}
+                     />
                 </div>
                 <div className="forgot-div">
                     <a href="/forgotPwd">Forgot password</a>
                 </div>
                 <div className="btn-div">
                     <button type='Submit' className='btn'>Login</button>
+                    <button className='btn' onClick={handleRegister}>Register</button>
                 </div>
             </form>
         </div>

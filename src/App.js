@@ -1,13 +1,14 @@
 import './App.css';
 import Main from './components/Main';
-import Navbar from './components/Navbar';
+import { ContextProvider } from './context/Context';
 
 function App() {
   return (
-    <div className="App">
-      <Navbar />
-      <Main />
-    </div>
+    <ContextProvider>
+      <div className="App">
+        <Main />
+      </div>
+    </ContextProvider> 
   );
 }
 

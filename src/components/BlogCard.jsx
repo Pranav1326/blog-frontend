@@ -1,33 +1,40 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './styles/blogcard.css';
 
-const BlogCard = () => {
+const BlogCard = (props) => {
+  const tagList = props.tags.map(function(e){
+    return <li>{e}</li>;
+  });
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate(`/article/${props.id}`);    
+  }
   return (
-    <div className='blogcard'>
+    <div className='blogcard' key={props.id} onClick={handleClick}>
       <div className="first">
         <div className="details-one">
           <div className="author">
             <a href='/' id="author">
-              Pranav1326
+              {props.author}
             </a>
           </div>
           <div className="date">
-            13 Aug 2022
+            {new Date(props.publish).toDateString()}
           </div>
         </div>
       </div>
       <div className="second">
         <div className="details-two">
           <div className="title">
-            Getting Started with Node.js
+            {props.title}
           </div>
           <div className="description">
-            Learn your very first node.js project step by step
+            {props.description}
           </div>
           <div className="tags">
             <ul>
-              <li>nodejs</li>
-              <li>javascript</li>
+              {tagList}
             </ul>
           </div>
         </div>

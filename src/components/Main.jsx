@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './styles/main.css';
 import Login from './Login';
 import Register from './Register';
@@ -7,18 +7,40 @@ import Profile from './Profile';
 import EditProfile from './EditProfile';
 import CreatePost from './CreatePost';
 import Article from './Article';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Navbar from './Navbar';
+import AuthNav from './AuthNav';
+import { Context } from '../context/Context';
+import { useEffect } from 'react';
 
 const Main = () => {
+  const { user } = useContext(Context);
+  function fetchNav() {
+    if(user){
+      return(<AuthNav/>);
+    }
+    else{
+      return(<Navbar/>);
+    }
+  }
+  useEffect(() => {
+    fetchNav();
+  },[user]);
   return (
-    <div className='main'>
-        {/* <Login /> */}
-        {/* <Register /> */}
-        {/* <Articles /> */}
-        {/* <Profile /> */}
-        {/* <EditProfile /> */}
-        {/* <CreatePost /> */}
-        <Article />
-    </div>
+    <BrowserRouter>
+    {user ? <AuthNav /> : <Navbar />}
+      <div className='main'>
+        <Routes>
+          <Route path='/' element={<Articles />}/>
+          <Route path='/login' element={<Login />}/>
+          <Route path='/register' element={<Register />}/>
+          <Route path='/article/:id' element={<Article />}/>
+          <Route path='/profile' element={user ? <Profile /> : <Login />}/>
+          <Route path='/editprofile' element={user ? <EditProfile /> : <Login />}/>
+          <Route path='/createpost' element={user ? <CreatePost /> : <Login />}/>
+        </Routes>
+      </div>
+    </BrowserRouter>
   )
 }
 

@@ -4,7 +4,7 @@ import {
     Link
 } from "react-router-dom";
 
-const Navbar = ({user}) => {
+const AuthNav = ({user}) => {
     const [isNavExpanded, setIsNavExpanded] = useState(false);
     return (
         <nav className="navigation">
@@ -31,8 +31,8 @@ const Navbar = ({user}) => {
                         </Link>
                     </li>
                     <li>
-                        <Link to='/login'>
-                            Login
+                        <Link to='/profile'>
+                            Profile
                         </Link>
                     </li>
                 </ul>
@@ -41,4 +41,4 @@ const Navbar = ({user}) => {
     );
 }
 
-export default Navbar;
+export default AuthNav;

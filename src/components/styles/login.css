@@ -49,6 +49,12 @@ form{
     text-decoration: none;
 }
 
+.btn-div{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
 .btn{
     text-align: center;
     width: 7rem;

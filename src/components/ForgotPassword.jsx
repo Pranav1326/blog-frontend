@@ -6,16 +6,20 @@ import { Context } from '../context/Context';
 
 const ForgotPassword = () => {
 
-const { dispatch  } = useContext(Context);
+const { dispatch, resetPassword  } = useContext(Context);
 const navigate = useNavigate();
 const [email, setEmail] = useState("");
 const baseUrl = `http://localhost:5000/api/user/forgotpassword`;
+
 const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+        console.log(`ResetPassword before request `,resetPassword);
         const res = await axios.post(baseUrl, {email});
         dispatch({type: "RESET_PASSWORD"});
+        console.log(`ResetPassword after request `,resetPassword);
         alert(res.data);
+        navigate('/authforgotpassword');
     } catch (error) {
         alert(error.response.data);      
     }

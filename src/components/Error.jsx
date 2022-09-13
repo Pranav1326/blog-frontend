@@ -2,7 +2,9 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './styles/error.css';
 
-const Error = () => {
+const Error = ({pwdreset}) => {
+
+console.log(pwdreset);
 const navigate = useNavigate();
 const handleHome = () => {
     navigate('/');

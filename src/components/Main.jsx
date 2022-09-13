@@ -15,6 +15,7 @@ import { useEffect } from 'react';
 import ForgotPassword from './ForgotPassword';
 import ResetPassword from './ResetPassword';
 import Error from './Error';
+import AuthForgotPassword from './AuthForgotPassword';
 
 const Main = () => {
   const { user, resetPassword } = useContext(Context);
@@ -39,7 +40,8 @@ const Main = () => {
           <Route path='/login' element={<Login />}/>
           <Route path='/register' element={<Register />}/>
           <Route path='/forgotpassword' element={<ForgotPassword />}/>
-          <Route path='/resetpassword' element={resetPassword ? <ResetPassword /> : <Articles />}/>
+          <Route path='/authforgotpassword' element={<AuthForgotPassword />}/>
+          <Route path='/resetpassword' element={resetPassword ? <ResetPassword /> : <Error pwdreset={resetPassword}/>}/>
           <Route path='/article/:id' element={<Article />}/>
           <Route path='/profile' element={user ? <Profile /> : <Login />}/>
           <Route path='/editprofile' element={user ? <EditProfile /> : <Login />}/>

@@ -18,3 +18,7 @@ export const LoginFailure = () => ({
 export const ResetPassword = () => ({
     type: "RESET_PASSWORD"
 });
+
+export const ResetPasswordSuccess = () => ({
+    type: "RESET_PASSWORD_SUCCESS"
+});

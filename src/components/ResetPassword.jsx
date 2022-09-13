@@ -50,7 +50,7 @@ return (
             </div>
             <div className="password-div">
                 <label htmlFor="password">Confirm Password</label>
-                <input type="password" name="password" id="password" required autoComplete='off' 
+                <input type="password" name="password"required autoComplete='off' 
                     value={confirmPassword}
                     onChange={e => setConfirmPassword(e.target.value)}
                     />

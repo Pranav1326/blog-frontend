@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './styles/profile.css';
 import { Context } from '../context/Context';
+import axios from 'axios';
 
 const Profile = () => {
 const { user, dispatch } = useContext(Context);
@@ -16,6 +17,34 @@ const handleLogout = e => {
     localStorage.setItem("token", null);
     navigate('/');
 }
+const handleDelete = async e => {
+    e.preventDefault();
+    const token = JSON.parse(localStorage.getItem('token'));
+    console.log(`Bearer ${token}`);
+    const userDetails = JSON.stringify({
+        username: user.username,
+        email: user.email,
+        userId: user._id
+    });
+    const baseUrl = `http://localhost:5000/api/user/delete`;
+    const authAxios = axios.create({
+        baseURL: baseUrl,
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
+    });
+    try {
+        const res = await authAxios.delete(
+            `/${user._id}`,
+            userDetails
+        ).then((result) => console.log(result))
+        .catch(err => console.log(err));
+        console.log(res);
+    } catch (error) {
+        console.log(error);
+        alert(error.response.data.message || error.response.data || error.response || error);
+    }
+}
 return (
     <div className='profile-section'>
         <section className="profile-section-1">
@@ -27,11 +56,10 @@ return (
                 <p className='user-details'>Bio: {user.bio}</p>
                 <p className='user-details'>Joined: {new Date(user.createdAt).toDateString()}</p>
                 <p className='user-details'>Location: {user.location}</p>
+                <button id='edit-profile-btn' onClick={handleDelete}>Delete Profile</button>
                 <button id='edit-profile-btn' onClick={handleNavigaion}>Edit Profile</button>
                 <button id='create-article-btn' onClick={() => navigate('/createpost')}> Create Article</button>
-                <button id='logout-btn' onClick={handleLogout}>
-                    Logout
-                </button>
+                <button id='logout-btn' onClick={handleLogout}>Logout</button>
             </div>
         </section>
         <section className="profile-section-2">

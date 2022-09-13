@@ -12,6 +12,8 @@ import Navbar from './Navbar';
 import AuthNav from './AuthNav';
 import { Context } from '../context/Context';
 import { useEffect } from 'react';
+import ForgotPassword from './ForgotPassword';
+import ResetPassword from './ResetPassword';
 
 const Main = () => {
   const { user } = useContext(Context);
@@ -34,6 +36,8 @@ const Main = () => {
           <Route path='/' element={<Articles />}/>
           <Route path='/login' element={<Login />}/>
           <Route path='/register' element={<Register />}/>
+          <Route path='/forgotpassword' element={<ForgotPassword />}/>
+          <Route path='/resetpassword' element={<ResetPassword />}/>
           <Route path='/article/:id' element={<Article />}/>
           <Route path='/profile' element={user ? <Profile /> : <Login />}/>
           <Route path='/editprofile' element={user ? <EditProfile /> : <Login />}/>

@@ -5,6 +5,8 @@ import axios from 'axios';
 
 const Register = () => {
 const navigate = useNavigate();
+const [confirmPassword, setConfirmPassword] = useState("");
+const [btnDisabled, setBtnDisabled] = useState(false);
 const [registerData, setRegisterData] = useState({
     username: "",
     password: "",
@@ -42,15 +44,18 @@ const handleSubmit = async e => {
     if(registerData === null){
         alert(`Please enter valid details!`);
     }
+    else if(registerData.password !== confirmPassword){
+        alert(`Password doen not match!`);
+    }
     else{
         try {
-	        const result = await axios.post(baseUrl, registerData)
-            console.log(result);
+            setBtnDisabled(true);
+	        const result = await axios.post(baseUrl, registerData);
             result.data && alert(`User ${registerData.username} created successfully.`); navigate('/login');
         } catch (error) {
-            console.log(error);
+            setBtnDisabled(false);
             if(error.response.status === 400 || error.response.status === 500){
-                alert(`User already exist!`);
+                alert(error.response.data);
             }
         }
     }
@@ -66,17 +71,30 @@ return (
                 <label htmlFor="username">Username</label>
                 <input type="text" name="username" id="username" required value={registerData.username} onChange={handleChange} />
             </div>
-            <div className="password-div">
-                <label htmlFor="password">Password</label>
-                <input type="password" name="password" id="password" required value={registerData.password} onChange={handleChange} />
-            </div>
             <div className="email-div">
                 <label htmlFor="email">Email</label>
                 <input type="email" name="email" id="email" required value={registerData.email} onChange={handleChange} />
             </div>
+            <div className="password-div">
+                <label htmlFor="password">Password</label>
+                <input type="password" name="password" id="password" required value={registerData.password} onChange={handleChange} />
+            </div>
+            <div className="password-div">
+                <label htmlFor="password">Confirm Password</label>
+                <input type="password" name="password" required value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)} />
+            </div>
             <div className="btn-div">
-                <button type='Submit' className='btn'>Register</button>
-                <button className='btn' onClick={handleLogin}>Login</button>
+                <button type='Submit' 
+                    className={btnDisabled ? 'btn-disabled' : 'btn' }
+                >
+                    Register
+                </button>
+                <button type='Submit' 
+                    className={btnDisabled ? 'btn-disabled' : 'btn' } 
+                    onClick={handleLogin}
+                >
+                    Login
+                </button>
             </div>
         </form>
     </div>

@@ -48,6 +48,22 @@ const Reducer = (state, action) => {
                 resetPassword: false,
                 erorr: false
             }
+        case "USER_UPDATE_START":
+            return{
+                user: state.user,
+                token: null,
+                isFetching: true,
+                resetPassword: false,
+                erorr: false
+            }
+        case "USER_UPDATE_SUCCESS":
+            return{
+                user: action.payload.userInfo,
+                token: null,
+                isFetching: false,
+                resetPassword: false,
+                erorr: false
+            }
         default:
             return state;
     }

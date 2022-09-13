@@ -1,10 +1,8 @@
 .edit-profile-main{
     margin: 2rem auto;
     align-self: center;
-    width: 40rem;
-    border: 1px solid #fff;
+    width: 45rem;
     border-radius: 5px;
-    box-shadow: 1px 1px 5px #000;
 }
 
 .edit-profile-box{
@@ -12,6 +10,10 @@
     padding: 1rem 4rem;
     display: flex;
     flex-direction: column;
+}
+
+.edit-profile-box form{
+    padding: 0 3rem;
 }
 
 .user-details,

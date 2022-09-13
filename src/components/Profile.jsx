@@ -1,15 +1,33 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './styles/profile.css';
 import { Context } from '../context/Context';
 import axios from 'axios';
 
 const Profile = () => {
-const { user, dispatch } = useContext(Context);
+const {user, dispatch } = useContext(Context);
+const onLoad = async e => {
+    dispatch({type: "USER_UPDATE_START"});
+
+    const baseUrl = `http://localhost:5000/api/user/${user._id}`;
+    try {
+        const res = await axios.get(baseUrl);
+        localStorage.setItem("user",JSON.stringify(res.data));
+        // dispatch({type: "USER_UPDATE_SUCCESS", payload: res.data});
+    } catch (error) {
+        alert(error.response.data);
+        console.log(error);
+    }
+}
+useEffect(() => {
+    onLoad();
+}, [user])
+
 const navigate = useNavigate();
 const handleNavigaion = e => {
     navigate('/editprofile');
 }
+// Logout Button
 const handleLogout = e => {
     e.preventDefault();
     dispatch({type: "LOGOUT"});
@@ -27,7 +45,6 @@ const handleDelete = async e => {
         email: user.email,
         userId: user._id
     };
-    console.log(userDetails);
     const baseUrl = `http://localhost:5000/api/user/delete/${user._id}`;
     const authAxios = axios.create({
         baseURL: baseUrl,
@@ -88,7 +105,7 @@ return (
             </div>
         </section>
     </div>
-  )
+  );
 }
 
 export default Profile;

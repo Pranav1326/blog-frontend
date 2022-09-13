@@ -17,16 +17,18 @@ const handleLogout = e => {
     localStorage.setItem("token", null);
     navigate('/');
 }
+// Delete Button
 const handleDelete = async e => {
     e.preventDefault();
     const token = JSON.parse(localStorage.getItem('token'));
     console.log(`Bearer ${token}`);
-    const userDetails = JSON.stringify({
+    const userDetails = {
         username: user.username,
         email: user.email,
         userId: user._id
-    });
-    const baseUrl = `http://localhost:5000/api/user/delete`;
+    };
+    console.log(userDetails);
+    const baseUrl = `http://localhost:5000/api/user/delete/${user._id}`;
     const authAxios = axios.create({
         baseURL: baseUrl,
         headers: {
@@ -34,11 +36,15 @@ const handleDelete = async e => {
         }
     });
     try {
-        const res = await authAxios.delete(
-            `/${user._id}`,
-            userDetails
-        ).then((result) => console.log(result))
-        .catch(err => console.log(err));
+        const res = await authAxios.delete(baseUrl, {data: userDetails})
+        .then((result) => {
+            console.log(result)
+            alert(result.data);
+            handleLogout(e);
+        })
+        .catch(err => {
+            alert(err.response.data);
+        });
         console.log(res);
     } catch (error) {
         console.log(error);

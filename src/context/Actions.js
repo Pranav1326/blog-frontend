@@ -12,5 +12,9 @@ export const Logout = () => ({
 });
 
 export const LoginFailure = () => ({
-    type: "LOGIN_FAILURE",
+    type: "LOGIN_FAILURE"
+});
+
+export const ResetPassword = () => ({
+    type: "RESET_PASSWORD"
 });

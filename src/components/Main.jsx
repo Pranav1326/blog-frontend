@@ -14,9 +14,10 @@ import { Context } from '../context/Context';
 import { useEffect } from 'react';
 import ForgotPassword from './ForgotPassword';
 import ResetPassword from './ResetPassword';
+import Error from './Error';
 
 const Main = () => {
-  const { user } = useContext(Context);
+  const { user, resetPassword } = useContext(Context);
   function fetchNav() {
     if(user){
       return(<AuthNav/>);
@@ -27,6 +28,7 @@ const Main = () => {
   }
   useEffect(() => {
     fetchNav();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   },[user]);
   return (
     <BrowserRouter>
@@ -37,11 +39,12 @@ const Main = () => {
           <Route path='/login' element={<Login />}/>
           <Route path='/register' element={<Register />}/>
           <Route path='/forgotpassword' element={<ForgotPassword />}/>
-          <Route path='/resetpassword' element={<ResetPassword />}/>
+          <Route path='/resetpassword' element={resetPassword ? <ResetPassword /> : <Articles />}/>
           <Route path='/article/:id' element={<Article />}/>
           <Route path='/profile' element={user ? <Profile /> : <Login />}/>
           <Route path='/editprofile' element={user ? <EditProfile /> : <Login />}/>
           <Route path='/createpost' element={user ? <CreatePost /> : <Login />}/>
+          <Route path='*' element={<Error />}/>
         </Routes>
       </div>
     </BrowserRouter>

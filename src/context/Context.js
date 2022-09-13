@@ -6,6 +6,7 @@ const INITIAL_STATE = {
     user: JSON.parse(localStorage.getItem("user")),
     token: JSON.parse(localStorage.getItem("token")),
     isFetching: false,
+    resetPassword: false,
     error: false
 };
 
@@ -25,6 +26,7 @@ export const ContextProvider = ({ children }) => {
                 user: state.user,
                 isFetching: state.isFetching,
                 error: state.error,
+                resetPassword: state.resetPassword,
                 dispatch
             }}
         >

@@ -1,10 +1,12 @@
 import axios from 'axios';
-import React from 'react';
+import React, { useContext } from 'react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Context } from '../context/Context';
 
 const ForgotPassword = () => {
 
+const { dispatch  } = useContext(Context);
 const navigate = useNavigate();
 const [email, setEmail] = useState("");
 const baseUrl = `http://localhost:5000/api/user/forgotpassword`;
@@ -12,6 +14,7 @@ const handleSubmit = async (e) => {
     e.preventDefault();
     try {
         const res = await axios.post(baseUrl, {email});
+        dispatch({type: "RESET_PASSWORD"});
         alert(res.data);
     } catch (error) {
         alert(error.response.data);      
@@ -21,7 +24,7 @@ const handleSubmit = async (e) => {
 return (
     <div className='login-box'>
             <form action="/" method='post' onSubmit={handleSubmit}>
-                <h1>Reset Password</h1>
+                <h1>Forgot Password</h1>
                 <div className="email-div">
                     <label htmlFor="email">Email</label>
                     <input type="email" name="email" id="email" required autoComplete='off' 

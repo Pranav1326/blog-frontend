@@ -1,10 +1,11 @@
 import axios from 'axios';
-import React from 'react';
+import React, { useContext } from 'react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Context } from '../context/Context';
 
 const ResetPassword = () => {
-
+const { dispatch  } = useContext(Context);
 const navigate = useNavigate();
 const [username, setUsername] = useState("");
 const [password, setPassword] = useState("");
@@ -16,6 +17,7 @@ const handleSubmit = async (e) => {
         try {
             const res = await axios.put(baseUrl, {username, password});
             if(res.status === 200){
+                dispatch({type: "RESET_PASSWORD_SUCCESS"});
                 alert('Password reset successfully.');
                 navigate('/login');
             }
@@ -31,7 +33,7 @@ const handleSubmit = async (e) => {
 return (
     <div className='login-box'>
         <form action="/" method='post' onSubmit={handleSubmit}>
-            <h1>Reser Password</h1>
+            <h1>Reset Password</h1>
             <div className="username-div">
                 <label htmlFor="username">Username</label>
                 <input type="text" name="username" id="username" required autoComplete='off' 

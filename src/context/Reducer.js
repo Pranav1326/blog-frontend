@@ -7,6 +7,7 @@ const Reducer = (state, action) => {
                 user: null,
                 token: null,
                 isFetching: true,
+                resetPassword: false,
                 error: false
             }
         case "LOGIN_SUCCESS":
@@ -14,6 +15,7 @@ const Reducer = (state, action) => {
                 user: action.payload.userInfo,
                 token: action.payload.token,
                 isFetching: false,
+                resetPassword: false,
                 error: false
             }
         case "LOGIN_FAILURE":
@@ -21,6 +23,7 @@ const Reducer = (state, action) => {
                 user: null,
                 token: null,
                 isFetching: false,
+                resetPassword: false,
                 error: true
             }
         case "LOGOUT":
@@ -28,6 +31,23 @@ const Reducer = (state, action) => {
                 user: null,
                 token: null,
                 isFetching: false,
+                resetPassword: false,
+                erorr: false
+            }
+        case "RESET_PASSWORD":
+            return{
+                user: null,
+                token: null,
+                isFetching: false,
+                resetPassword: true,
+                erorr: false
+            }
+        case "RESET_PASSWORD_SUCCESS":
+            return{
+                user: null,
+                token: null,
+                isFetching: false,
+                resetPassword: false,
                 erorr: false
             }
         default:

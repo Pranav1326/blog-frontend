@@ -19,10 +19,11 @@ const Articles = () => {
 
   if(!post) return "No posts!";
 
-  const postData = post.map(e => {
+  const postData = post.map((e, i) => {
     let date = e.createdAt.split("T")[0];
     return(
     <BlogCard
+      key={i.toString()}
       id={e._id}
       author={e.author}
       publish={date}

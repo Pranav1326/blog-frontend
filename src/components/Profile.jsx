@@ -3,11 +3,12 @@ import { useNavigate } from 'react-router-dom';
 import './styles/profile.css';
 import { Context } from '../context/Context';
 import axios from 'axios';
+import ProfileArticles from './ProfileArticles';
 
 const Profile = () => {
 
 const [fetchedUser, setFetchedUser] = useState(null);
-const {user, dispatch } = useContext(Context);
+const { user, dispatch } = useContext(Context);
 const onLoad = async e => {
     dispatch({type: "USER_UPDATE_START"});
 
@@ -17,7 +18,7 @@ const onLoad = async e => {
         if(res){
             setFetchedUser(res.data);
             console.log(fetchedUser);
-            localStorage.setItem("user",JSON.stringify(res.data));
+            localStorage.setItem("user", JSON.stringify(res.data));
         }
         // dispatch({type: "USER_UPDATE_SUCCESS", payload: res.data});
     } catch (error) {
@@ -28,7 +29,7 @@ const onLoad = async e => {
 
 useEffect(() => {
     onLoad();
-}, [user])
+}, []);
 
 const navigate = useNavigate();
 const handleNavigaion = e => {
@@ -46,7 +47,6 @@ const handleLogout = e => {
 const handleDelete = async e => {
     e.preventDefault();
     const token = JSON.parse(localStorage.getItem('token'));
-    console.log(`Bearer ${token}`);
     const userDetails = {
         username: user.username,
         email: user.email,
@@ -75,10 +75,7 @@ const handleDelete = async e => {
         alert(error.response.data.message || error.response.data || error.response || error);
     }
 }
-// Posts of user
-const handlePosts = async e => {
-    
-}
+
 return (
     <div className='profile-section'>
         <section className="profile-section-1">
@@ -101,20 +98,9 @@ return (
             <div className="details">
                 <p>{user.articles.length} Post Publised</p>
             </div>
-            <div className="article-list">
-                <h3 className='article-list-title'>
-                    Articles
-                </h3>
-                <ul>
-                    {/* {fetchedUser.articles>0 ? 
-                        fetchedUser.articles.map(e => {
-                            <li onClick={handlePosts}>{e}</li>
-                        })
-                    :
-                        <li>No Articles written by you!</li>
-                    } */}
-                </ul>
-            </div>
+            <ProfileArticles 
+                fetchedUser={fetchedUser}
+            />
         </section>
     </div>
   );

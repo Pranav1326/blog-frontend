@@ -4,7 +4,6 @@ import './styles/error.css';
 
 const Error = ({pwdreset}) => {
 
-console.log(pwdreset);
 const navigate = useNavigate();
 const handleHome = () => {
     navigate('/');

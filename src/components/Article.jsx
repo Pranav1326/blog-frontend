@@ -4,10 +4,12 @@ import Taglist from './Taglist';
 import CoverImg from '../images/introduction-to-web-development-social.png';
 import ProfilePic from '../images/Profile-Pic.jpg';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 
 const Article = () => {
+
+const navigate = useNavigate();
 
 const [isLiked, setIsliked] = useState(false);
 const [copyStatus, setCopyStatus] = useState(false);
@@ -21,26 +23,41 @@ const baseUrl = `http://localhost:5000/api/`;
 const [post, setPost] = useState([]);
 const [userData, setUserData] = useState(null);
 
+// Article Data
 const fetchPostData = async () => {
-    const res = await axios.get(baseUrl + `articles/${id}`);
-    setPost(res.data);
+    try {
+	    const res = await axios.get(baseUrl + `articles/${id}`);
+        setPost(res.data)
+    } catch (error) {
+        console.log(error);
+    };
+}
+
+// Update Button
+const handleUpdate = async e => {
+    e.preventDefault();
+    navigate(`/articleupdate/${id}`);
 }
 
 useEffect(() => {
     fetchPostData();
     const fetchUserData = async () => {
         if(post){
-            const author = await axios.get(baseUrl + `user/${post.authorId}`);
-            if(author){
-                setUserData(author.data);
-            }
-            else{
-                setUserData(`Author not found!`);
+            try {
+	            const author = await axios.get(baseUrl + `user/${post.authorId}`);
+	            if(author){
+	                setUserData(author.data);
+	            }
+	            else{
+	                setUserData(`Author not found!`);
+	            }
+            } catch (error) {
+                console.log(error);
             }
         }
     }
     fetchUserData();
-});
+},[post]);
 
 if(userData === null){
     return "Loading...";
@@ -76,6 +93,14 @@ return (
                         <div className="single-article-user-publish-date">
                             <h3>{post.author}</h3>
                             <p>{new Date(post.createdAt).toDateString()}</p>
+                        </div>
+                        <div className="single-article-update-delete">
+                            <div className="single-article-update">
+                                <button onClick={handleUpdate}>Update</button>
+                            </div>
+                            <div className="single-article-delete">
+                                <button>Delete</button>
+                            </div>
                         </div>
                     </div>
                     <div className="single-article-title">

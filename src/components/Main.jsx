@@ -16,6 +16,7 @@ import ForgotPassword from './ForgotPassword';
 import ResetPassword from './ResetPassword';
 import Error from './Error';
 import AuthForgotPassword from './AuthForgotPassword';
+import UpdateArticle from './UpdateArticle';
 
 const Main = () => {
   const { user, resetPassword } = useContext(Context);
@@ -43,10 +44,12 @@ const Main = () => {
           <Route path='/authforgotpassword' element={<AuthForgotPassword />}/>
           <Route path='/resetpassword' element={resetPassword ? <ResetPassword /> : <Error pwdreset={resetPassword}/>}/>
           <Route path='/article/:id' element={<Article />}/>
+          <Route path='/article?' element={<Article />}/>
           <Route path='/profile' element={user ? <Profile /> : <Login />}/>
           <Route path='/editprofile' element={user ? <EditProfile /> : <Login />}/>
           <Route path='/createpost' element={user ? <CreatePost /> : <Login />}/>
-          <Route path='*' element={<Error />}/>
+          <Route path='/articleupdate/:id' element={user ? <UpdateArticle /> : <Login />}/>
+          {/* <Route path='/*' element={<Error />}/> */}
         </Routes>
       </div>
     </BrowserRouter>

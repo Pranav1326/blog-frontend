@@ -1,3 +1,7 @@
+h1{
+    color: #fff;
+}
+
 .single-article-main{
     width: calc(100vw - 15rem);
     min-height: calc(100vh - 10rem);
@@ -51,6 +55,7 @@
 .single-article-user-publish-date{
     display: flex;
     flex-direction: column;
+    width: 100%;
 }
 
 .single-article-user-publish-date h3{
@@ -195,4 +200,36 @@
 
 .single-article-copy-link-btn{
     width: min-content;
+}
+
+.single-article-update-delete{
+    justify-self: flex-end;
+    display: flex;
+    flex-direction: row;
+}
+
+.single-article-update,
+.single-article-delete{
+    align-self: center;
+    justify-self: flex-end;
+}
+
+.single-article-update button,
+.single-article-delete button{
+    padding: 0.3rem 0.6rem;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    background: #fff;
+    border: 2px solid #088;
+    color: #088;
+    font-weight: 600;
+    margin-left: 0.5rem;
+}
+
+.single-article-update button:hover,
+.single-article-delete button:hover{
+    cursor: pointer;
+    color: #fff;
+    background: #088;
+    border-color: #fff;
 }

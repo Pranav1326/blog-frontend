@@ -67,6 +67,13 @@
     color: #fff;
 }
 
+.create-post-title,
+.create-post-tags{
+    width: 100%;
+    overflow: visible;
+    min-height: fit-content;
+}
+
 .create-post-title input,
 .create-post-tags input{
     margin: 0.5rem 0;
@@ -76,6 +83,8 @@
     background: transparent;
     color: #fff;
     width: 100%;
+    min-height: fit-content;
+    overflow: scroll;
 }
 
 .create-post-title input::placeholder,

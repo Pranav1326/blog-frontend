@@ -111,6 +111,12 @@
     margin: 2rem 0;
 }
 
+.single-article-content blockquote{
+    background: rgba(255,255,255,0.15);
+    margin: 0;
+    padding: 0.1rem 1rem;
+    border-radius: 10px;
+}
 
 .single-article-user-tags{
     display: flex;

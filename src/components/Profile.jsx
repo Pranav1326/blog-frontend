@@ -1,10 +1,12 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './styles/profile.css';
 import { Context } from '../context/Context';
 import axios from 'axios';
 
 const Profile = () => {
+
+const [fetchedUser, setFetchedUser] = useState(null);
 const {user, dispatch } = useContext(Context);
 const onLoad = async e => {
     dispatch({type: "USER_UPDATE_START"});
@@ -12,13 +14,18 @@ const onLoad = async e => {
     const baseUrl = `http://localhost:5000/api/user/${user._id}`;
     try {
         const res = await axios.get(baseUrl);
-        localStorage.setItem("user",JSON.stringify(res.data));
+        if(res){
+            setFetchedUser(res.data);
+            console.log(fetchedUser);
+            localStorage.setItem("user",JSON.stringify(res.data));
+        }
         // dispatch({type: "USER_UPDATE_SUCCESS", payload: res.data});
     } catch (error) {
         alert(error.response.data);
         console.log(error);
     }
 }
+
 useEffect(() => {
     onLoad();
 }, [user])
@@ -68,6 +75,10 @@ const handleDelete = async e => {
         alert(error.response.data.message || error.response.data || error.response || error);
     }
 }
+// Posts of user
+const handlePosts = async e => {
+    
+}
 return (
     <div className='profile-section'>
         <section className="profile-section-1">
@@ -75,10 +86,11 @@ return (
                 <img src="https://w7.pngwing.com/pngs/831/88/png-transparent-user-profile-computer-icons-user-interface-mystique-miscellaneous-user-interface-design-smile-thumbnail.png" alt="User Imae" className='img'/>
             </div>
             <div className="profile-details">
-                <p className='user-details'>{user.username}</p>
-                <p className='user-details'>Bio: {user.bio}</p>
-                <p className='user-details'>Joined: {new Date(user.createdAt).toDateString()}</p>
-                <p className='user-details'>Location: {user.location}</p>
+                <p className='user-details'>{fetchedUser ? fetchedUser.username : user.username}</p>
+                <p className='user-details'>Bio: {fetchedUser ? fetchedUser.bio : user.bio}</p>
+                <p className='user-details'>Joined: {fetchedUser ? new Date(fetchedUser.createdAt).toDateString() : new Date(user.createdAt).toDateString()}</p>
+                <p className='user-details'>Location: {fetchedUser ? fetchedUser.location: user.localStorage}</p>
+                <p className='user-details'>Work: {fetchedUser ? fetchedUser.work: user.work}</p>
                 <button id='edit-profile-btn' onClick={handleDelete}>Delete Profile</button>
                 <button id='edit-profile-btn' onClick={handleNavigaion}>Edit Profile</button>
                 <button id='create-article-btn' onClick={() => navigate('/createpost')}> Create Article</button>
@@ -94,13 +106,13 @@ return (
                     Articles
                 </h3>
                 <ul>
-                    {user.articles>0 ? 
-                        user.articles.map(e => {
-                            <li>{e}</li>
+                    {/* {fetchedUser.articles>0 ? 
+                        fetchedUser.articles.map(e => {
+                            <li onClick={handlePosts}>{e}</li>
                         })
                     :
                         <li>No Articles written by you!</li>
-                    }
+                    } */}
                 </ul>
             </div>
         </section>

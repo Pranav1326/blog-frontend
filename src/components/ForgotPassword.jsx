@@ -21,6 +21,7 @@ const handleSubmit = async (e) => {
         alert(res.data);
         navigate('/authforgotpassword');
     } catch (error) {
+        console.log(error);
         alert(error.response.data);      
     }
 }

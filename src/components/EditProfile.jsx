@@ -1,9 +1,10 @@
 import axios from 'axios';
-import React, { useContext } from 'react';
+import React, { useContext, useRef } from 'react';
 import { useState } from 'react';
 import './styles/editprofile.css';
 import { Context } from '../context/Context';
 import { useNavigate } from 'react-router-dom';
+// const fs = require('fs');
 
 const EditProfile = () => {
     // name, email, username, location, bio, work | profile-pic
@@ -105,6 +106,21 @@ const EditProfile = () => {
             alert(error.response.data.message || error.response.data || error.response || error);
         });
     }
+    const imgName = useRef(null);
+    const handleFileInput = async (e) => {
+        var FormData = require('form-data');
+        var data = new FormData();
+        // data.append('file', fs.createReadStream(imgName.current.value.split("\\")[2]));
+        // console.log(imgName.current.value.split("\\")[2]);
+        try {
+            const imgUpload = await axios.post(`http://localhost:5000/api/imageupload`, data);
+            console.log(imgUpload);
+            alert(imgUpload.data);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     return (
         <div className='edit-profile-main'>
             <div className="edit-profile-box">
@@ -126,7 +142,7 @@ const EditProfile = () => {
                                 <p className="warning">*Username cannot be changed after user is created</p>
                             </div>
                             <div className="image-profile">
-                                <input type="file" name="profileImage" id="profile-image" />
+                                <input type="file" name="profileImage" id="profile-image" ref={imgName} onChange={handleFileInput} />
                             </div>
                         </div>
                     </div>

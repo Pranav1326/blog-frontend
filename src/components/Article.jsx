@@ -33,10 +33,58 @@ const fetchPostData = async () => {
     };
 }
 
+// Tags
+// const fetchTags = post.tags.map(function(e){
+//     return (<p>{e}</p>);
+// })
+
 // Update Button
 const handleUpdate = async e => {
     e.preventDefault();
     navigate(`/articleupdate/${id}`);
+}
+
+// Delete Button
+const handleDelete = async e => {
+    e.preventDefault();
+    const choice = window.confirm(`Are you sure? This action can't be undone.`);
+    if(choice){
+        const token = JSON.parse(localStorage.getItem('token'));
+        const postDetails = {
+            userId: post.authorId,
+            author: post.author,
+            articleId: post._id
+        };
+        const url = `${baseUrl}articles/delete/${id}`;
+        const authAxios = axios.create({
+            baseURL: url,
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+        try {
+            const res = await authAxios.delete(
+                url,
+                {data: postDetails}
+            );
+            console.log(res);
+            if(res){
+                alert(`Article Deleted Successfully!`);
+            }
+            navigate('/');
+        } catch (error) {
+            console.log(error);
+            if(error.response.data.message){
+                alert(error.response.data.message);
+            }
+            else{
+                alert(error.response.data);
+            }
+        }
+    }
+    else{
+        return;
+    }
 }
 
 useEffect(() => {
@@ -99,7 +147,7 @@ return (
                                 <button onClick={handleUpdate}>Update</button>
                             </div>
                             <div className="single-article-delete">
-                                <button>Delete</button>
+                                <button onClick={handleDelete}>Delete</button>
                             </div>
                         </div>
                     </div>
@@ -110,6 +158,7 @@ return (
                         {/* {post.tags.forEach(function(e){
                             return <p>{e}</p>
                         })} */}
+                        {/* {fetchTags} */}
                     </div>
                     <div className="single-article-content">
                         <ReactMarkdown>

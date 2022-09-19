@@ -1,0 +1,16 @@
+.about-page-main{
+    border: 1px solid #fff;
+    min-width: calc(100vw - 2rem);
+    min-height: calc(100vh - 6rem);
+    margin-top: 1rem;
+    display: flex;
+    justify-items: center;
+    align-items: center;
+}
+
+.about-page-card-main{
+    border: 1px solid #fff;
+    width: 50vw;
+    height: 60vh;
+    justify-self: center;
+}

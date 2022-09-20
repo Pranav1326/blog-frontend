@@ -17,7 +17,6 @@ const onLoad = async e => {
         const res = await axios.get(baseUrl);
         if(res){
             setFetchedUser(res.data);
-            console.log(fetchedUser);
             localStorage.setItem("user", JSON.stringify(res.data));
         }
         // dispatch({type: "USER_UPDATE_SUCCESS", payload: res.data});
@@ -31,10 +30,12 @@ useEffect(() => {
     onLoad();
 }, []);
 
+// Edit-Profile Button
 const navigate = useNavigate();
 const handleNavigaion = e => {
     navigate('/editprofile');
 }
+
 // Logout Button
 const handleLogout = e => {
     e.preventDefault();
@@ -43,36 +44,42 @@ const handleLogout = e => {
     localStorage.setItem("token", null);
     navigate('/');
 }
+
 // Delete Button
 const handleDelete = async e => {
     e.preventDefault();
-    const token = JSON.parse(localStorage.getItem('token'));
-    const userDetails = {
-        username: user.username,
-        email: user.email,
-        userId: user._id
-    };
-    const baseUrl = `http://localhost:5000/api/user/delete/${user._id}`;
-    const authAxios = axios.create({
-        baseURL: baseUrl,
-        headers: {
-            'Authorization': `Bearer ${token}`
-        }
-    });
-    try {
-        const res = await authAxios.delete(baseUrl, {data: userDetails})
-        .then((result) => {
-            console.log(result)
-            alert(result.data);
-            handleLogout(e);
-        })
-        .catch(err => {
-            alert(err.response.data);
+    const choice = window.confirm(`Are you sure? This action can't be undone.`);
+    if(choice){
+        const token = JSON.parse(localStorage.getItem('token'));
+        const userDetails = {
+            username: user.username,
+            email: user.email,
+            userId: user._id
+        };
+        const baseUrl = `http://localhost:5000/api/user/delete/${user._id}`;
+        const authAxios = axios.create({
+            baseURL: baseUrl,
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
         });
-        console.log(res);
-    } catch (error) {
-        console.log(error);
-        alert(error.response.data.message || error.response.data || error.response || error);
+        try {
+            const res = await authAxios.delete(baseUrl, {data: userDetails})
+            .then((result) => {
+                alert(result.data);
+                handleLogout(e);
+            })
+            .catch(err => {
+                alert(err.response.data);
+            });
+            console.log(res);
+        } catch (error) {
+            console.log(error);
+            alert(error.response.data.message || error.response.data || error.response || error);
+        }
+    }
+    else{
+        return;
     }
 }
 
@@ -80,7 +87,10 @@ return (
     <div className='profile-section'>
         <section className="profile-section-1">
             <div className="profile-pic">
-                <img src="https://w7.pngwing.com/pngs/831/88/png-transparent-user-profile-computer-icons-user-interface-mystique-miscellaneous-user-interface-design-smile-thumbnail.png" alt="User Imae" className='img'/>
+                {console.log(fetchedUser)}
+                {fetchedUser ? 
+                <img src={fetchedUser.profilepic === "" ? "https://w7.pngwing.com/pngs/831/88/png-transparent-user-profile-computer-icons-user-interface-mystique-miscellaneous-user-interface-design-smile-thumbnail.png" : fetchedUser.profilepic} alt="User Imae" className='img'/>
+                : ""}
             </div>
             <div className="profile-details">
                 <p className='user-details'>{fetchedUser ? fetchedUser.username : user.username}</p>

@@ -6,7 +6,7 @@ import { Context } from '../context/Context';
 
 const ForgotPassword = () => {
 
-const { dispatch, resetPassword  } = useContext(Context);
+const { dispatch } = useContext(Context);
 const navigate = useNavigate();
 const [email, setEmail] = useState("");
 const baseUrl = `http://localhost:5000/api/user/forgotpassword`;
@@ -14,11 +14,10 @@ const baseUrl = `http://localhost:5000/api/user/forgotpassword`;
 const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-        console.log(`ResetPassword before request `,resetPassword);
         const res = await axios.post(baseUrl, {email});
         dispatch({type: "RESET_PASSWORD"});
-        console.log(`ResetPassword after request `,resetPassword);
         alert(res.data);
+        localStorage.setItem("user", email);
         navigate('/authforgotpassword');
     } catch (error) {
         console.log(error);
@@ -28,22 +27,22 @@ const handleSubmit = async (e) => {
 
 return (
     <div className='login-box'>
-            <form action="/" method='post' onSubmit={handleSubmit}>
-                <h1>Forgot Password</h1>
-                <div className="email-div">
-                    <label htmlFor="email">Email</label>
-                    <input type="email" name="email" id="email" required autoComplete='off' 
-                    onChange={e => setEmail(e.target.value)}
-                    value={email}
-                     />
-                </div>
-                <div className="btn-div">
-                    <button type='Submit' className='btn'>Submit</button>
-                    <button type='Submit' className='btn' onClick={() => navigate('/login')}>Login</button>
-                </div>
-            </form>
-        </div>
-  )
+        <form action="/" method='post' onSubmit={handleSubmit}>
+            <h1>Forgot Password</h1>
+            <div className="email-div">
+                <label htmlFor="email">Email</label>
+                <input type="email" name="email" id="email" required autoComplete='off' 
+                onChange={e => setEmail(e.target.value)}
+                value={email}
+                    />
+            </div>
+            <div className="btn-div">
+                <button type='Submit' className='btn'>Submit</button>
+                <button type='Submit' className='btn' onClick={() => navigate('/login')}>Login</button>
+            </div>
+        </form>
+    </div>
+  );
 }
 
 export default ForgotPassword;

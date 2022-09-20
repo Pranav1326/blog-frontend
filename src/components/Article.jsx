@@ -137,7 +137,7 @@ return (
                 <img src={CoverImg} alt="Cover_Image" className='single-article-cover-image'/>
                 <div className="single-article-wrapper">
                     <div className="article-user-details">
-                        <img src={userData.profilepic} alt="" className='single-article-user-profile-img'/>
+                        <img src={userData.profilepic} alt="" className={userData.profilepic !== "" ? 'single-article-user-profile-img' : 'single-article-user-profile-img-hidden'}/>
                         <div className="single-article-user-publish-date">
                             <h3>{post.author}</h3>
                             <p>{new Date(post.createdAt).toDateString()}</p>
@@ -171,14 +171,14 @@ return (
         <div className="single-article-user-tags">
             <div className="single-article-user-card-details">
                 <div className="article-user-card-details">
-                    <img src={userData.profilepic} alt="" />
+                    <img src={userData.profilepic} alt="" className={userData.profilepic !== "" ? 'single-article-user-card-profile-img' : 'single-article-user-card-profile-img-hidden'}/>
                     <h4>{userData.username}</h4>
                 </div>
                 <p className="single-article-user-bio">
                     {userData.bio}
                 </p>
                 <div className="single-article-user-location">
-                    <span>Location</span>
+                    {userData.location ? <span>Location</span> : ""}
                     <p>{userData.location}</p>
                 </div>
                 <div className="single-article-user-joined">

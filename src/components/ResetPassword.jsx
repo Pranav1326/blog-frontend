@@ -7,7 +7,7 @@ import { Context } from '../context/Context';
 const ResetPassword = () => {
 const { dispatch  } = useContext(Context);
 const navigate = useNavigate();
-const [username, setUsername] = useState("");
+const email = localStorage.getItem("user");
 const [password, setPassword] = useState("");
 const [confirmPassword, setConfirmPassword] = useState("");
 const baseUrl = `http://localhost:5000/api/user/resetpassword`;
@@ -15,7 +15,7 @@ const handleSubmit = async (e) => {
     e.preventDefault();
     if(password === confirmPassword){
         try {
-            const res = await axios.put(baseUrl, {username, password});
+            const res = await axios.put(baseUrl, {email, password});
             if(res.status === 200){
                 dispatch({type: "RESET_PASSWORD_SUCCESS"});
                 alert('Password reset successfully.');
@@ -34,13 +34,6 @@ return (
     <div className='login-box'>
         <form action="/" method='post' onSubmit={handleSubmit}>
             <h1>Reset Password</h1>
-            <div className="username-div">
-                <label htmlFor="username">Username</label>
-                <input type="text" name="username" id="username" required autoComplete='off' 
-                    value={username}
-                    onChange={e => setUsername(e.target.value)}
-                    />
-            </div>
             <div className="password-div">
                 <label htmlFor="password">Password</label>
                 <input type="password" name="password" id="password" required autoComplete='off' 

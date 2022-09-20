@@ -54,7 +54,14 @@ const handleSubmit = async e => {
             result.data && alert(`User ${registerData.username} created successfully.`); navigate('/login');
         } catch (error) {
             setBtnDisabled(false);
-            if(error.response.status === 400 || error.response.status === 500){
+            console.log(error);
+            if(error.response.data.code === 11000){
+                alert(`Email already exist!`);
+            }
+            else if(error.response.data.message){
+                alert(error.response.data.message);
+            }
+            else if(error.response.data){
                 alert(error.response.data);
             }
         }

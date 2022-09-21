@@ -15,7 +15,7 @@ const onLoad = async e => {
     const baseUrl = `http://localhost:5000/api/user/${user._id}`;
     try {
         const res = await axios.get(baseUrl);
-        if(res){
+        if(res.data){
             setFetchedUser(res.data);
             localStorage.setItem("user", JSON.stringify(res.data));
         }

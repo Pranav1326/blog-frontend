@@ -58,8 +58,8 @@ const Reducer = (state, action) => {
             }
         case "USER_UPDATE_SUCCESS":
             return{
-                user: action.payload.userInfo,
-                token: null,
+                user: action.payload,
+                token: JSON.parse(localStorage.getItem("token")),
                 isFetching: false,
                 resetPassword: false,
                 erorr: false

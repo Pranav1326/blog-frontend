@@ -24,6 +24,7 @@ export const ContextProvider = ({ children }) => {
         <Context.Provider
             value={{
                 user: state.user,
+                token: state.token,
                 isFetching: state.isFetching,
                 error: state.error,
                 resetPassword: state.resetPassword,

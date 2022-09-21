@@ -10,13 +10,13 @@ const EditProfile = () => {
     // name, email, username, location, bio, work | profile-pic
     // req: body{userId, info}, params{userId}
     const navigate = useNavigate();
-    const { user } = useContext(Context);
+    const { user, dispatch } = useContext(Context);
     const [userData, setUserData] = useState({
-        name: "",
-        email: "",
-        location: "",
-        bio: "",
-        work: ""
+        name: user.name,
+        email: user.email,
+        location: user.location,
+        bio: user.bio,
+        work: user.work
     });
 
     // Handling Input States
@@ -92,12 +92,14 @@ const EditProfile = () => {
     };
 
     // Submitting form
-    const handleSubmit = async e => {
+    const handleSubmit = e => {
         e.preventDefault();
+        dispatch({type: "USER_UPDATE_START"});
         axios(config)
         .then((response) => {
             if(response){
                 alert(`Profile updated Successfully.`);
+                dispatch({type: "USER_UPDATE_SUCCESS", payload: response.data});
                 navigate('/profile');
             }
         })

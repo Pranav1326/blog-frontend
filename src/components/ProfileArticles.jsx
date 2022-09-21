@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import axios from 'axios';
 import React, { useEffect } from 'react';
 import { useState } from 'react';
@@ -27,7 +28,7 @@ const handlePostRedirect = (e) => {
     });
     // console.log(findArticle);
     // console.log(titles);
-    navigate(`/article/${findArticle}`)
+    navigate(`/article/${findArticle}`);
 }
 
 useEffect(() => {

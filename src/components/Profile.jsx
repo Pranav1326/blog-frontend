@@ -87,7 +87,6 @@ return (
     <div className='profile-section'>
         <section className="profile-section-1">
             <div className="profile-pic">
-                {console.log(fetchedUser)}
                 {fetchedUser ? 
                 <img src={fetchedUser.profilepic === "" ? "https://w7.pngwing.com/pngs/831/88/png-transparent-user-profile-computer-icons-user-interface-mystique-miscellaneous-user-interface-design-smile-thumbnail.png" : fetchedUser.profilepic} alt="User Imae" className='img'/>
                 : ""}

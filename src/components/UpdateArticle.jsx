@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useContext } from 'react';
 import './styles/createpost.css';
@@ -22,16 +23,29 @@ import { useEffect } from 'react';
 
 const UpdateArticle = () => {
 
+const navigate = useNavigate();
+const { user } = useContext(Context);
 const { id } = useParams();
 const baseUrl = `http://localhost:5000/api/`;
 const [currentPost, setCurrentPost] = useState([]);
+let [newData, setNewData] = useState({
+    title: "",
+    tags: "",
+    content: ""
+});
 
 const fetchPostData = async () => {
     try {
         const res = await axios.get(baseUrl + `articles/${id}`);
 	    setCurrentPost(res.data);
+        let tag = res.data.tags.map(e => e.toString());
+        setNewData({
+            title: res.data.title,
+            tags: tag.toString(),
+            content: res.data.content
+        })
     } catch (error) {
-        console.log(error);        
+        console.log(error);
     }
 }
 
@@ -39,53 +53,71 @@ useEffect(() => {
     fetchPostData();
 }, []);
 
-const [title, setTitle] = useState(currentPost.title);
-
-const navigate = useNavigate();
-const { user } = useContext(Context);
 
 // Updating post request
 const handleSubmit = async e => {
     e.preventDefault();
-    // const tags = postData.tags.split(",");
-    // postData.tags = tags;
-    const data = JSON.stringify({
-        "title": `${title}`,
-        // "content": `${postData.content}`,
-        "author": `${user.username}`,
-        "authorId": `${user._id}`,
-        // "tags": tags
-    });
-    console.log(data);
-    const token = JSON.parse(localStorage.getItem('token'));
-    var config = {
-        method: 'put',
-        url: `http://localhost:5000/api/articles/update/${id}`,
-        headers: { 
-            'Authorization': `Bearer ${token}`,
-            'Content-Type': 'application/json'
-        },
-        data : data
-    };
-    axios(config)
-    .then(function (response) {
-        console.log(response);
-        if(response){
-            alert(`Article created successfully.`);
-            navigate('/');
-        }
-    })
-    .catch(function (error) {
-        console.log(error);
-        alert(`Can't create article.`);
-    });
+    if(newData.title !== undefined && newData.tags !== undefined && newData.content !== undefined){
+        const tags = newData.tags.split(",");
+        newData.tags = tags;
+        const data = {
+            "title": `${newData.title}`,
+            "tags": tags,
+            "content": `${newData.content}`,
+            "author": `${user.username}`,
+            "userId": `${user._id}`
+        };
+        const token = JSON.parse(localStorage.getItem('token'));
+        var config = {
+            method: 'put',
+            url: `http://localhost:5000/api/articles/update/${id}`,
+            headers: { 
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            },
+            data : data
+        };
+        axios(config)
+        .then(function (response) {
+            if(response){
+                alert(`Article updated successfully.`);
+                navigate('/');
+            }
+        })
+        .catch(function (error) {
+            alert(`Can't update article.`);
+        });
+    }
+    else{
+        alert(`Please provide proper input!`);
+    }
 }
 
-console.log(title);
-const titleInputHandler = e => {
-    setTitle(preState => {
-        return e.target.value;
-    })
+const handleChange = e => {
+    const {name, value} = e.target;
+    setNewData(preState => {
+        if(name === "title"){
+            return {
+                title: value,
+                tags: preState.tags,
+                content: preState.content
+            }
+        }
+        else if(name === "tags"){
+            return {
+                title: preState.title,
+                tags: value,
+                content: preState.content
+            }
+        }
+        else if(name === "content"){
+            return {
+                title: preState.title,
+                tags: preState.tags,
+                content: value
+            };
+        }
+    });
 }
 
 if(!currentPost){
@@ -101,14 +133,14 @@ return (
                 </div>
                 <div className="create-post-title">
                     <input type="text" name="title" id="" placeholder='New Post Title Here' 
-                    value={title} 
-                    onChange={titleInputHandler}
+                    value={newData.title} 
+                    onChange={handleChange}
                     />
                 </div>
                 <div className="create-post-tags">
                     <input type="text" name="tags" id="" placeholder='Add upto 4 tags' 
-                    // value={postData.tags} 
-                    // onChange={handleChange}
+                    value={newData.tags} 
+                    onChange={handleChange}
                     />
                 </div>
                 <div className="create-post-editing">
@@ -131,8 +163,8 @@ return (
             </div>
             <div className="create-post-section-2">
                 <textarea name="content" id="" cols="30" rows="10" placeholder='Write your text here...' 
-                // value={postData.content} 
-                // onChange={handleChange}
+                value={newData.content} 
+                onChange={handleChange}
                 >
                 </textarea>
             </div>

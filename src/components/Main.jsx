@@ -55,7 +55,7 @@ const Main = () => {
         </Routes>
       </div>
     </BrowserRouter>
-  )
+  );
 }
 
 export default Main;

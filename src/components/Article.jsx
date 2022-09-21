@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import './styles/article.css';
 import Taglist from './Taglist';
 import CoverImg from '../images/introduction-to-web-development-social.png';
-import ProfilePic from '../images/Profile-Pic.jpg';
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
+import UserCard from './UserCard';
 
 const Article = () => {
 
@@ -20,18 +20,51 @@ const { id } = useParams();
 
 const baseUrl = `http://localhost:5000/api/`;
 
-const [post, setPost] = useState([]);
+const [post, setPost] = useState(null);
 const [userData, setUserData] = useState(null);
+const [loggedUser, setLoggedUser] = useState(false);
 
 // Article Data
 const fetchPostData = async () => {
     try {
-	    const res = await axios.get(baseUrl + `articles/${id}`);
-        setPost(res.data)
+	    await axios.get(baseUrl + `articles/${id}`)
+        .then((result) => {
+            setPost(result.data);
+            fetchUserData(result.data.authorId);
+        }).catch((err) => {
+            console.log(err);
+        });
     } catch (error) {
         console.log(error);
     };
 }
+
+const fetchUserData = async (authorId) => {
+    try {
+        await axios.get(baseUrl + `user/${authorId}`)
+        .then(result => {
+            setUserData(result.data);
+            checkAuthor(authorId);
+        });
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+const checkAuthor = async (authId) => {
+    const loggedUserId = JSON.parse(localStorage.getItem("user"))._id;
+    const authorId = authId;
+    if(loggedUserId === authorId){
+        setLoggedUser(true);
+    }
+    else{
+        setLoggedUser(false);
+    }
+}
+
+useEffect(() => {
+    fetchPostData();
+},[]);
 
 // Tags
 // const fetchTags = post.tags.map(function(e){
@@ -67,13 +100,11 @@ const handleDelete = async e => {
                 url,
                 {data: postDetails}
             );
-            console.log(res);
             if(res){
                 alert(`Article Deleted Successfully!`);
             }
             navigate('/');
         } catch (error) {
-            console.log(error);
             if(error.response.data.message){
                 alert(error.response.data.message);
             }
@@ -87,26 +118,6 @@ const handleDelete = async e => {
     }
 }
 
-useEffect(() => {
-    fetchPostData();
-    const fetchUserData = async () => {
-        if(post){
-            try {
-	            const author = await axios.get(baseUrl + `user/${post.authorId}`);
-	            if(author){
-	                setUserData(author.data);
-	            }
-	            else{
-	                setUserData(`Author not found!`);
-	            }
-            } catch (error) {
-                console.log(error);
-            }
-        }
-    }
-    fetchUserData();
-},[post]);
-
 if(userData === null){
     return "Loading...";
 }
@@ -116,7 +127,7 @@ return (
         <div className="single-article-btns">
             <div className="single-article-like-btn">
                 {isLiked ? 
-                    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" role="img" aria-hidden="true" class="crayons-icon" onClick={handleToggle}>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" role="img" aria-hidden="true" className="crayons-icon" onClick={handleToggle}>
                     <path d="M2.821 12.794a6.5 6.5 0 017.413-10.24h-.002L5.99 6.798l1.414 1.414 4.242-4.242a6.5 6.5 0 019.193 9.192L12 22l-9.192-9.192.013-.014z"></path>
                     </svg> 
                 : 
@@ -142,7 +153,9 @@ return (
                             <h3>{post.author}</h3>
                             <p>{new Date(post.createdAt).toDateString()}</p>
                         </div>
-                        <div className="single-article-update-delete">
+                        {/* Edit, Delete Buttons */}
+                        {loggedUser ? 
+                            <div className="single-article-update-delete">
                             <div className="single-article-update">
                                 <button onClick={handleUpdate}>Update</button>
                             </div>
@@ -150,6 +163,9 @@ return (
                                 <button onClick={handleDelete}>Delete</button>
                             </div>
                         </div>
+                        :
+                            <></>
+                        }
                     </div>
                     <div className="single-article-title">
                         <h1>{post.title}</h1>
@@ -169,23 +185,7 @@ return (
             </div>
         </div>
         <div className="single-article-user-tags">
-            <div className="single-article-user-card-details">
-                <div className="article-user-card-details">
-                    <img src={userData.profilepic} alt="" className={userData.profilepic !== "" ? 'single-article-user-card-profile-img' : 'single-article-user-card-profile-img-hidden'}/>
-                    <h4>{userData.username}</h4>
-                </div>
-                <p className="single-article-user-bio">
-                    {userData.bio}
-                </p>
-                <div className="single-article-user-location">
-                    {userData.location ? <span>Location</span> : ""}
-                    <p>{userData.location}</p>
-                </div>
-                <div className="single-article-user-joined">
-                    <span>Joined</span>
-                    <p>{new Date(userData.createdAt).toDateString()}</p>
-                </div>
-            </div>
+            <UserCard userData={userData}/>
             <div className="single-article-popular-tags">
                 <Taglist />
             </div>

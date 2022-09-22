@@ -6,6 +6,7 @@ import axios from 'axios';
 
 const Login = () => {
     const [btnDisabled, setBtnDisabled] = useState(false);
+    const [isAdmin, setIsAdmin] = useState(false);
     const userRef = useRef();
     const passwordRef = useRef();
     const navigate = useNavigate();
@@ -16,6 +17,16 @@ const Login = () => {
         dispatch({type: "LOGIN_START"});
         try {
             setBtnDisabled(true);
+            const user = userRef.current.value.split(".");
+            if(user.includes("admin")){
+                setIsAdmin(true);
+                console.log(isAdmin);
+            }
+            else{
+                setIsAdmin(false);
+                console.log(isAdmin);
+            }
+            console.log(user);
             const res = await axios.post(baseUrl, {
                 username: userRef.current.value,
                 password: passwordRef.current.value

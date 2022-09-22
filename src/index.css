@@ -9,3 +9,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: rgba(0, 0, 0, 0.45);
 }
+
+::selection {
+  color: white;
+  background: black;
+}

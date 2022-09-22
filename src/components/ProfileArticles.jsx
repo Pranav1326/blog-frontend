@@ -8,36 +8,61 @@ const ProfileArticles = ({fetchedUser}) => {
     
 const navigate = useNavigate();
 
-const [titles, setTitles] = useState([]);
+const [postData, setPostData] = useState({
+    title: "",
+    id: ""
+});
+
+const [articleTitles, setArticleTitles] = useState(null);
 
 // Posts of user
 const handlePosts = async () => {
     const postsOfUser = await fetchedUser.articles;
     let posts = [];
     postsOfUser.forEach(async (e, i) => {
-        const res = await axios.get(`http://localhost:5000/api/articles/${e}`);
-        posts.push(res.data.title);
-        setTitles(posts);
+        await axios.get(`http://localhost:5000/api/articles/${e}`)
+        .then((result) => {
+            posts.push({
+                title: result.data.title,
+                id: result.data._id
+            });
+            setPostData(posts);
+            fetchArticleTitles(posts);
+            console.log(articleTitles);
+        })
+        .catch(err => console.log(err));
     });
 }
 
-const handlePostRedirect = (e) => {
+const handlePostRedirect = (event) => {
     // /article/:id
-    const findArticle = titles.find(ele => {
-        return(ele = e.target.textContent);
-    });
-    // console.log(findArticle);
-    // console.log(titles);
-    navigate(`/article/${findArticle}`);
+    let clickedArticleTitle = event.target.textContent;
+    // let clickedArticle = articleTitles.find((e) => {
+    //     if(clickedArticleTitle === e.props.children){
+    //         return e.key;
+    //     }
+    //     else{
+    //         return null;
+    //     }
+    // });
+    console.log(articleTitles);
+    // console.log(clickedArticle.key);
+    // navigate(`/article/${clickedArticle.key}`);
 }
 
 useEffect(() => {
     handlePosts();
 }, [fetchedUser]);
 
-const articleTitles = titles.map((e, i) => {
-    return(<li key={i} onClick={handlePostRedirect}>{e}</li>);
-});
+const makePostLi = (posts) => {
+    return (posts).map(ele => {
+        return(<li key={ele.id} onClick={handlePostRedirect}>{ele.title}</li>);
+    });
+}
+
+const fetchArticleTitles = (posts) => {
+    setArticleTitles(makePostLi(posts));
+}
 
 return (
     <div className="article-list">

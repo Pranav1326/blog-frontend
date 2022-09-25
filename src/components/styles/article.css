@@ -159,6 +159,10 @@ h1{
     align-items: center;    
 }
 
+.article-user-card-details:hover{
+    cursor: pointer;
+}
+
 .single-article-user-card-profile-img{
     width: 3rem;
     height: 2.5rem;

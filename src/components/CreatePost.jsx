@@ -56,7 +56,10 @@ const handleChange = (e) => {
 const [content, setContent] = useState("");
 const handleBold = (e) => {
     console.log(content);
-    setContent([content, "** **"]);
+    setContent(preValue => {
+        // [...content, "** **"]
+        return[preValue, "** **"];
+    });
 }
 // Creating post request
 const handleSubmit = async e => {

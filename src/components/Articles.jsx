@@ -19,18 +19,19 @@ const Articles = () => {
 
   if(!post) return "No posts!";
 
-  const postData = post.map((e, i) => {
+  const postData = post.map((e) => {
     let date = e.createdAt.split("T")[0];
     return(
-    <BlogCard
-      key={i.toString()}
-      id={e._id}
-      author={e.author}
-      publish={date}
-      title={e.title}
-      description={e.description}
-      tags={e.tags}
-    />);
+      <BlogCard
+        key={e._id}
+        id={e._id}
+        author={e.author}
+        publish={date}
+        title={e.title}
+        description={e.description}
+        tags={e.tags}
+      />
+    );
   });
 
   return (
@@ -42,7 +43,7 @@ const Articles = () => {
         </section>
         <section className="section-2">
             <div className="taglist">
-                <Taglist />
+              <Taglist />
             </div>
         </section>
     </div>

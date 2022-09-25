@@ -19,7 +19,7 @@ const [articleTitles, setArticleTitles] = useState(null);
 const handlePosts = async () => {
     const postsOfUser = await fetchedUser.articles;
     let posts = [];
-    postsOfUser.forEach(async (e, i) => {
+    postsOfUser && postsOfUser.forEach(async (e, i) => {
         await axios.get(`http://localhost:5000/api/articles/${e}`)
         .then((result) => {
             posts.push({
@@ -28,7 +28,6 @@ const handlePosts = async () => {
             });
             setPostData(posts);
             fetchArticleTitles(posts);
-            console.log(articleTitles);
         })
         .catch(err => console.log(err));
     });
@@ -37,17 +36,17 @@ const handlePosts = async () => {
 const handlePostRedirect = (event) => {
     // /article/:id
     let clickedArticleTitle = event.target.textContent;
-    // let clickedArticle = articleTitles.find((e) => {
-    //     if(clickedArticleTitle === e.props.children){
-    //         return e.key;
-    //     }
-    //     else{
-    //         return null;
-    //     }
-    // });
     console.log(articleTitles);
-    // console.log(clickedArticle.key);
-    // navigate(`/article/${clickedArticle.key}`);
+    let clickedArticle = articleTitles.find((e) => {
+        if(clickedArticleTitle === e.props.children){
+            return e.key;
+        }
+        else{
+            return null;
+        }
+    });
+    console.log(clickedArticle.key);
+    navigate(`/article/${clickedArticle.key}`);
 }
 
 useEffect(() => {
@@ -56,7 +55,12 @@ useEffect(() => {
 
 const makePostLi = (posts) => {
     return (posts).map(ele => {
-        return(<li key={ele.id} onClick={handlePostRedirect}>{ele.title}</li>);
+        return(<li 
+            key={ele.id} 
+            onClick={handlePostRedirect}
+        >
+            {ele.title}
+        </li>);
     });
 }
 

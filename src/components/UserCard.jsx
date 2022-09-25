@@ -1,9 +1,22 @@
+import axios from 'axios';
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const UserCard = ({userData}) => {
+
+    const navigate = useNavigate();
+
+    const handleUserCardClick = async () => {
+        const baseUrl = `http://localhost:5000/api/user/${userData._id}`;
+        const res = await axios.get(baseUrl);
+        if(res.data){
+            navigate(`/userprofile/${userData._id}`);
+        }
+    }
+
     return (
         <div className="single-article-user-card-details">
-            <div className="article-user-card-details">
+            <div className="article-user-card-details" onClick={handleUserCardClick}>
                 <img src={userData.profilepic} alt="" className={userData.profilepic !== "" ? 'single-article-user-card-profile-img' : 'single-article-user-card-profile-img-hidden'}/>
                 <h4>{userData.username}</h4>
             </div>

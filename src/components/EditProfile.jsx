@@ -1,22 +1,24 @@
 import axios from 'axios';
-import React, { useContext, useRef } from 'react';
+import React, { useContext } from 'react';
 import { useState } from 'react';
 import './styles/editprofile.css';
 import { Context } from '../context/Context';
 import { useNavigate } from 'react-router-dom';
-// const fs = require('fs');
 
 const EditProfile = () => {
     // name, email, username, location, bio, work | profile-pic
     // req: body{userId, info}, params{userId}
+    let fileName;
     const navigate = useNavigate();
     const { user, dispatch } = useContext(Context);
+    const [ img, setImg ] = useState("");
     const [userData, setUserData] = useState({
         name: user.name,
         email: user.email,
         location: user.location,
         bio: user.bio,
-        work: user.work
+        work: user.work,
+        profilepic: user.profilepic
     });
 
     // Handling Input States
@@ -29,7 +31,8 @@ const EditProfile = () => {
                     email: preValue.email,
                     location: preValue.location,
                     bio: preValue.bio,
-                    work: preValue.work
+                    work: preValue.work,
+                    profilepic: preValue.profilepic
                 };
             }
             else if(name === "email"){
@@ -38,7 +41,8 @@ const EditProfile = () => {
                     email: value,
                     location: preValue.location,
                     bio: preValue.bio,
-                    work: preValue.work
+                    work: preValue.work,
+                    profilepic: preValue.profilepic
                 };
             }
             else if(name === "location"){
@@ -47,7 +51,8 @@ const EditProfile = () => {
                     email: preValue.email,
                     location: value,
                     bio: preValue.bio,
-                    work: preValue.work
+                    work: preValue.work,
+                    profilepic: preValue.profilepic
                 };
             }
             else if(name === "bio"){
@@ -56,7 +61,8 @@ const EditProfile = () => {
                     email: preValue.email,
                     location: preValue.location,
                     bio: value,
-                    work: preValue.work
+                    work: preValue.work,
+                    profilepic: preValue.profilepic
                 };
             }
             else if(name === "work"){
@@ -65,7 +71,8 @@ const EditProfile = () => {
                     email: preValue.email,
                     location: preValue.location,
                     bio: preValue.bio,
-                    work: value
+                    work: value,
+                    profilepic: preValue.profilepic
                 };
             }
         });
@@ -78,7 +85,9 @@ const EditProfile = () => {
         "email": (!userData.email) ? `${user.email}` : `${userData.email}`,
         "location": (!userData.location) ? `${user.location}` : `${userData.location}`,
         "bio": (!userData.bio) ? `${user.bio}` : `${userData.bio}`,
-        "work": (!userData.work) ? `${user.work}` : `${userData.work}`
+        "work": (!userData.work) ? `${user.work}` : `${userData.work}`,
+        // "profilepic": (!userData.profilepic) ? `${user.profilepic}` : `${userData.profilepic}`
+        "profilepic": `${userData.profilepic}`
     });
     const token = JSON.parse(localStorage.getItem('token'));
     const config = {
@@ -95,9 +104,21 @@ const EditProfile = () => {
     const handleSubmit = e => {
         e.preventDefault();
         dispatch({type: "USER_UPDATE_START"});
+        let uploadedImg = handleFileInput();
+        setUserData(preValue => {
+            return{
+                name: preValue.name,
+                email: preValue.email,
+                location: preValue.location,
+                bio: preValue.bio,
+                work: preValue.work,
+                profilepic: uploadedImg
+            }
+        });
         axios(config)
         .then((response) => {
             if(response){
+                console.log(response);
                 alert(`Profile updated Successfully.`);
                 dispatch({type: "USER_UPDATE_SUCCESS", payload: response.data});
                 navigate('/profile');
@@ -108,19 +129,18 @@ const EditProfile = () => {
             alert(error.response.data.message || error.response.data || error.response || error);
         });
     }
-    const imgName = useRef(null);
-    const handleFileInput = async (e) => {
-        var FormData = require('form-data');
-        var data = new FormData();
-        // data.append('file', fs.createReadStream(imgName.current.value.split("\\")[2]));
-        // console.log(imgName.current.value.split("\\")[2]);
+
+    const handleFileInput = async () => {
+        const data = new FormData();
+        fileName = Date.now() + img.name;
+        data.append("name", fileName);
+        data.append("file", img);
         try {
-            const imgUpload = await axios.post(`http://localhost:5000/api/imageupload`, data);
-            console.log(imgUpload);
-            alert(imgUpload.data);
+            var imgUpload = await axios.post(`http://localhost:5000/api/imageupload`, data);
         } catch (error) {
             console.log(error);
         }
+        return imgUpload.data.image;
     }
 
     return (
@@ -144,7 +164,7 @@ const EditProfile = () => {
                                 <p className="warning">*Username cannot be changed after user is created</p>
                             </div>
                             <div className="image-profile">
-                                <input type="file" name="profileImage" id="profile-image" ref={imgName} onChange={handleFileInput} />
+                                <input type="file" name="profileImage" id="profile-image" onChange={e => setImg(e.target.files[0])} />
                             </div>
                         </div>
                     </div>

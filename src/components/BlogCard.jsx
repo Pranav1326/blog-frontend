@@ -11,7 +11,7 @@ const BlogCard = (props) => {
     navigate(`/article/${props.id}`);    
   }
   return (
-    <div className='blogcard' key={props.id} onClick={handleClick}>
+    <div className='blogcard' onClick={handleClick}>
       <div className="first">
         <div className="details-one">
           <div className="author">

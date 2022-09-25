@@ -53,13 +53,20 @@ const fetchUserData = async (authorId) => {
 }
 
 const checkAuthor = async (authId) => {
-    const loggedUserId = JSON.parse(localStorage.getItem("user"))._id;
-    const authorId = authId;
-    if(loggedUserId === authorId){
-        setLoggedUser(true);
-    }
-    else{
-        setLoggedUser(false);
+    if(localStorage.getItem("user") !== 'null'){
+        const loggedUserId = JSON.parse(localStorage.getItem("user"))._id;
+        if(loggedUser !== 'null'){
+            const authorId = authId;
+            if(loggedUserId === authorId){
+                setLoggedUser(true);
+            }
+            else{
+                setLoggedUser(false);
+            }
+        }
+        else{
+            setLoggedUser(false);
+        }
     }
 }
 
@@ -75,6 +82,7 @@ useEffect(() => {
 // Update Button
 const handleUpdate = async e => {
     e.preventDefault();
+    localStorage.setItem("author", userData);
     navigate(`/articleupdate/${id}`);
 }
 

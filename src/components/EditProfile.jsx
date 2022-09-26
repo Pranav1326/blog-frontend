@@ -164,7 +164,7 @@ const EditProfile = () => {
                                 <p className="warning">*Username cannot be changed after user is created</p>
                             </div>
                             <div className="image-profile">
-                                <input type="file" name="profileImage" id="profile-image" onChange={e => setImg(e.target.files[0])} />
+                                {/* <input type="file" name="profileImage" id="profile-image" onChange={e => setImg(e.target.files[0])} /> */}
                             </div>
                         </div>
                     </div>

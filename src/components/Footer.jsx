@@ -3,8 +3,10 @@ import './styles/footer.css';
 
 const Footer = () => {
   return (
-    <div>Footer</div>
-  )
+    <div className='footer'>
+      <p>Copyright © Blog 2022</p>
+    </div>
+  );
 }
 
 export default Footer;

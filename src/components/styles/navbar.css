@@ -11,6 +11,7 @@
     background-blend-mode: multiply;
     color: #fff;
     z-index: 5;
+    backdrop-filter: blur(5px);
 }
 
 .brand-name {
@@ -19,7 +20,7 @@
     font-size: 2.2rem;
     font-weight: 500;
     text-shadow: 2px 2px 1px rgba(0, 70, 111, 1);
-    margin-left: 3rem;
+    margin-left: 12rem;
     -webkit-text-stroke-width: 1px;
     -webkit-text-stroke-color: rgba(14, 215, 191, 0.6);
 }
@@ -31,7 +32,7 @@
 .navigation-menu ul {
     display: flex;
     padding: 0;
-    margin-right: 3rem;
+    margin-right: 6.5rem;
 }
 
 .navigation-menu li {

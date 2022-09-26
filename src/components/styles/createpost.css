@@ -1,3 +1,8 @@
+.w-md-editor-text-input::selection{
+    color: white;
+    background: black;
+}
+
 .create-post-main{
     width: calc(75vw - 5rem);
     min-height: calc(100vh - 5rem);
@@ -103,7 +108,7 @@
     min-height: 15rem;
 }
 
-.create-post-section-2 textarea{
+/* .create-post-section-2 textarea{
     width: 100%;
     max-width: calc(100% - 6rem);
     padding: 3rem; 
@@ -111,7 +116,7 @@
     color: #fff;
     border: none;
     outline: none;
-}
+} */
 
 .create-post-editing{
     width: 100%;
@@ -133,4 +138,12 @@
 .editing-panel img:hover{
     cursor: pointer;
     border-color: #000;
+}
+
+.wmde-markdown-var{
+    margin-top: 1.5rem;
+}
+
+.md-editor{
+    min-height: 300px;
 }

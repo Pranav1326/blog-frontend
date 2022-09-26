@@ -127,6 +127,19 @@ h1{
     border-radius: 10px;
 }
 
+.single-article-content img{
+    max-width: 100%;
+    height: auto;
+}
+
+.single-article-content a{
+    color: #fff;
+}
+
+.single-article-content a:hover{
+    color: rgb(0, 183, 183);
+}
+
 .single-article-user-tags{
     display: flex;
     flex-direction: column;

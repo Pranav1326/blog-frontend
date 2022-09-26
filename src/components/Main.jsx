@@ -19,6 +19,7 @@ import AuthForgotPassword from './AuthForgotPassword';
 import UpdateArticle from './UpdateArticle';
 import About from './About';
 import UserProfile from './UserProfile';
+import Footer from './Footer';
 
 const Main = () => {
   const { user, resetPassword } = useContext(Context);
@@ -56,6 +57,7 @@ const Main = () => {
           <Route path='*' element={<Error />}/>
         </Routes>
       </div>
+      <Footer />
     </BrowserRouter>
   );
 }

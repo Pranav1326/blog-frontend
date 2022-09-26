@@ -17,7 +17,7 @@ const [articleTitles, setArticleTitles] = useState(null);
 
 // Posts of user
 const handlePosts = async () => {
-    const postsOfUser = await fetchedUser.articles;
+    const postsOfUser = fetchedUser.articles;
     let posts = [];
     postsOfUser && postsOfUser.forEach(async (e, i) => {
         await axios.get(`http://localhost:5000/api/articles/${e}`)
@@ -36,7 +36,6 @@ const handlePosts = async () => {
 const handlePostRedirect = (event) => {
     // /article/:id
     let clickedArticleTitle = event.target.textContent;
-    console.log(articleTitles);
     let clickedArticle = articleTitles.find((e) => {
         if(clickedArticleTitle === e.props.children){
             return e.key;
@@ -45,7 +44,6 @@ const handlePostRedirect = (event) => {
             return null;
         }
     });
-    console.log(clickedArticle.key);
     navigate(`/article/${clickedArticle.key}`);
 }
 

@@ -1,16 +1,38 @@
 .about-page-main{
-    border: 1px solid #fff;
     min-width: calc(100vw - 2rem);
     min-height: calc(100vh - 6rem);
-    margin-top: 1rem;
+    margin: 3rem;
     display: flex;
-    justify-items: center;
+    justify-content: center;
     align-items: center;
+    color: #fff;
 }
 
 .about-page-card-main{
-    border: 1px solid #fff;
-    width: 50vw;
-    height: 60vh;
+    border: 1px solid #088;
+    border-radius: 5px;
+    box-shadow: 1px 1px 5px #000;
+    width: 60vw;
+    min-height: 60vh;
     justify-self: center;
+}
+
+.about-page-card-main h1{
+    margin-top: -1.4rem;
+    text-align: center;
+}
+
+.about-page-main-content-container{
+    padding: 1rem 3rem;
+}
+
+.about-page-creator-one,
+.about-page-creator-two{
+    display: flex;
+}
+
+.about-page-creator-one p,
+.about-page-creator-two p{
+    margin: 0.5rem;
+    margin-left: 0;
 }

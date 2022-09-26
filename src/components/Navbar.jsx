@@ -22,7 +22,7 @@ const Navbar = ({user}) => {
                 <ul>
                     <li>
                         <div className="search">
-                            <input type="text" name="search" id="search" />
+                            {/* <input type="text" name="search" id="search" /> */}
                         </div>
                     </li>
                     <li>

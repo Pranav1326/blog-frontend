@@ -44,6 +44,13 @@ const handleSubmit = async e => {
     if(registerData === null){
         alert(`Please enter valid details!`);
     }
+    // else if(registerData.username){
+    //     const DetectSpace = registerData.username.split(" ");
+    //     console.log(DetectSpace);
+    //     if(DetectSpace.includes("")){
+    //         alert('Cannot allow white space in username!');
+    //     }
+    // }
     else if(registerData.password !== confirmPassword){
         alert(`Password doen not match!`);
     }
@@ -76,7 +83,9 @@ return (
             <h1>Register</h1>
             <div className="username-div">
                 <label htmlFor="username">Username</label>
-                <input type="text" name="username" id="username" required value={registerData.username} onChange={handleChange} />
+                <input type="text" name="username" id="username" required value={registerData.username} onChange={handleChange} maxLength={25}
+                // onInput={e => {e.target.value = e.target.value.replace(/^[a-z/\d/]+$/i, '')}}
+                />
             </div>
             <div className="email-div">
                 <label htmlFor="email">Email</label>
@@ -84,11 +93,14 @@ return (
             </div>
             <div className="password-div">
                 <label htmlFor="password">Password</label>
-                <input type="password" name="password" id="password" required value={registerData.password} onChange={handleChange} />
+                <input type="password" name="password" id="password" 
+                maxLength={10} minLength={4} required value={registerData.password} onChange={handleChange} />
             </div>
             <div className="password-div">
                 <label htmlFor="password">Confirm Password</label>
-                <input type="password" name="password" required value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)} />
+                <input type="password" name="confirm-password" 
+                maxLength={10} minLength={4}
+                required value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)} />
             </div>
             <div className="btn-div">
                 <button type='Submit' 

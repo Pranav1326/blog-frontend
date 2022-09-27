@@ -11,15 +11,11 @@ const Taglist = () => {
         <ul>
           <li>javascript</li>
           <li>test</li>
+          <li>blog</li>
           <li>nodejs</li>
           <li>reactjs</li>
-          <li>webdev</li>
           <li>github</li>
-          <li>css</li>
-          <li>html</li>
           <li>programming</li>
-          <li>frontend</li>
-          <li>backend</li>
         </ul>
       </div>
     </div>

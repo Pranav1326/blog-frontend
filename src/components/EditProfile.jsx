@@ -126,7 +126,18 @@ const EditProfile = () => {
         })
         .catch((error) => {
             console.log(error);
-            alert(error.response.data.message || error.response.data || error.response || error);
+            if(error.response.data.message){
+                alert(error.response.data.message);
+            }
+            else if(error.response.data.code === 11000){
+                alert("Email exists!");
+            }
+            else if(error.response.data){
+                alert(error.response.data);
+            }
+            else{
+                alert(error.response.data.message || error.response.data || error.response || error);
+            }
         });
     }
 

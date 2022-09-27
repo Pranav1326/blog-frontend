@@ -44,14 +44,14 @@ return (
                         onInput={(e) =>  {
                             e.target.value = e.target.value.replace(/[^0-9]/g, '')
                         }}
-                     />
+                    />
                 </div>
                 <div className="btn-div">
                     <button type='Submit' className='btn'>Submit</button>
                 </div>
             </form>
         </div>
-  )
+    );
 }
 
 export default AuthForgotPassword;

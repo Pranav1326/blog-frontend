@@ -75,9 +75,9 @@ useEffect(() => {
 },[]);
 
 // Tags
-// const fetchTags = post.tags.map(function(e){
-//     return (<p>{e}</p>);
-// })
+const fetchTags = post && post.tags.map(function(e){
+    return (<p>{e}</p>);
+})
 
 // Update Button
 const handleUpdate = async e => {
@@ -180,10 +180,10 @@ return (
                         <h1>{post.title}</h1>
                     </div>
                     <div className="single-article-tags">
-                        {/* {post.tags.forEach(function(e){
+                        {/* {post.tags && post.tags.forEach(function(e){
                             return <p>{e}</p>
                         })} */}
-                        {/* {fetchTags} */}
+                        {post.tags && fetchTags}
                     </div>
                     <div className="single-article-content">
                         <ReactMarkdown>

@@ -20,6 +20,7 @@
 .about-page-card-main h1{
     margin-top: -1.4rem;
     text-align: center;
+    text-shadow: 1px 1px 5px #000;
 }
 
 .about-page-main-content-container{

@@ -135,10 +135,6 @@ return (
             <div className="create-post-publish">
                 <button className='create-post-btn' type='submit' onClick={handleSubmit}>Publish</button>
             </div>
-            <div className="create-post-edit-preview">
-                <button className='create-post-btn'>Edit</button>
-                <button className='create-post-btn'>Preview</button>
-            </div>
         </div>
     </div>
   );

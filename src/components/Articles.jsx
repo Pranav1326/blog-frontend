@@ -38,13 +38,18 @@ const Articles = () => {
   const handleTag = async (event, manualTag) => {
     tag=manualTag;
     setTag(manualTag);
-    await axios.get(`http://localhost:5000/api/articles?tag=${tag}`)
-    .then(result => {
-      console.log(result.data);
-    })
-    .catch(err => {
-      console.log(err);
-    });
+    if(tag === "All Posts"){
+      setPost(post);
+    }
+    else{
+      await axios.get(`${baseUrl}?tag=${tag}`)
+      .then(result => {
+        setPost(result.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+    }
   }
   
   return (

@@ -5,7 +5,7 @@ import './styles/taglist.css';
 
 const Taglist = ({handleTag}) => {
   
-  const tags = ['javascript', 'test', 'blog', 'nodejs', 'reactjs', 'github', 'programming'];
+  const tags = ['All Posts','javascript', 'test', 'blog', 'nodejs', 'reactjs', 'markdown', 'programming'];
   const [renderTags, setRenderTags] = useState(null);
   
   useEffect(() => {

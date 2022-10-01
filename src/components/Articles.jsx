@@ -8,6 +8,7 @@ const baseUrl = "http://localhost:5000/api/articles";
 
 const Articles = () => {
   const [post, setPost] = useState(null);
+  let [tag, setTag] = useState("");
 
   useEffect(() => {
     axios.get(baseUrl)
@@ -34,6 +35,18 @@ const Articles = () => {
     );
   });
 
+  const handleTag = async (event, manualTag) => {
+    tag=manualTag;
+    setTag(manualTag);
+    await axios.get(`http://localhost:5000/api/articles?tag=${tag}`)
+    .then(result => {
+      console.log(result.data);
+    })
+    .catch(err => {
+      console.log(err);
+    });
+  }
+  
   return (
     <div className="articles">
       <section className='section-1'>
@@ -43,11 +56,11 @@ const Articles = () => {
         </section>
         <section className="section-2">
             <div className="taglist">
-              <Taglist />
+              <Taglist handleTag={handleTag}/>
             </div>
         </section>
     </div>
-  )
+  );
 }
 
 export default Articles;

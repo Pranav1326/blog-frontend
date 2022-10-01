@@ -1,7 +1,21 @@
-import React from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect } from 'react';
+import { useState } from 'react';
 import './styles/taglist.css';
 
-const Taglist = () => {
+const Taglist = ({handleTag}) => {
+  
+  const tags = ['javascript', 'test', 'blog', 'nodejs', 'reactjs', 'github', 'programming'];
+  const [renderTags, setRenderTags] = useState(null);
+  
+  useEffect(() => {
+    setRenderTags(tags.map((tag, i) => {
+      return(
+        <li key={i} onClick={e => handleTag(e, e.target.textContent)}>{tag}</li>
+      );
+    }));
+  }, []);
+
   return (
     <div className='taglist-card'>
       <div className="tag-title">
@@ -9,13 +23,7 @@ const Taglist = () => {
       </div>
       <div className="content">
         <ul>
-          <li>javascript</li>
-          <li>test</li>
-          <li>blog</li>
-          <li>nodejs</li>
-          <li>reactjs</li>
-          <li>github</li>
-          <li>programming</li>
+          {renderTags}
         </ul>
       </div>
     </div>

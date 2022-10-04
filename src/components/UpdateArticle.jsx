@@ -26,7 +26,7 @@ const fetchPostData = async () => {
     try {
         const res = await axios.get(baseUrl + `articles/${id}`);
 	    setCurrentPost(res.data);
-        let tag = res.data.tags.map(e => e.toString());
+        let tag = res.data.tags.map(e => e.trim().toString());
         setNewData({
             title: res.data.title,
             tags: tag.toString(),
@@ -46,35 +46,41 @@ useEffect(() => {
 const handleSubmit = async e => {
     e.preventDefault();
     if(newData.title !== undefined && newData.tags !== undefined && content !== undefined){
-        const tags = newData.tags.split(",");
-        newData.tags = tags;
-        const data = {
-            "title": `${newData.title}`,
-            "tags": tags,
-            "content": `${content}`,
-            "author": `${user.username}`,
-            "userId": `${user._id}`
-        };
-        const token = JSON.parse(localStorage.getItem('token'));
-        var config = {
-            method: 'put',
-            url: `http://localhost:5000/api/articles/update/${id}`,
-            headers: { 
-                'Authorization': `Bearer ${token}`,
-                'Content-Type': 'application/json'
-            },
-            data : data
-        };
-        axios(config)
-        .then(function (response) {
-            if(response){
-                alert(`Article updated successfully.`);
-                navigate('/');
-            }
-        })
-        .catch(function (error) {
-            alert(`Can't update article.`);
-        });
+        const tags = newData.tags.split(",") || newData.tags.split(", ");
+        if(tags.length > 4){
+            alert(`You can include maximum 4 tags!`);
+        }
+        else{
+            const filteredTags = tags.map(e => e.trim())
+            newData.tags = tags;
+            const data = {
+                "title": `${newData.title}`,
+                "tags": filteredTags,
+                "content": `${content}`,
+                "author": `${user.username}`,
+                "userId": `${user._id}`
+            };
+            const token = JSON.parse(localStorage.getItem('token'));
+            var config = {
+                method: 'put',
+                url: `http://localhost:5000/api/articles/update/${id}`,
+                headers: { 
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                },
+                data : data
+            };
+            axios(config)
+            .then(function (response) {
+                if(response){
+                    alert(`Article updated successfully.`);
+                    navigate('/');
+                }
+            })
+            .catch(function (error) {
+                alert(`Can't update article.`);
+            });
+        }
     }
     else{
         alert(`Please provide proper input!`);

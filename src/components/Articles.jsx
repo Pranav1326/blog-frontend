@@ -36,6 +36,7 @@ const Articles = () => {
   });
 
   const handleTag = async (event, manualTag) => {
+    event.target.state = "active";
     tag=manualTag;
     setTag(manualTag);
     if(tag === "All Posts"){
@@ -45,6 +46,9 @@ const Articles = () => {
       await axios.get(`${baseUrl}?tag=${tag}`)
       .then(result => {
         setPost(result.data);
+        if(!result.data){
+          alert(`No Articles Found!`);
+        }
       })
       .catch(err => {
         console.log(err);

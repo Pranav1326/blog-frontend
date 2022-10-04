@@ -1,6 +1,5 @@
 import axios from 'axios';
-import React, { useContext } from 'react';
-import { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import './styles/editprofile.css';
 import { Context } from '../context/Context';
 import { useNavigate } from 'react-router-dom';
@@ -12,6 +11,7 @@ const EditProfile = () => {
     const navigate = useNavigate();
     const { user, dispatch } = useContext(Context);
     const [ img, setImg ] = useState("");
+    const [ profile, setProfile ] = useState("");
     const [userData, setUserData] = useState({
         name: user.name,
         email: user.email,
@@ -101,10 +101,10 @@ const EditProfile = () => {
     };
 
     // Submitting form
-    const handleSubmit = e => {
+    const handleSubmit = async e => {
         e.preventDefault();
         dispatch({type: "USER_UPDATE_START"});
-        let uploadedImg = handleFileInput();
+        let uploadedImg = await handleFileInput();
         setUserData(preValue => {
             return{
                 name: preValue.name,
@@ -115,6 +115,8 @@ const EditProfile = () => {
                 profilepic: uploadedImg
             }
         });
+        console.log(userData);
+
         axios(config)
         .then((response) => {
             if(response){
@@ -151,7 +153,7 @@ const EditProfile = () => {
         } catch (error) {
             console.log(error);
         }
-        return imgUpload.data.image;
+        return imgUpload.data.path;
     }
 
     return (
@@ -175,7 +177,7 @@ const EditProfile = () => {
                                 <p className="warning">*Username cannot be changed after user is created</p>
                             </div>
                             <div className="image-profile">
-                                {/* <input type="file" name="profileImage" id="profile-image" onChange={e => setImg(e.target.files[0])} /> */}
+                                <input type="file" name="profileImage" id="profile-image" onChange={e => {setImg(e.target.files[0]); handleFileInput()}} />
                             </div>
                         </div>
                     </div>
@@ -200,7 +202,7 @@ const EditProfile = () => {
                 </form>
             </div>
         </div>
-  )
+    );
 }
 
 export default EditProfile;

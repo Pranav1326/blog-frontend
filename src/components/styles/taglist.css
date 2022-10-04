@@ -31,7 +31,8 @@
     width: calc(100% - 2rem);
 }
 
-.content ul li:hover{
+.content ul li:hover,
+.content ul li:active{
     cursor: pointer;
     background-color: transparent;
     color: #fff;

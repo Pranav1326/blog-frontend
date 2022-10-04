@@ -24,6 +24,7 @@ const baseUrl = `http://localhost:5000/api/`;
 const [post, setPost] = useState(null);
 const [userData, setUserData] = useState(null);
 const [loggedUser, setLoggedUser] = useState(false);
+let [tag, setTag] = useState("");
 
 // Article Data
 const fetchPostData = async () => {
@@ -75,8 +76,8 @@ useEffect(() => {
 },[]);
 
 // Tags
-const fetchTags = post && post.tags.map(function(e){
-    return (<p>{e}</p>);
+const fetchTags = post && post.tags.map((e, i) => {
+    return (<p key={i}>{e}</p>);
 })
 
 // Update Button
@@ -125,6 +126,10 @@ const handleDelete = async e => {
     else{
         return;
     }
+}
+
+const handleTag = async (event, manualTag) => {
+    navigate('/');
 }
 
 if(userData === null){
@@ -196,11 +201,11 @@ return (
         <div className="single-article-user-tags">
             <UserCard userData={userData}/>
             <div className="single-article-popular-tags">
-                <Taglist />
+                <Taglist handleTag={handleTag}/>
             </div>
         </div>
     </div>
-    );
+);
 }
 
 export default Article;

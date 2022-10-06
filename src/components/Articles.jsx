@@ -7,8 +7,9 @@ import axios from 'axios';
 const baseUrl = "http://localhost:5000/api/articles";
 
 const Articles = () => {
-  const [post, setPost] = useState(null);
-  let [tag, setTag] = useState("");
+  const [ post, setPost ] = useState(null);
+  let [ tag, setTag ] = useState("");
+  const [ sort, setSort ] = useState(false);
 
   useEffect(() => {
     axios.get(baseUrl)
@@ -56,18 +57,27 @@ const Articles = () => {
     }
   }
   
+  const handleSort = e => {
+    setSort(!sort);
+    const sortPost = post.sort((a, b) => {
+      return new Date(b.createdAt) - new Date(a.createdAt);
+    });
+    setPost(sortPost);
+  }
+  
   return (
     <div className="articles">
       <section className='section-1'>
-            <div className="cards">
-              {postData}
-            </div>
-        </section>
-        <section className="section-2">
-            <div className="taglist">
-              <Taglist handleTag={handleTag}/>
-            </div>
-        </section>
+        <div className="cards">
+          <button className="sort-new" onClick={handleSort}>New Posts</button>
+          {postData}
+        </div>
+      </section>
+      <section className="section-2">
+        <div className="taglist">
+          <Taglist handleTag={handleTag}/>
+        </div>
+      </section>
     </div>
   );
 }

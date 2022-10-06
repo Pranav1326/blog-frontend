@@ -28,3 +28,21 @@
     margin-top: 2rem;
     width: 15rem;
 }
+
+.sort-new{
+    margin-top: 1.5rem;
+    align-self: center;
+    justify-self: flex-start;
+    font-size: 1rem;
+    padding: 0.2rem 0.7rem;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.25);
+    color: #fff;
+    border: none;
+}
+
+.sort-new:hover{
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.6);
+    color: #000;
+}

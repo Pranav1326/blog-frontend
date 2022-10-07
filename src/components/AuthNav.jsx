@@ -4,9 +4,9 @@ import {
     Link
 } from "react-router-dom";
 
-const AuthNav = ({user}) => {
+const AuthNav = ({user, handleSearch, searchTxt}) => {
     const [isNavExpanded, setIsNavExpanded] = useState(false);
-    const [searchTxt, setSearchTxt] = useState("");
+    // const [searchTxt, setSearchTxt] = useState("");
     return (
         <nav className="navigation">
             <Link to='/' className='brand-name'>
@@ -23,7 +23,10 @@ const AuthNav = ({user}) => {
                 <ul>
                     <li>
                         <div className="search">
-                            <input type="text" name="search" id="search" value={searchTxt} onChange={e => setSearchTxt(e.target.value)} />
+                            <input type="text" name="search" id="search" 
+                                value={searchTxt} 
+                                onChange={handleSearch} 
+                            />
                         </div>
                     </li>
                     <li>

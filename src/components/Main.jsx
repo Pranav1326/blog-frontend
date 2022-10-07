@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import './styles/main.css';
 import Login from './Login';
 import Register from './Register';
@@ -23,6 +23,7 @@ import Footer from './Footer';
 
 const Main = () => {
   const { user, resetPassword } = useContext(Context);
+  const [searchTxt, setSearchTxt] = useState("");
   function fetchNav() {
     if(user){
       return(<AuthNav/>);
@@ -31,13 +32,16 @@ const Main = () => {
       return(<Navbar/>);
     }
   }
+  const handleSearch = (e) => {
+    console.log(e.target.value);
+  }
   useEffect(() => {
     fetchNav();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   },[user]);
   return (
     <BrowserRouter>
-    {user ? <AuthNav /> : <Navbar />}
+    {user ? <AuthNav handleSearch={handleSearch} searchTxt={searchTxt} /> : <Navbar />}
       <div className='main'>
         <Routes>
           <Route path='/' element={<Articles />}/>

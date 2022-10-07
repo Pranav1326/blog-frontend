@@ -6,7 +6,6 @@ import './styles/taglist.css';
 
 const Taglist = ({handleTag}) => {
   
-  // const tags = ['All Posts','javascript', 'test', 'blog', 'nodejs', 'reactjs', 'markdown', 'programming'];
   const [ tags, setTags ] = useState([]);
   const [ renderTags, setRenderTags ] = useState(null);
   const [isTagsRendered, setIsTagsRendered] = useState(false);

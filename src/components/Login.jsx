@@ -44,7 +44,7 @@ const Login = () => {
     }
     return (
         <div className='login-box'>
-            <form action="/" method='post' onSubmit={handleSubmit}>
+            <form className='login-form' action="/" method='post' onSubmit={handleSubmit}>
                 <h1>Login</h1>
                 <div className="username-div">
                     <label htmlFor="username">Username</label>

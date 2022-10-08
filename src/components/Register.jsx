@@ -79,7 +79,7 @@ const handleLogin = () => {
 }
 return (
     <div className='register-box'>
-        <form action="/" method='post' onSubmit={handleSubmit}>
+        <form className='register-form' action="/" method='post' onSubmit={handleSubmit}>
             <h1>Register</h1>
             <div className="username-div">
                 <label htmlFor="username">Username</label>

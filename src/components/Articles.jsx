@@ -6,17 +6,17 @@ import axios from 'axios';
 
 const baseUrl = "http://localhost:5000/api/articles";
 
-const Articles = () => {
-  const [ post, setPost ] = useState(null);
+const Articles = ({post, setPost}) => {
+  // const [ post, setPost ] = useState(null);
   let [ tag, setTag ] = useState("");
   const [ sort, setSort ] = useState(false);
 
   useEffect(() => {
-    axios.get(baseUrl)
-    .then((response) => {
-      setPost(response.data);
-    })
-    .catch((err) => console.log(err));
+    // axios.get(baseUrl)
+    // .then((response) => {
+    //   setPost(response.data);
+    // })
+    // .catch((err) => console.log(err));
   }, []);
 
   if(!post) return "No posts!";

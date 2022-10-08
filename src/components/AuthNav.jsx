@@ -4,7 +4,7 @@ import {
     Link
 } from "react-router-dom";
 
-const AuthNav = ({user, handleSearch, searchTxt}) => {
+const AuthNav = ({user, searchQuery, setSearchQuery }) => {
     const [isNavExpanded, setIsNavExpanded] = useState(false);
     // const [searchTxt, setSearchTxt] = useState("");
     return (
@@ -23,10 +23,16 @@ const AuthNav = ({user, handleSearch, searchTxt}) => {
                 <ul>
                     <li>
                         <div className="search">
-                            <input type="text" name="search" id="search" 
-                                value={searchTxt} 
-                                onChange={handleSearch} 
-                            />
+                            <form action="/" method='post'>
+                                <input 
+                                    type="text" 
+                                    name="search" 
+                                    id="search" 
+                                    value={searchQuery}
+                                    onInput={(e) => setSearchQuery(e.target.value)}
+                                    placeholder="Search blog posts"
+                                />
+                            </form>
                         </div>
                     </li>
                     <li>

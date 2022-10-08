@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useContext, useState } from 'react';
 import './styles/main.css';
 import Login from './Login';
@@ -20,10 +21,31 @@ import UpdateArticle from './UpdateArticle';
 import About from './About';
 import UserProfile from './UserProfile';
 import Footer from './Footer';
+import axios from 'axios';
 
 const Main = () => {
+
   const { user, resetPassword } = useContext(Context);
-  const [searchTxt, setSearchTxt] = useState("");
+  const { search } = window.location;
+  const [ post, setPost ] = useState(null);
+  const query = new URLSearchParams(search).get("search");
+  const [searchQuery, setSearchQuery] = useState(query || "");
+
+  // Handle Search Query
+  const filterPosts = (posts, query) => {
+    if (!query) {
+      return posts;
+    }
+    return posts.filter((post) => {
+      const postName = post.title.toLowerCase();
+      const authorName = post.author.toLowerCase();
+      if(authorName.includes(query.toLowerCase())){
+        return authorName.includes(query.toLowerCase());
+      }
+      return postName.includes(query.toLowerCase());
+    });
+  };
+
   function fetchNav() {
     if(user){
       return(<AuthNav/>);
@@ -32,19 +54,25 @@ const Main = () => {
       return(<Navbar/>);
     }
   }
-  const handleSearch = (e) => {
-    console.log(e.target.value);
-  }
+
   useEffect(() => {
+    const baseUrl = "http://localhost:5000/api/articles";
+    axios.get(baseUrl)
+    .then((response) => {
+      setPost(response.data);
+    })
+    .catch((err) => console.log(err));
     fetchNav();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   },[user]);
+
+  const filteredPosts = filterPosts(post, searchQuery);
+
   return (
     <BrowserRouter>
-    {user ? <AuthNav handleSearch={handleSearch} searchTxt={searchTxt} /> : <Navbar />}
+    {user ? <AuthNav searchQuery={searchQuery} setSearchQuery={setSearchQuery} /> : <Navbar />}
       <div className='main'>
         <Routes>
-          <Route path='/' element={<Articles />}/>
+          <Route path='/' element={<Articles post={filteredPosts} setPost={setPost} />}/>
           <Route path='/about' element={<About />}/>
           <Route path='/login' element={<Login />}/>
           <Route path='/register' element={<Register />}/>

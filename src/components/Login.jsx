@@ -4,14 +4,14 @@ import {useNavigate} from 'react-router-dom';
 import { Context } from '../context/Context';
 import axios from 'axios';
 
-const Login = () => {
+const Login = ({BASE_URL}) => {
     const [btnDisabled, setBtnDisabled] = useState(false);
     const [isAdmin, setIsAdmin] = useState(false);
     const userRef = useRef();
     const passwordRef = useRef();
     const navigate = useNavigate();
     const { dispatch  } = useContext(Context);
-    const baseUrl = `http://localhost:5000/api/user/login`;
+    const baseUrl = `${BASE_URL}/user/login`;
     const handleSubmit = async e => {
         e.preventDefault();
         dispatch({type: "LOGIN_START"});

@@ -9,12 +9,12 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import MDEditor from '@uiw/react-md-editor';
 
-const UpdateArticle = () => {
+const UpdateArticle = ({BASE_URL}) => {
 
 const navigate = useNavigate();
 const { user } = useContext(Context);
 const { id } = useParams();
-const baseUrl = `http://localhost:5000/api/`;
+const baseUrl = `${BASE_URL}/articles/${id}`;
 const [currentPost, setCurrentPost] = useState([]);
 const [newData, setNewData] = useState({
     title: "",
@@ -24,7 +24,7 @@ const [content, setContent] = useState("");
 
 const fetchPostData = async () => {
     try {
-        const res = await axios.get(baseUrl + `articles/${id}`);
+        const res = await axios.get(baseUrl);
 	    setCurrentPost(res.data);
         let tag = res.data.tags.map(e => e.trim().toString());
         setNewData({
@@ -63,7 +63,7 @@ const handleSubmit = async e => {
             const token = JSON.parse(localStorage.getItem('token'));
             var config = {
                 method: 'put',
-                url: `http://localhost:5000/api/articles/update/${id}`,
+                url: `${BASE_URL}/articles/update/${id}`,
                 headers: { 
                     'Authorization': `Bearer ${token}`,
                     'Content-Type': 'application/json'

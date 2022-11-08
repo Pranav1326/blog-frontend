@@ -21,7 +21,7 @@ const AuthNav = ({user, searchQuery, setSearchQuery }) => {
             </button>
             <div className={isNavExpanded ? "navigation-menu expanded" : "navigation-menu"}>
                 <ul>
-                    <li>
+                    <li className='search-box'>
                         <div className="search">
                             <form action="/" method='post'>
                                 <input 

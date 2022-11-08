@@ -4,14 +4,14 @@ import React, { useEffect } from 'react';
 import { useState } from 'react';
 import './styles/taglist.css';
 
-const Taglist = ({handleTag}) => {
+const Taglist = ({handleTag, BASE_URL}) => {
   
   const [ tags, setTags ] = useState([]);
   const [ renderTags, setRenderTags ] = useState(null);
   const [isTagsRendered, setIsTagsRendered] = useState(false);
   
   const fetchTags = async () => {
-    const baseUrl = "http://localhost:5000/api/tags";
+    const baseUrl = `${BASE_URL}/tags`;
     await axios.get(baseUrl)
     .then(result => {
       setTags(result.data);

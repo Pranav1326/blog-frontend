@@ -5,13 +5,13 @@ import { useNavigate } from 'react-router-dom';
 import { Context } from '../context/Context';
 import "./styles/resetPassword.css";
 
-const ResetPassword = () => {
+const ResetPassword = ({BASE_URL}) => {
 const { dispatch  } = useContext(Context);
 const navigate = useNavigate();
 const email = localStorage.getItem("user");
 const [password, setPassword] = useState("");
 const [confirmPassword, setConfirmPassword] = useState("");
-const baseUrl = `http://localhost:5000/api/user/resetpassword`;
+const baseUrl = `${BASE_URL}/user/resetpassword`;
 const handleSubmit = async (e) => {
     e.preventDefault();
     if(password === confirmPassword){

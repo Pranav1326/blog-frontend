@@ -4,7 +4,7 @@ import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const ProfileArticles = ({fetchedUser}) => {
+const ProfileArticles = ({fetchedUser, BASE_URL}) => {
     
 const navigate = useNavigate();
 
@@ -19,8 +19,8 @@ const [articleTitles, setArticleTitles] = useState(null);
 const handlePosts = async () => {
     const postsOfUser = fetchedUser.articles;
     let posts = [];
-    postsOfUser && postsOfUser.forEach(async (e, i) => {
-        await axios.get(`http://localhost:5000/api/articles/${e}`)
+    postsOfUser && postsOfUser.forEach(async (e) => {
+        await axios.get(`${BASE_URL}/articles/${e}`)
         .then((result) => {
             posts.push({
                 title: result.data.title,
@@ -36,7 +36,7 @@ const handlePosts = async () => {
 const handlePostRedirect = (event) => {
     // /article/:id
     let clickedArticleTitle = event.target.textContent;
-    let clickedArticle = articleTitles.find((e) => {
+    let clickedArticle = articleTitles && articleTitles.find((e) => {
         if(clickedArticleTitle === e.props.children){
             return e.key;
         }

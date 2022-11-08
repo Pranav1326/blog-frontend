@@ -4,9 +4,9 @@ import Taglist from './Taglist';
 import './styles/articles.css';
 import axios from 'axios';
 
-const baseUrl = "http://localhost:5000/api/articles";
+// const baseUrl = "http://localhost:5000/api/articles";
 
-const Articles = ({post, setPost}) => {
+const Articles = ({post, setPost, BASE_URL}) => {
   // const [ post, setPost ] = useState(null);
   let [ tag, setTag ] = useState("");
   const [ sort, setSort ] = useState(false);
@@ -19,8 +19,10 @@ const Articles = ({post, setPost}) => {
     // .catch((err) => console.log(err));
   }, []);
 
-  if(!post) return "No posts!";
+  if(!post) return <p className='no-posts-msg'>Loading...</p>;
 
+  
+  
   const postData = post.map((e) => {
     let date = e.createdAt.split("T")[0];
     return(
@@ -44,7 +46,7 @@ const Articles = ({post, setPost}) => {
       setPost(post);
     }
     else{
-      await axios.get(`${baseUrl}?tag=${tag}`)
+      await axios.get(`${BASE_URL}/articles?tag=${tag}`)
       .then(result => {
         setPost(result.data);
         if(!result.data){
@@ -75,7 +77,7 @@ const Articles = ({post, setPost}) => {
       </section>
       <section className="section-2">
         <div className="taglist">
-          <Taglist handleTag={handleTag}/>
+          <Taglist BASE_URL={BASE_URL} handleTag={handleTag}/>
         </div>
       </section>
     </div>

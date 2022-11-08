@@ -8,7 +8,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import UserCard from './UserCard';
 
-const Article = () => {
+const Article = ({BASE_URL}) => {
 
 const navigate = useNavigate();
 
@@ -19,7 +19,7 @@ const handleToggle = () => {setIsliked(!isLiked)}
 
 const { id } = useParams();
 
-const baseUrl = `http://localhost:5000/api/`;
+const baseUrl = `${BASE_URL}/articles/${id}`;
 
 const [post, setPost] = useState(null);
 const [userData, setUserData] = useState(null);
@@ -29,7 +29,7 @@ let [tag, setTag] = useState("");
 // Article Data
 const fetchPostData = async () => {
     try {
-	    await axios.get(baseUrl + `articles/${id}`)
+	    await axios.get(baseUrl)
         .then((result) => {
             setPost(result.data);
             fetchUserData(result.data.authorId);
@@ -43,7 +43,7 @@ const fetchPostData = async () => {
 
 const fetchUserData = async (authorId) => {
     try {
-        await axios.get(baseUrl + `user/${authorId}`)
+        await axios.get(BASE_URL + `/user/${authorId}`)
         .then(result => {
             setUserData(result.data);
             checkAuthor(authorId);
@@ -98,7 +98,7 @@ const handleDelete = async e => {
             author: post.author,
             articleId: post._id
         };
-        const url = `${baseUrl}articles/delete/${id}`;
+        const url = `${BASE_URL}/articles/delete/${id}`;
         const authAxios = axios.create({
             baseURL: url,
             headers: {
@@ -133,7 +133,7 @@ const handleTag = async (event, manualTag) => {
 }
 
 if(userData === null){
-    return "Loading...";
+    return <p className='article-loading-p'>Loading...</p>;
 }
 
 return (
@@ -200,9 +200,9 @@ return (
                 </div>
             </div>
             <div className="single-article-user-tags">
-                <UserCard userData={userData}/>
+                <UserCard userData={userData} BASE_URL={BASE_URL}/>
                 <div className="single-article-popular-tags">
-                    <Taglist handleTag={handleTag}/>
+                    <Taglist handleTag={handleTag} BASE_URL={BASE_URL}/>
                 </div>
             </div>
         </div>

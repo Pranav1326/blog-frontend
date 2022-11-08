@@ -2,12 +2,12 @@ import axios from 'axios';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const UserCard = ({userData}) => {
+const UserCard = ({userData, BASE_URL}) => {
 
     const navigate = useNavigate();
 
     const handleUserCardClick = async () => {
-        const baseUrl = `http://localhost:5000/api/user/${userData._id}`;
+        const baseUrl = `${BASE_URL}/user/${userData._id}`;
         const res = await axios.get(baseUrl);
         if(res.data){
             navigate(`/userprofile/${userData._id}`);

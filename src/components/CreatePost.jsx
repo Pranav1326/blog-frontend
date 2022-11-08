@@ -6,11 +6,11 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import MDEditor from '@uiw/react-md-editor';
 
-const CreatePost = () => {
+const CreatePost = ({BASE_URL}) => {
 
     const navigate = useNavigate();
     const { user } = useContext(Context);
-    const [postData, setPostData] = useState({
+    const [ postData, setPostData ] = useState({
         title: "",
         tags: "",
     });
@@ -49,7 +49,7 @@ const CreatePost = () => {
         const token = JSON.parse(localStorage.getItem('token'));
         var config = {
             method: 'post',
-            url: 'http://localhost:5000/api/articles/create',
+            url: `${BASE_URL}/articles/create`,
             headers: { 
                 'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json'

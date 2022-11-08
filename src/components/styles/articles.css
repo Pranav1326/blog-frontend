@@ -1,3 +1,8 @@
+.no-posts-msg{
+    color: #fff;
+    font-size: 2rem;
+}
+
 .articles{
     display: flex;
     flex-direction: row;
@@ -52,6 +57,8 @@
     }
     .section-1{
         width: 100%;
+        margin-bottom: 1rem;
+        justify-content: center;
     }
     .section-2{
         margin-bottom: 3rem;

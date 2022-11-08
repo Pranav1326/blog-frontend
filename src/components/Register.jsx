@@ -3,7 +3,7 @@ import './styles/register.css';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-const Register = () => {
+const Register = ({BASE_URL}) => {
 const navigate = useNavigate();
 const [confirmPassword, setConfirmPassword] = useState("");
 const [btnDisabled, setBtnDisabled] = useState(false);
@@ -38,7 +38,7 @@ const handleChange = e => {
         }
     });
 }
-const baseUrl = `http://localhost:5000/api/user/register`;
+const baseUrl = `${BASE_URL}/user/register`;
 const handleSubmit = async e => {
     e.preventDefault();
     if(registerData === null){

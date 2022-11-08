@@ -5,12 +5,12 @@ import { useNavigate } from 'react-router-dom';
 import { Context } from '../context/Context';
 import './styles/forgotPassword.css';
 
-const ForgotPassword = () => {
+const ForgotPassword = ({BASE_URL}) => {
 
 const { dispatch } = useContext(Context);
 const navigate = useNavigate();
 const [email, setEmail] = useState("");
-const baseUrl = `http://localhost:5000/api/user/forgotpassword`;
+const baseUrl = `${BASE_URL}/user/forgotpassword`;
 
 const handleSubmit = async (e) => {
     e.preventDefault();

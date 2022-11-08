@@ -4,11 +4,11 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './styles/authForgotPassword.css';
 
-const AuthForgotPassword = () => {
+const AuthForgotPassword = ({BASE_URL}) => {
 
 const navigate = useNavigate();
 const [otp, setOtp] = useState("");
-const baseUrl = `http://localhost:5000/api/user/otpauth`;
+const baseUrl = `${BASE_URL}/user/otpauth`;
 
 const handleSubmit = async (e) => {
     e.preventDefault();

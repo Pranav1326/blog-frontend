@@ -4,11 +4,11 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import ProfileArticles from './ProfileArticles';
 
-const UserProfile = () => {
+const UserProfile = ({BASE_URL}) => {
     const [ fetchedUser, setFetchedUser ] = useState([]);
     const { id } = useParams();
     const onLoad = async e => {
-        const baseUrl = `http://localhost:5000/api/user/${id}`;
+        const baseUrl = `${BASE_URL}/user/${id}`;
         try {
             const res = await axios.get(baseUrl);
             if(res.data){
@@ -47,6 +47,7 @@ const UserProfile = () => {
                 </div>
                 <ProfileArticles 
                     fetchedUser={fetchedUser}
+                    BASE_URL={BASE_URL}
                 />
             </section>
         </div>

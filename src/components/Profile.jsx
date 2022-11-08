@@ -5,14 +5,14 @@ import { Context } from '../context/Context';
 import axios from 'axios';
 import ProfileArticles from './ProfileArticles';
 
-const Profile = () => {
+const Profile = ({BASE_URL}) => {
 
 const [fetchedUser, setFetchedUser] = useState(null);
 const { user, dispatch } = useContext(Context);
 const onLoad = async e => {
     dispatch({type: "USER_UPDATE_START"});
 
-    const baseUrl = `http://localhost:5000/api/user/${user._id}`;
+    const baseUrl = `${BASE_URL}/user/${user._id}`;
     try {
         const res = await axios.get(baseUrl);
         if(res.data){
@@ -56,7 +56,7 @@ const handleDelete = async e => {
             email: user.email,
             userId: user._id
         };
-        const baseUrl = `http://localhost:5000/api/user/delete/${user._id}`;
+        const baseUrl = `${BASE_URL}/user/delete/${user._id}`;
         const authAxios = axios.create({
             baseURL: baseUrl,
             headers: {

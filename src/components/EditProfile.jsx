@@ -4,7 +4,7 @@ import './styles/editprofile.css';
 import { Context } from '../context/Context';
 import { useNavigate } from 'react-router-dom';
 
-const EditProfile = () => {
+const EditProfile = ({BASE_URL}) => {
     // name, email, username, location, bio, work | profile-pic
     // req: body{userId, info}, params{userId}
     let fileName;
@@ -92,7 +92,7 @@ const EditProfile = () => {
     const token = JSON.parse(localStorage.getItem('token'));
     const config = {
         method: 'put',
-        url: `http://localhost:5000/api/user/update/${user._id}`,
+        url: `${BASE_URL}/user/update/${user._id}`,
         headers: { 
             'Authorization': `Bearer ${token}`, 
             'Content-Type': 'application/json'
@@ -149,7 +149,7 @@ const EditProfile = () => {
         data.append("name", fileName);
         data.append("file", img);
         try {
-            var imgUpload = await axios.post(`http://localhost:5000/api/imageupload`, data);
+            var imgUpload = await axios.post(`${BASE_URL}/imageupload`, data);
         } catch (error) {
             console.log(error);
         }

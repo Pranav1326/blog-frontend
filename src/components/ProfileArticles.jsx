@@ -73,7 +73,6 @@ return (
         </h3>
         <ul>
             {articleTitles}
-            <li>this is a sample title for css styling</li>
         </ul>
     </div>
   );

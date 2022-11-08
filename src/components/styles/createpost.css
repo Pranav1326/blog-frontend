@@ -147,3 +147,61 @@
 .md-editor{
     min-height: 300px;
 }
+
+@media screen and (max-width: 768px) {
+    .create-post-main{
+        width: auto;
+    }
+}
+
+@media screen and (max-width: 660px) {
+    .create-post-section-1{
+        padding: 2rem;
+    }
+    .create-post-main,
+    .create-post-btns{
+        width: calc(100% - 3rem);
+    }
+}
+
+@media screen and (max-width: 540px) {
+    .create-post-section-1{
+        padding: 1.5rem;
+    }
+    .create-post-main,
+    .create-post-btns{
+        width: calc(100% - 2rem);
+        margin-top: 2rem;
+    }
+}
+
+@media screen and (max-width: 460px) {
+    .create-post-section-1{
+        padding: 1rem;
+    }
+    .create-post-main,
+    .create-post-btns{
+        width: calc(100% - 2rem);
+        margin-top: 2rem;
+    }
+    .create-post-title input{
+        font-size: 2rem;
+    }
+}
+
+@media screen and (max-width: 375px) {
+    .create-post-section-1{
+        padding: 0.5rem;
+    }
+    .create-post-main,
+    .create-post-btns{
+        width: calc(100% - 1rem);
+        margin-top: 1rem;
+    }
+    .create-post-title input{
+        font-size: 1.7rem;
+    }
+    .create-post-tags input{
+        font-size: 0.8rem;
+    }
+}

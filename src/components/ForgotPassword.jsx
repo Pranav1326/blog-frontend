@@ -3,6 +3,7 @@ import React, { useContext } from 'react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Context } from '../context/Context';
+import './styles/forgotPassword.css';
 
 const ForgotPassword = () => {
 
@@ -27,7 +28,7 @@ const handleSubmit = async (e) => {
 
 return (
     <div className='login-box'>
-        <form action="/" method='post' onSubmit={handleSubmit}>
+        <form action="/" method='post' onSubmit={handleSubmit} className="forget-pass-box">
             <h1>Forgot Password</h1>
             <div className="email-div">
                 <label htmlFor="email">Email</label>

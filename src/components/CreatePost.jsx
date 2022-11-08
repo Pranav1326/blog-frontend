@@ -36,7 +36,8 @@ const CreatePost = () => {
     // Creating post request
     const handleSubmit = async e => {
         e.preventDefault();
-        const tags = postData.tags.split(",");
+        let tags = postData.tags.split(",");
+        tags = tags.map(tag => tag.toLowerCase())
         postData.tags = tags;
         const data = JSON.stringify({
             "title": `${postData.title}`,
@@ -45,7 +46,6 @@ const CreatePost = () => {
             "authorId": `${user._id}`,
             "tags": tags
         });
-        console.log(data);
         const token = JSON.parse(localStorage.getItem('token'));
         var config = {
             method: 'post',

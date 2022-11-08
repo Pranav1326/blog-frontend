@@ -19,6 +19,14 @@ h1{
 
 }
 
+.single-article-copy-link-btn p{
+    margin-top: 0;
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.15);
+    padding: 0.3rem 0.5rem;
+    border-radius: 5px;
+}
+
 .single-article-main-box{
     width: 65%;
     height: inherit;
@@ -110,6 +118,28 @@ h1{
     background-color: rgba(255, 255, 255, 0.15);
     border-radius: 10px;
     padding: 1rem;
+    overflow-x: scroll;
+}
+
+::-webkit-scrollbar{
+    height: 0.5rem;         
+    width: 1rem;
+}
+
+.single-article-content pre::-webkit-scrollbar {
+    background-color: rgba(32, 178, 171, 0.6);
+}
+
+.single-article-content pre::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgb(0, 0, 0);
+    -webkit-box-shadow: inset 0 0 6px rgb(0, 0, 0);
+}
+
+.single-article-content pre::-webkit-scrollbar-thumb {
+    height: 4px;
+    background-color: rgba(32, 178, 171, 0.4);
+    outline: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 2px;
 }
 
 .single-article-content p code{
@@ -143,14 +173,14 @@ h1{
 .single-article-user-tags{
     display: flex;
     flex-direction: column;
+    gap: 1rem;
 }
 
 .single-article-user-card-details{
     border-radius: 10px;
     padding: 1rem;
-    margin-bottom: 1rem;
     position: relative;
-    background-color: rgba(0, 51, 51, 1);
+    background-color: rgba(0, 0, 0, 0.5);
     background-blend-mode: multiply;
 }
 
@@ -257,4 +287,128 @@ h1{
     color: #fff;
     background: #088;
     border-color: #fff;
+}
+
+.single-article-main-user-tags-wrapper{
+    display: flex;
+    width: 100%;
+    gap: 1rem;
+}
+
+@media screen and (max-width: 1260px){
+    .single-article-main{
+        width: calc(100vw - 10rem);
+    }
+}
+
+@media screen and (max-width: 1024px){
+    .single-article-main{
+        width: calc(100vw - 5rem);
+    }
+    .single-article-main-user-tags-wrapper{
+        width: calc(100vw - 10rem);
+        flex-direction: column;
+    }
+    .single-article-main-box{
+        width: 100%;
+    }
+    .single-article-user-tags{
+        width: 100%;
+        flex-direction: row;
+        gap: 1rem;
+    }
+    .single-article-popular-tags{
+        width: 100%;
+    }
+    .single-article-user-card-details{
+        min-width: 12rem;
+    }
+}
+
+@media screen and (max-width: 768px){
+    .single-article-title{
+        font-size: 4vw;
+    }
+    .single-article-content{
+        font-size: 2.9vw;
+    }
+}
+
+@media screen and (max-width: 740px){
+    .single-article-main-user-tags-wrapper {
+        width: calc(100vw - 8rem);
+    }
+    .crayons-icon {
+        width: 2rem;
+    }
+}
+
+@media screen and (max-width: 640px){
+    .single-article-main-user-tags-wrapper {
+        width: calc(100vw - 7rem);
+    }
+    .single-article-tags {
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+    .single-article-tags p {
+        margin: 0;
+    }
+}
+
+@media screen and (max-width: 560px){
+    .single-article-btns{
+        display: none;
+    }
+    .single-article-main-user-tags-wrapper {
+        width: calc(100vw - 5rem);
+    }
+    .single-article-user-tags {
+        flex-direction: column;
+    }
+    .single-article-user-card-details{
+        width: auto;
+    }
+    .single-article-user-publish-date p,
+    .single-article-user-publish-date h3,
+    .single-article-update button,
+    .single-article-delete button{
+        font-size: 3.5vw;
+    }
+    .single-article-content{
+        font-size: 4vw;
+        line-height: 1.8rem;
+    }
+}
+
+@media screen and (max-width: 460px){
+    .single-article-main {
+        width: calc(100vw - 3rem);
+    }
+    .single-article-main-user-tags-wrapper {
+        width: calc(100vw - 3rem);
+    }
+}
+
+
+@media screen and (max-width: 426px){
+    .single-article-main {
+        margin-top: 0.75rem;
+        width: calc(100vw - 1.5rem);
+    }
+    .single-article-main-user-tags-wrapper {
+        width: calc(100vw - 1.5rem);
+    }
+    .single-article-user-publish-date p,
+    .single-article-user-publish-date h3,
+    .single-article-update button,
+    .single-article-delete button{
+        font-size: 4vw;
+    }
+    .single-article-content{
+        font-size: 4.5vw;
+    }
+    .single-article-wrapper {
+        padding: 0.7rem;
+    }
 }

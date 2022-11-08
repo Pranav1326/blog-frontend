@@ -87,3 +87,10 @@
     background-color: #fff;
     color: #088;
 }
+
+
+@media screen and (max-width: 350px){
+    .login-form{
+        width: 14rem;
+    }
+}

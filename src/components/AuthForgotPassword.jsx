@@ -2,6 +2,7 @@ import axios from 'axios';
 import React from 'react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import './styles/authForgotPassword.css';
 
 const AuthForgotPassword = () => {
 
@@ -27,7 +28,7 @@ const handleSubmit = async (e) => {
 
 return (
     <div className='login-box'>
-            <form action="/" method='post' onSubmit={handleSubmit}>
+            <form action="/" method='post' onSubmit={handleSubmit} className="auth-otp">
                 <h1>Enter OTP</h1>
                 <div className="email-div">
                     <label htmlFor="otp">OTP</label>

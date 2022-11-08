@@ -3,6 +3,7 @@ import React, { useContext } from 'react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Context } from '../context/Context';
+import "./styles/resetPassword.css";
 
 const ResetPassword = () => {
 const { dispatch  } = useContext(Context);
@@ -32,7 +33,7 @@ const handleSubmit = async (e) => {
 
 return (
     <div className='login-box'>
-        <form action="/" method='post' onSubmit={handleSubmit}>
+        <form action="/" method='post' onSubmit={handleSubmit} className="reset-pass-form">
             <h1>Reset Password</h1>
             <div className="password-div">
                 <label htmlFor="password">Password</label>

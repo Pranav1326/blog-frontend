@@ -154,54 +154,56 @@ return (
                 <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" id="article-copy-icon" role="img" aria-labelledby="ab6q3dl3z7qb1xyovh7n58gakgh7f8l3" aria-hidden="true" className="crayons-icon mx-2 shrink-0" onClick={() => {navigator.clipboard.writeText(window.location.href); setCopyStatus(true)}}><title id="ab6q3dl3z7qb1xyovh7n58gakgh7f8l3">Copy link</title>
                 <path d="M7 6V3a1 1 0 011-1h12a1 1 0 011 1v14a1 1 0 01-1 1h-3v3c0 .552-.45 1-1.007 1H4.007A1 1 0 013 21l.003-14c0-.552.45-1 1.007-1H7zm2 0h8v10h2V4H9v2zm-2 5v2h6v-2H7zm0 4v2h6v-2H7z"></path>
                 </svg>
-                {copyStatus ? "Copied" : ""}
+                {copyStatus ? <p>"Copied"</p> : ""}
             </div>
         </div>
-        <div className="single-article-main-box">
-            <div className="single-article">
-                <img src={CoverImg} alt="Cover_Image" className='single-article-cover-image'/>
-                <div className="single-article-wrapper">
-                    <div className="article-user-details">
-                        <img src={userData.profilepic} alt="" className={userData.profilepic !== "" ? 'single-article-user-profile-img' : 'single-article-user-profile-img-hidden'}/>
-                        <div className="single-article-user-publish-date">
-                            <h3>{post.author}</h3>
-                            <p>{new Date(post.createdAt).toDateString()}</p>
-                        </div>
-                        {/* Edit, Delete Buttons */}
-                        {loggedUser ? 
-                            <div className="single-article-update-delete">
-                            <div className="single-article-update">
-                                <button onClick={handleUpdate}>Update</button>
+        <div className="single-article-main-user-tags-wrapper">
+            <div className="single-article-main-box">
+                <div className="single-article">
+                    <img src={CoverImg} alt="Cover_Image" className='single-article-cover-image'/>
+                    <div className="single-article-wrapper">
+                        <div className="article-user-details">
+                            <img src={userData.profilepic} alt="" className={userData.profilepic !== "" ? 'single-article-user-profile-img' : 'single-article-user-profile-img-hidden'}/>
+                            <div className="single-article-user-publish-date">
+                                <h3>{post.author}</h3>
+                                <p>{new Date(post.createdAt).toDateString()}</p>
                             </div>
-                            <div className="single-article-delete">
-                                <button onClick={handleDelete}>Delete</button>
+                            {/* Edit, Delete Buttons */}
+                            {loggedUser ? 
+                                <div className="single-article-update-delete">
+                                <div className="single-article-update">
+                                    <button onClick={handleUpdate}>Update</button>
+                                </div>
+                                <div className="single-article-delete">
+                                    <button onClick={handleDelete}>Delete</button>
+                                </div>
                             </div>
+                            :
+                                <></>
+                            }
                         </div>
-                        :
-                            <></>
-                        }
-                    </div>
-                    <div className="single-article-title">
-                        <h1>{post.title}</h1>
-                    </div>
-                    <div className="single-article-tags">
-                        {/* {post.tags && post.tags.forEach(function(e){
-                            return <p>{e}</p>
-                        })} */}
-                        {post.tags && fetchTags}
-                    </div>
-                    <div className="single-article-content">
-                        <ReactMarkdown>
-                            {post.content}
-                        </ReactMarkdown>
+                        <div className="single-article-title">
+                            <h1>{post.title}</h1>
+                        </div>
+                        <div className="single-article-tags">
+                            {/* {post.tags && post.tags.forEach(function(e){
+                                return <p>{e}</p>
+                            })} */}
+                            {post.tags && fetchTags}
+                        </div>
+                        <div className="single-article-content">
+                            <ReactMarkdown>
+                                {post.content}
+                            </ReactMarkdown>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div className="single-article-user-tags">
-            <UserCard userData={userData}/>
-            <div className="single-article-popular-tags">
-                <Taglist handleTag={handleTag}/>
+            <div className="single-article-user-tags">
+                <UserCard userData={userData}/>
+                <div className="single-article-popular-tags">
+                    <Taglist handleTag={handleTag}/>
+                </div>
             </div>
         </div>
     </div>

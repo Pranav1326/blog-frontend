@@ -97,10 +97,12 @@ return (
                 <p className='user-details'>Joined: {fetchedUser ? new Date(fetchedUser.createdAt).toDateString() : new Date(user.createdAt).toDateString()}</p>
                 <p className='user-details'>Location: {fetchedUser ? fetchedUser.location: user.localStorage}</p>
                 <p className='user-details'>Work: {fetchedUser ? fetchedUser.work: user.work}</p>
-                <button id='edit-profile-btn' onClick={handleDelete}>Delete Profile</button>
-                <button id='edit-profile-btn' onClick={handleNavigaion}>Edit Profile</button>
-                <button id='create-article-btn' onClick={() => navigate('/createpost')}> Create Article</button>
-                <button id='logout-btn' onClick={handleLogout}>Logout</button>
+                <div className="profile-details-btns">
+                    <button id='edit-profile-btn' onClick={handleDelete}>Delete Profile</button>
+                    <button id='edit-profile-btn' onClick={handleNavigaion}>Edit Profile</button>
+                    <button id='create-article-btn' onClick={() => navigate('/createpost')}> Create Article</button>
+                    <button id='logout-btn' onClick={handleLogout}>Logout</button>
+                </div>
             </div>
         </section>
         <section className="profile-section-2">

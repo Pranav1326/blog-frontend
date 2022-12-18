@@ -1,0 +1,419 @@
+.article-loading-p{
+    color: #fff;
+    font-size: 2rem;
+}
+
+h1{
+    color: #fff;
+}
+
+.single-article-main{
+    width: calc(100vw - 15rem);
+    min-height: calc(100vh - 10rem);
+    margin: 2rem 0;
+    display: flex;
+    flex-direction: row;
+    color: #fff;
+    gap: 1rem;
+}
+
+.single-article-btns{
+    width: 10%;
+    height: inherit;
+    margin-top: 2rem;
+
+}
+
+.single-article-copy-link-btn p{
+    margin-top: 0;
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.15);
+    padding: 0.3rem 0.5rem;
+    border-radius: 5px;
+}
+
+.single-article-main-box{
+    width: 65%;
+    height: inherit;
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+.single-article-user-tags{
+    width: 25%;
+    height: inherit;
+}
+
+.single-article-cover-image{
+    width: 100%;
+    height: auto;
+    height: inherit;
+}
+
+.single-article-wrapper{
+    padding: 2rem;
+}
+
+.article-user-details{
+    display: flex;
+    flex-direction: row ;
+    margin-top: 1rem;
+}
+
+.single-article-user-profile-img{
+    width: 3rem;
+    height: auto;
+    border-radius: 50%;
+}
+
+.single-article-user-profile-img-hidden{
+    display: none;
+}
+
+.single-article-user-publish-date{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.single-article-user-publish-date h3{
+    margin: 0 0.5rem 0 0.5rem;
+}
+
+.single-article-user-publish-date p{
+    margin: 0;
+    margin-left: 0.5rem;
+}
+
+.single-article-title{
+    font-size: 1.8rem;
+}
+
+.single-article-tags{
+    display: flex;
+    flex-direction: row;
+}
+
+.single-article-tags p{
+    margin: 1rem;
+    padding: 0.3rem 0.7rem;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.single-article-tags p:first-child{
+    margin-left: 0;
+}
+
+.single-article-tags p:hover{
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.8);
+    color: #000;
+}
+
+.single-article-content{
+    font-size: 1.5rem;
+    line-height: 2rem;
+}
+
+.single-article-content h1{
+    line-height: 3rem;
+}
+
+.single-article-content pre{
+    background-color: rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
+    padding: 1rem;
+    overflow-x: scroll;
+}
+
+::-webkit-scrollbar{
+    height: 0.5rem;         
+    width: 1rem;
+}
+
+.single-article-content pre::-webkit-scrollbar {
+    background-color: rgba(32, 178, 171, 0.6);
+}
+
+.single-article-content pre::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgb(0, 0, 0);
+    -webkit-box-shadow: inset 0 0 6px rgb(0, 0, 0);
+}
+
+.single-article-content pre::-webkit-scrollbar-thumb {
+    height: 4px;
+    background-color: rgba(32, 178, 171, 0.4);
+    outline: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 2px;
+}
+
+.single-article-content p code{
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.15);
+    line-height: 2rem;
+    padding: 0.5rem 1rem;
+    margin: 2rem 0;
+}
+
+.single-article-content blockquote{
+    background: rgba(255,255,255,0.15);
+    margin: 0;
+    padding: 0.1rem 1rem;
+    border-radius: 10px;
+}
+
+.single-article-content img{
+    max-width: 100%;
+    height: auto;
+}
+
+.single-article-content a{
+    color: #fff;
+}
+
+.single-article-content a:hover{
+    color: rgb(0, 183, 183);
+}
+
+.single-article-user-tags{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.single-article-user-card-details{
+    border-radius: 10px;
+    padding: 1rem;
+    position: relative;
+    background-color: rgba(0, 0, 0, 0.5);
+    background-blend-mode: multiply;
+}
+
+.single-article-user-card-details::before{
+    content: '';
+    background: linear-gradient(45deg, rgba(14, 215, 191, 1), rgba(0, 70, 111, 1));;
+    position: absolute;
+    inset: 0;
+    width: inherit;
+    height: inherit;
+    z-index: -1;
+    margin: -0.25rem;
+    border-radius: inherit;
+}
+
+.article-user-card-details{
+    display: flex;
+    flex-direction: row;
+    align-items: center;    
+}
+
+.article-user-card-details:hover{
+    cursor: pointer;
+}
+
+.single-article-user-card-profile-img{
+    width: 3rem;
+    height: 2.5rem;
+    border-radius: 50%;
+}
+
+.single-article-user-card-profile-img-hidden{
+    display: none;
+}
+
+.article-user-card-details h4{
+    margin-left: 1rem;
+}
+
+.single-article-user-location{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0.5rem;
+}
+
+.single-article-user-location span,
+.single-article-user-location p,
+.single-article-user-joined span,
+.single-article-user-joined p{
+    margin: 0;
+}
+
+.single-article-user-location span,
+.single-article-user-joined span{
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: rgba(200, 200, 200, 1);
+}
+
+.single-article-user-location p{
+    margin-bottom: 0.5rem;
+}
+
+.crayons-icon{
+    fill: rgb(0 210 185);
+    margin-bottom: 1rem;
+}
+
+.crayons-icon:hover{
+    fill: rgb(255 255 255);
+}
+
+.single-article-copy-link-btn{
+    width: min-content;
+}
+
+.single-article-update-delete{
+    justify-self: flex-end;
+    display: flex;
+    flex-direction: row;
+}
+
+.single-article-update,
+.single-article-delete{
+    align-self: center;
+    justify-self: flex-end;
+}
+
+.single-article-update button,
+.single-article-delete button{
+    padding: 0.3rem 0.6rem;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    background: #fff;
+    border: 2px solid #088;
+    color: #088;
+    font-weight: 600;
+    margin-left: 0.5rem;
+}
+
+.single-article-update button:hover,
+.single-article-delete button:hover{
+    cursor: pointer;
+    color: #fff;
+    background: #088;
+    border-color: #fff;
+}
+
+.single-article-main-user-tags-wrapper{
+    display: flex;
+    width: 100%;
+    gap: 1rem;
+}
+
+@media screen and (max-width: 1260px){
+    .single-article-main{
+        width: calc(100vw - 10rem);
+    }
+}
+
+@media screen and (max-width: 1024px){
+    .single-article-main{
+        width: calc(100vw - 5rem);
+    }
+    .single-article-main-user-tags-wrapper{
+        width: calc(100vw - 10rem);
+        flex-direction: column;
+    }
+    .single-article-main-box{
+        width: 100%;
+    }
+    .single-article-user-tags{
+        width: 100%;
+        flex-direction: row;
+        gap: 1rem;
+    }
+    .single-article-popular-tags{
+        width: 100%;
+    }
+    .single-article-user-card-details{
+        min-width: 12rem;
+    }
+}
+
+@media screen and (max-width: 768px){
+    .single-article-title{
+        font-size: 4vw;
+    }
+    .single-article-content{
+        font-size: 2.9vw;
+    }
+}
+
+@media screen and (max-width: 740px){
+    .single-article-main-user-tags-wrapper {
+        width: calc(100vw - 8rem);
+    }
+    .crayons-icon {
+        width: 2rem;
+    }
+}
+
+@media screen and (max-width: 640px){
+    .single-article-main-user-tags-wrapper {
+        width: calc(100vw - 7rem);
+    }
+    .single-article-tags {
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+    .single-article-tags p {
+        margin: 0;
+    }
+}
+
+@media screen and (max-width: 560px){
+    .single-article-btns{
+        display: none;
+    }
+    .single-article-main-user-tags-wrapper {
+        width: calc(100vw - 5rem);
+    }
+    .single-article-user-tags {
+        flex-direction: column;
+    }
+    .single-article-user-card-details{
+        width: auto;
+    }
+    .single-article-user-publish-date p,
+    .single-article-user-publish-date h3,
+    .single-article-update button,
+    .single-article-delete button{
+        font-size: 3.5vw;
+    }
+    .single-article-content{
+        font-size: 4vw;
+        line-height: 1.8rem;
+    }
+}
+
+@media screen and (max-width: 460px){
+    .single-article-main {
+        width: calc(100vw - 3rem);
+    }
+    .single-article-main-user-tags-wrapper {
+        width: calc(100vw - 3rem);
+    }
+}
+
+
+@media screen and (max-width: 426px){
+    .single-article-main {
+        margin-top: 0.75rem;
+        width: calc(100vw - 1.5rem);
+    }
+    .single-article-main-user-tags-wrapper {
+        width: calc(100vw - 1.5rem);
+    }
+    .single-article-user-publish-date p,
+    .single-article-user-publish-date h3,
+    .single-article-update button,
+    .single-article-delete button{
+        font-size: 4vw;
+    }
+    .single-article-content{
+        font-size: 4.5vw;
+    }
+    .single-article-wrapper {
+        padding: 0.7rem;
+    }
+}

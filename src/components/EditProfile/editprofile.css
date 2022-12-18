@@ -1,0 +1,130 @@
+.edit-profile-main{
+    margin: 2rem auto;
+    align-self: center;
+    width: 45rem;
+    border-radius: 5px;
+}
+
+.edit-profile-box{
+    color: #fff;
+    padding: 1rem 4rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.edit-profile-box form{
+    border: 2px solid #088;
+    border-radius: 5px;
+    padding: 0 1.5rem 1.5rem;
+    min-height: 15rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    box-shadow: 1px 1px 5px #000;
+    box-sizing: border-box;
+}
+
+.user-details,
+.basic-details{
+    display: flex;
+    flex-direction: column;
+    margin-top: 1rem;
+}
+
+.user-details h1,
+.basic-details h1{
+    text-align: center;
+}
+
+.user-details-section{
+    display: flex;
+    flex-direction: column;
+}
+
+.name,
+.email,
+.username,
+.image-profile,
+.location,
+.bio,
+.work{
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    gap: 0.3rem;
+    font-size: 1.2rem;
+}
+
+.name input,
+.email input,
+.username input,
+.image-profile input,
+.location input,
+.bio input,
+.work input{
+    font-size: 1.2rem;
+    border: 1px solid rgb(220, 220, 220);
+    padding: 0.2rem 0.5rem;
+    background: rgba(0, 0, 0, 0.4);
+    color: #fff;
+    margin-bottom: 1rem;
+    border-radius: 5px;
+}
+
+.username input{
+    margin-bottom: 0.1rem;
+}
+
+.warning{
+    margin-top: 0;
+    font-size: 0.8rem;
+}
+
+#profile-image::-webkit-file-upload-button{
+    display: hidden;
+}
+
+#save-profile-btn,
+#profile-image{
+    font-size: 1.2rem;
+    padding: 0.5rem;
+    margin: 1rem 0;
+    align-self: center;
+    border-radius: 5px;
+    border: none;
+    background-color: #fff;
+    color: #000;
+}
+
+#save-profile-btn:hover,
+#profile-image:hover{
+    cursor: pointer;
+    background-color: #000;
+    color: #fff;
+}
+
+@media screen and (max-width: 560px){
+    .edit-profile-box{
+        padding: 1.5rem;
+    }
+}
+
+@media screen and (max-width: 480px){
+    .edit-profile-box{
+        padding: 0;
+    }
+    .edit-profile-box form{
+        align-self: center;
+        width: calc(100% - 4rem);
+    }
+    #save-profile-btn,
+    #profile-image{
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 376px){
+    .edit-profile-box form{
+        width: calc(100% - 2rem);
+    }
+}

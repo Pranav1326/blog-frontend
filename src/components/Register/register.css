@@ -1,0 +1,78 @@
+.register-box{
+    min-height: calc(90vh - 60px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: #fff;
+    margin: 1rem 0;
+}
+
+.register-form{
+    border: 2px solid #088;
+    border-radius: 5px;
+    padding: 0 1.5rem 1.5rem;
+    min-height: 15rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    box-shadow: 1px 1px 5px #000;
+}
+
+.username-div,
+.password-div,
+.email-div{
+    display: flex;
+    flex-direction: column;
+    margin: 0.5rem;
+}
+
+.username-div label,
+.password-div label,
+.email-div label{
+    text-align: left;
+    font-size: small;
+    margin-bottom: 0.2rem;
+}
+
+.username-div input,
+.password-div input,
+.email-div input{
+    font-size: 1.2rem;
+    border: 2px solid #088;
+    border-radius: 5px;
+    padding: 0.5rem;
+}
+
+.btn{
+    text-align: center;
+    width: auto;
+    font-size: 1.2rem;
+    font-weight: 600;
+    padding: 0.4rem 0.7rem;
+    margin-top: 1rem;
+    background-color: #088;
+    color: #fff;
+    border: 2px solid #088;
+    border-radius: 5px;
+}
+
+.btn-disabled{
+    text-align: center;
+    width: auto;
+    font-size: 1.2rem;
+    font-weight: 600;
+    padding: 0.4rem 0.7rem;
+    margin-top: 1rem;
+    color: #fff;
+    border: 2px solid #088;
+    border-radius: 5px;
+    cursor: not-allowed;
+    background-color: rgb(136, 164, 164);
+}
+
+.btn:hover{
+    cursor: pointer;
+    background-color: #fff;
+    color: #088;
+}

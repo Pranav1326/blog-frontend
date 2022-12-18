@@ -1,0 +1,136 @@
+.blogcard{
+    width: 30rem;
+    min-height: 14.3rem;
+    background: url("../../images/introduction-to-web-development-social.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: rgba(0, 0, 0, 0.5);
+    background-blend-mode: multiply;
+    color: #fff;
+    margin: 1rem 0.5rem;
+    border-radius: 10px;
+    position: relative;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-weight: 900;
+}
+
+.blogcard:first-child{
+    margin-top: 2rem;
+}
+
+.blogcard:last-child{
+    margin-bottom: 2rem;
+}
+
+.blogcard::before{
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(14, 215, 191, 1), rgba(0, 70, 111, 1));
+    z-index: -1;
+    margin: -0.25rem;
+    border-radius: inherit;
+}
+
+.blogcard:hover{
+    cursor: pointer;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.first{
+    justify-self: flex-start;
+}
+
+.details-one{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#author{
+    text-decoration: none;
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0.25);
+    padding: 0.2rem 0.5rem;
+    border-radius: 5px;
+}
+
+.second{
+    justify-self: flex-end;
+}
+
+.details-two{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.title{
+    font-size: 2rem;
+}
+
+.description{
+    font-size: 0.9rem;
+    margin: 0.5rem 0;
+}
+
+.tags ul{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 0;
+}
+
+.tags ul li{
+    margin: 0 0.5rem;
+    list-style: none;
+    color: #000;
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 0.2rem 0.5rem;
+    border-radius: 5px;
+}
+
+.tags ul li:first-child{
+    margin-left: 0;
+}
+
+@media screen and (max-width: 660px){
+    .blogcard{
+        width: 25rem;
+    }
+}
+
+@media screen and (max-width: 560px){
+    .blogcard{
+        width: 20rem;
+        height: 20rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .blogcard{
+        width: 18rem;
+        height: 25rem;
+    }
+    .tags ul{
+        margin-left: -2.5rem;
+    }
+}
+
+@media screen and (max-width: 450px){
+    .blogcard{
+        width: 15rem;
+        height: 25rem;
+    }
+    .tags ul{
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+    .tags ul li{
+        margin: 0;
+    }
+}

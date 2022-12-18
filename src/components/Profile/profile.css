@@ -1,0 +1,215 @@
+.profile-section{
+    min-height: 20rem;
+    /* min-width: 40rem; */
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    color: #fff;
+}
+
+.profile-section-1,
+.profile-section-2{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+.profile-section-1{
+    border: 1px solid #fff;
+    border-radius: 5px;
+}
+
+#edit-profile-btn,
+#create-article-btn,
+#logout-btn{
+    background-color: rgba(255, 255, 255, 1);
+    color: rgba(0, 0, 0, 1);
+    border: none;
+    padding: 0.5rem 1rem;
+    font-size: 1.2rem;
+    font-weight: 500;
+    border-radius: 5px;
+    margin: 0 1rem;
+}
+
+#edit-profile-btn:hover,
+#create-article-btn:hover,
+#logout-btn:hover{
+    cursor: pointer;
+    color: rgba(255, 255, 255, 1);
+    background-color: rgba(0, 0, 0, 1);
+}
+
+.profile-section-2{
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+}
+
+.profile-pic,
+.img{
+    border-radius: 50%;
+    width: 4rem;
+    height: 4rem;
+}
+
+.profile-pic{
+    border: 2px solid #fff;
+    margin-top: -2rem;
+}
+
+.profile-details{
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.details{
+    border: 1px solid #fff;
+    border-radius: 5px;
+    padding: 0.4rem 1rem;
+}
+
+.article-list{
+    width: calc(100% - 10rem);
+    max-height: 10rem;
+    overflow-y: scroll;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+strong{
+    display: inline;
+}
+
+.article-list .article-list-title{
+    background-color: #fff;
+    text-align: center;
+    margin: 0;
+    padding: 0.5rem 1rem;
+    color: #000;
+    position: sticky;
+    top: 0%;
+}
+
+.article-list ul{
+    padding: 0;
+    margin: 0;
+}
+
+.article-list::-webkit-scrollbar {
+    background-color: rgba(32, 178, 171, 0.6);
+    width: 0.6rem;
+}
+
+.article-list::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgb(0, 0, 0);
+    -webkit-box-shadow: inset 0 0 6px rgb(0, 0, 0);
+}
+
+.article-list::-webkit-scrollbar-thumb {
+    width: 4px;
+    background-color: rgb(255, 255, 255);
+    outline: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 2px;
+}
+
+.article-list ul li{
+    border: 1px solid #fff;
+    border-radius: 5px;
+    list-style: none;
+    margin: 1rem;
+    padding: 0.5rem 1rem;
+}
+
+.article-list ul li:hover{
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 1);
+    color: rgba(0, 0, 0, 1);
+}
+
+@media screen and (max-width: 660px){
+    .profile-section{
+        margin-top: 3rem;
+        width: 30rem;
+        justify-content: center;
+        align-items: center;
+    }
+    .profile-section-1,
+    .profile-section-2{
+        width: 30rem;
+    }
+    .profile-details-btns{
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}
+
+@media screen and (max-width: 540px){
+    .profile-section{
+        width: 25rem;
+        max-width: 22rem;
+    }
+    .profile-section-1,
+    .profile-section-2{
+        width: 25rem;
+    }
+}
+
+@media screen and (max-width: 460px){
+    .profile-section{
+        width: 23rem;
+    }
+    .profile-section-1,
+    .profile-section-2{
+        width: 23rem;
+        flex-direction: column;
+        gap: 1rem;
+        width: 100%;
+    }
+    .details{
+        width: 100%;
+        padding: 0;
+    }
+    .details p{
+        margin-left: 1rem;
+    }
+    .article-list{
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 390px){
+    .profile-section{
+        width: 20rem;
+    }
+    .profile-section-1,
+    .profile-section-2{
+        width: 20rem;
+        flex-direction: column;
+        gap: 1rem;
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 350px){
+    .profile-section{
+        width: 18rem;
+    }
+    .profile-section-1,
+    .profile-section-2{
+        width: 18rem;
+        flex-direction: column;
+        gap: 1rem;
+        width: 100%;
+    }
+}

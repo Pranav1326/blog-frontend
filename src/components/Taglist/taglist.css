@@ -1,0 +1,41 @@
+.taglist-card{
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
+}
+
+.tag-title{
+    background-color: rgba(0, 0, 0, 0.85);
+    color: #fff;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.tag-title h2{
+    margin-left: 1rem;
+}
+
+.content ul{
+    margin-left: -1.6rem;
+}
+
+.content ul li{
+    list-style: none;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+    color: #fff;
+    margin: 0.3rem 0;
+    padding: calc(0.6rem + 1px);
+    text-align: left;
+    width: calc(100% - 2rem);
+}
+
+.content ul li:hover,
+.content ul li:active{
+    cursor: pointer;
+    background-color: transparent;
+    color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    padding: 0.6rem;
+}

@@ -42,6 +42,7 @@ const Profile = ({BASE_URL}) => {
                 </div>
                 <div className="profile-details">
                     <p className='user-details'>{user.name}</p>
+                    <p className='user-details'>Email: {user.email}</p>
                     <p className='user-details'>Bio: {user.bio}</p>
                     <p className='user-details'>Joined: {new Date(user.createdAt).toDateString()}</p>
                     <p className='user-details'>Location: {user.location}</p>

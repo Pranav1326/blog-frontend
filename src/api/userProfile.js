@@ -31,7 +31,7 @@ export const deleteAccount = async (data) => {
 // User Data Update
 export const updateProfile = async (data, profilepic, userId, username, dispatch, navigate) => {
     const config = {
-        method: 'put',
+        method: 'PUT',
         url: `http://localhost:5000/api/user/update/${userId}`,
         headers: {
             'Authorization': `Bearer ${token}`, 

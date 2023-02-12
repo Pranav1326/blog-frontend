@@ -11,7 +11,7 @@ const BlogCard = (props) => {
     "backgroundPosition": "center",
     "backgroundRepeat": "no-repeat",
     "backgroundSize": "cover",
-    "backgroundColor": "rgba(0, 0, 0, 0.5)",
+    "backgroundColor": "rgba(0, 0, 0, 0.6)",
     "backgroundBlendMode": "multiply",
     "color": "#fff",
     "margin": "1rem 0.5rem",
@@ -33,7 +33,11 @@ const BlogCard = (props) => {
   }
   
   return (
-    <div className='blogcard' onClick={handleClick} style={bgImg}>
+    <div className='blogcard' 
+      onClick={handleClick} 
+      // style={bgImg}
+    >
+      <img src={props.image} alt="blogcard background" className='card-img-bg'/>
       <div className="first">
         <div className="details-one">
           <div className="author">

@@ -28,6 +28,11 @@
     padding: 1rem 3rem;
 }
 
+.first, 
+.second {
+    text-align: justify;
+}
+
 .about-page-creator-one,
 .about-page-creator-two{
     display: flex;

@@ -3,25 +3,26 @@ import BlogCard from '../BlogCard/BlogCard';
 import Taglist from '../Taglist/Taglist';
 import './articles.css';
 import axios from 'axios';
+import { getAllArticles } from '../../api/article';
 
-// const baseUrl = "http://localhost:5000/api/articles";
+const baseUrl = "http://localhost:5000/api/articles";
 
-const Articles = ({post, setPost, BASE_URL}) => {
-  // const [ post, setPost ] = useState(null);
+const Articles = ({BASE_URL}) => {
+  const [ post, setPost ] = useState(null);
   let [ tag, setTag ] = useState("");
   const [ sort, setSort ] = useState(false);
 
   useEffect(() => {
-    // axios.get(baseUrl)
-    // .then((response) => {
-    //   setPost(response.data);
-    // })
-    // .catch((err) => console.log(err));
+    axios.get(baseUrl)
+    .then((response) => {
+      setPost(response.data);
+    })
+    .catch((err) => console.log(err));
   }, []);
 
   if(!post) return <p className='no-posts-msg'>Loading...</p>;
   
-  const postData = post.map((e) => {
+  const postData = post && post.map((e) => {
     let date = e.createdAt.split("T")[0];
     return(
       <BlogCard
@@ -70,7 +71,9 @@ const Articles = ({post, setPost, BASE_URL}) => {
     <div className="articles">
       <section className='section-1'>
         <div className="cards">
-          <button className="sort-new" onClick={handleSort}>New Posts</button>
+          <button className="sort-new" 
+          onClick={handleSort}
+          >New Posts</button>
           {postData}
         </div>
       </section>

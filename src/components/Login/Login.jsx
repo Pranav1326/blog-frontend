@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { login } from '../../api/userApi';
 
 const Login = ({BASE_URL}) => {
+
     // State
     const error = useSelector(state => state.userReducer.error);
     const dispatch = useDispatch();
@@ -18,6 +19,9 @@ const Login = ({BASE_URL}) => {
         password: ""
     });
 
+    const [user, setUser] = useState("")
+    const [pwd, setPwd] = useState("")
+    
     // Deseabling Buttons while API calls
     const [btnDisabled, setBtnDisabled] = useState(false);
     

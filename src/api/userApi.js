@@ -1,11 +1,13 @@
 import axios from 'axios';
 import { LOGIN_START, LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT, FORGOT_PASSWORD, FORGOT_PASSWORD_SUCCESS ,FORGOT_PASSWORD_FAILURE, RESET_PASSWORD_SUCCESS, RESET_PASSWORD, RESET_PASSWORD_FAILURE } from '../features/user/userSlice';
 
+const baseUrl = "https://blog-api-c8j7.onrender.com/api";
+
 // Login
 export const login = async (data, dispatch, navigate) => {
     dispatch(LOGIN_START());
     try {
-        const res = await axios.post("http://localhost:5000/api/user/login", data);
+        const res = await axios.post(`${baseUrl}/user/login`, data);
         dispatch(LOGIN_SUCCESS(res.data));
         localStorage.setItem("user", JSON.stringify(res.data.userInfo));
         localStorage.setItem("token", JSON.stringify(res.data.token));
@@ -28,7 +30,7 @@ export const logout = async (dispatch, navigate) => {
 // Register
 export const register = async (data, navigate) => {
     try{
-        const res = await axios.post("http://localhost:5000/api/user/register", data);
+        const res = await axios.post(`${baseUrl}/user/register`, data);
         console.log(res);
         navigate('/login');
     } catch (err) {
@@ -41,7 +43,7 @@ export const register = async (data, navigate) => {
 export const forgotPassword = async (data, dispatch, navigate) => {
     dispatch(FORGOT_PASSWORD(data));
     try {
-        const res = await axios.post("http://localhost:5000/api/user/forgotpassword", {email: data});
+        const res = await axios.post(`${baseUrl}/user/forgotpassword`, {email: data});
         alert(res.data);
         navigate('/authforgotpassword');
     } catch (error) {
@@ -54,7 +56,7 @@ export const forgotPassword = async (data, dispatch, navigate) => {
 // Authenticate OTP
 export const authenticateOtp = async (data, dispatch, navigate) => {
     try {
-        const res = await axios.post("http://localhost:5000/api/user/forgotpassword", {email: data});
+        const res = await axios.post(`${baseUrl}/user/forgotpassword`, {email: data});
         if(res){
             dispatch(FORGOT_PASSWORD_SUCCESS(res.data));
             navigate('/resetpassword');
@@ -70,7 +72,7 @@ export const authenticateOtp = async (data, dispatch, navigate) => {
 export const resetPasswordAuth = async (data, dispatch, navigate) => {
     dispatch(RESET_PASSWORD());
     try {
-        const res = await axios.put(`http://localhost:5000/api/user/resetpassword`, data);
+        const res = await axios.put(`${baseUrl}/user/resetpassword`, data);
         if(res){
             alert(`Password reseted Successfully.`);
             dispatch(RESET_PASSWORD_SUCCESS(res.data));

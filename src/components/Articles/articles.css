@@ -38,10 +38,11 @@
     margin-top: 1.5rem;
     align-self: center;
     justify-self: flex-start;
-    font-size: 1rem;
+    font-size: 1.2rem;
+    font-weight: 600;
     padding: 0.2rem 0.7rem;
     border-radius: 5px;
-    background-color: rgba(255, 255, 255, 0.25);
+    background-color: rgba(255, 255, 255, 0.2);
     color: #fff;
     border: none;
 }

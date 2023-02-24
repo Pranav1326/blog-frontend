@@ -91,7 +91,7 @@ const EditProfile = ({BASE_URL}) => {
         data.append("name", fileName);
         data.append("file", img);
         try {
-            var imgUpload = await axios.post(`http://localhost:5000/api/imageupload`, data);
+            var imgUpload = await axios.post(`https://blog-api-c8j7.onrender.com/api/imageupload`, data);
         } catch (error) {
             console.log(error);
         }

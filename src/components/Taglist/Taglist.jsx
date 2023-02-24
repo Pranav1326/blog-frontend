@@ -32,9 +32,9 @@ const Taglist = ({handleTag, BASE_URL}) => {
       }
       return 0;
     });
-    setRenderTags(isTagsRendered && sortedTags.map((tag, i) => {
+    setRenderTags(isTagsRendered && sortedTags.map((tag, id) => {
       return(
-        <li key={i} onClick={e => handleTag(e, e.target.textContent)}>{tag.tag}</li>
+        <li key={id} onClick={e => handleTag(e, e.target.textContent)}>{tag.tag}</li>
       );
     }));
   }

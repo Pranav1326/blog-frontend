@@ -22,8 +22,8 @@ const UserProfile = ({BASE_URL}) => {
                 <div className="details">
                     <p>{5} Post Publised</p>
                 </div>
-                <ProfileArticles 
-                />
+                {/* <ProfileArticles 
+                /> */}
             </section>
         </div>
     );

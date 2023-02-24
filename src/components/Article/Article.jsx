@@ -1,22 +1,46 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './article.css';
 import Taglist from '../Taglist/Taglist';
-import CoverImg from '../../images/introduction-to-web-development-social.png';
-import axios from 'axios';
 import ReactMarkdown from 'react-markdown';
 import UserCard from '../UserCard/UserCard';
+import { getArticle, getAuthor } from '../../api/article';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import axios from 'axios';
 
 const Article = ({BASE_URL}) => {
 
+    const user = useSelector(state => state.userReducer.user);
+    
+    // Internal states
     const [ isLiked, setIsLiked ] = useState(false);
     const [ copyStatus, setCopyStatus ] = useState(false);
+    const [ data, setData ] = useState(null);
+    const [ isLoggedin, setIsLoggedin ] = useState(false);
+
+    const navigate = useNavigate();
+    
+    const { id } = useParams();
+
+    useEffect(() => {
+        axios.get(`${BASE_URL}/articles/${id}`)
+            .then((res) => {
+                setData(res.data)
+                if(res.data.authorId === user._id){
+                    setIsLoggedin(true);
+                }
+            })
+            .catch(err => console.log(err));
+    }, []);
+    
+    if(!data) return <p className='no-posts-msg'>Loading...</p>;
     
     return (
         <div className='single-article-main'>
             <div className="single-article-btns">
                 <div className="single-article-like-btn">
-                    {isLiked ? 
+                    {isLiked ?
                         <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" role="img" aria-hidden="true" className="crayons-icon">
                         <path d="M2.821 12.794a6.5 6.5 0 017.413-10.24h-.002L5.99 6.798l1.414 1.414 4.242-4.242a6.5 6.5 0 019.193 9.192L12 22l-9.192-9.192.013-.014z"></path>
                         </svg> 
@@ -36,44 +60,50 @@ const Article = ({BASE_URL}) => {
             <div className="single-article-main-user-tags-wrapper">
                 <div className="single-article-main-box">
                     <div className="single-article">
-                        <img src={""} alt="Cover_Image" className='single-article-cover-image'/>
+                        <img src={data.image} alt="Cover_Image" className='single-article-cover-image'/>
                         <div className="single-article-wrapper">
                             <div className="article-user-details">
                                 <img src={""} alt="" className={'single-article-user-profile-img'}/>
                                 <div className="single-article-user-publish-date">
-                                    <h3>{"Pranav"}</h3>
-                                    <p>{"29 Aug 2022"}</p>
+                                    <h3>{data.author}</h3>
+                                    <p>{new Date(data.createdAt).toDateString()}</p>
                                 </div>
                                 {/* Edit, Delete Buttons */}
-                                {/* {loggedUser ? 
+                                {data && isLoggedin ? 
                                     <div className="single-article-update-delete">
                                     <div className="single-article-update">
-                                        <button onClick={handleUpdate}>Update</button>
+                                        <button 
+                                            // onClick={handleUpdate}
+                                        >Update</button>
                                     </div>
                                     <div className="single-article-delete">
-                                        <button onClick={handleDelete}>Delete</button>
+                                        <button 
+                                            // onClick={handleDelete}
+                                        >Delete</button>
                                     </div>
                                 </div>
                                 :
                                     <></>
-                                } */}
+                                }
                             </div>
                             <div className="single-article-title">
-                                <h1>{"Any Suitable Title"}</h1>
+                                <h1>{data.title}</h1>
                             </div>
                             <div className="single-article-tags">
-                                {"Some Tags"}
+                                {data && data.tags.map((tag, id) => {
+                                    return <p key={id}>{tag}</p>
+                                })}
                             </div>
                             <div className="single-article-content">
                                 <ReactMarkdown>
-                                    {"This is some Content. Just believe it!"}
+                                    {data.content}
                                 </ReactMarkdown>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div className="single-article-user-tags">
-                    <UserCard BASE_URL={BASE_URL}/>
+                    {data && <UserCard BASE_URL={BASE_URL} userId={data && data.authorId}/>}
                     <div className="single-article-popular-tags">
                         <Taglist BASE_URL={BASE_URL}/>
                     </div>

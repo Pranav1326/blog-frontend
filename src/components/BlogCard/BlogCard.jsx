@@ -23,8 +23,8 @@ const BlogCard = (props) => {
     "justifyContent": "space-between"
   }
   
-  const tagList = props.tags.map(function(e){
-    return <li>{e}</li>;
+  const tagList = props.tags.map((e, id) => {
+    return <li key={id}>{e}</li>;
   });
 
   const navigate = useNavigate();

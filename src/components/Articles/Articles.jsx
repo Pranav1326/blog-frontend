@@ -5,7 +5,7 @@ import './articles.css';
 import axios from 'axios';
 import { getAllArticles } from '../../api/article';
 
-const baseUrl = "http://localhost:5000/api/articles";
+const baseUrl = "https://blog-api-c8j7.onrender.com/api/articles";
 
 const Articles = ({BASE_URL}) => {
   const [ post, setPost ] = useState(null);
@@ -22,11 +22,11 @@ const Articles = ({BASE_URL}) => {
 
   if(!post) return <p className='no-posts-msg'>Loading...</p>;
   
-  const postData = post && post.map((e) => {
+  const postData = post && post.map((e, id) => {
     let date = e.createdAt.split("T")[0];
     return(
       <BlogCard
-        key={e._id}
+        key={id}
         id={e._id}
         author={e.author}
         publish={date}

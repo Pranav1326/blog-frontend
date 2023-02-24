@@ -23,6 +23,8 @@
 
 .content ul{
     margin-left: -1.6rem;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .content ul li{
@@ -30,10 +32,10 @@
     background-color: rgba(0, 0, 0, 0.5);
     border-radius: 5px;
     color: #fff;
-    margin: 0.3rem 0;
+    margin: 0.3rem 0.5rem;
     padding: calc(0.6rem + 1px);
-    text-align: left;
-    width: calc(100% - 2rem);
+    text-align: center;
+    width: fit-content;
 }
 
 .content ul li:hover,

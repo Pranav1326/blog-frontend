@@ -15,6 +15,8 @@ h1{
     flex-direction: row;
     color: #fff;
     gap: 1rem;
+    text-align: left;
+    text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.45);
 }
 
 .single-article-btns{
@@ -26,7 +28,7 @@ h1{
 
 .single-article-copy-link-btn p{
     margin-top: 0;
-    position: absolute;
+    position: absolu;
     background-color: rgba(255, 255, 255, 0.15);
     padding: 0.3rem 0.5rem;
     border-radius: 5px;
@@ -41,6 +43,11 @@ h1{
 .single-article-user-tags{
     width: 25%;
     height: inherit;
+}
+
+.single-article-tags p{
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.45);
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
 }
 
 .single-article-cover-image{
@@ -63,6 +70,7 @@ h1{
     width: 3rem;
     height: auto;
     border-radius: 50%;
+    display: none;
 }
 
 .single-article-user-profile-img-hidden{
@@ -73,15 +81,19 @@ h1{
     display: flex;
     flex-direction: column;
     width: 100%;
+    margin-left: 0;
 }
 
 .single-article-user-publish-date h3{
     margin: 0 0.5rem 0 0.5rem;
+    font-size: 1.5rem;
 }
 
 .single-article-user-publish-date p{
     margin: 0;
     margin-left: 0.5rem;
+    text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.7);
+    color: rgba(255, 255, 255, 0.75);
 }
 
 .single-article-title{
@@ -94,10 +106,11 @@ h1{
 }
 
 .single-article-tags p{
-    margin: 1rem;
+    margin: 0.5rem;
     padding: 0.3rem 0.7rem;
     border-radius: 5px;
     background: rgba(255, 255, 255, 0.2);
+    font-size: 1.2rem;
 }
 
 .single-article-tags p:first-child{
@@ -213,7 +226,7 @@ h1{
 
 .single-article-user-card-profile-img{
     width: 3rem;
-    height: 2.5rem;
+    height: 3rem;
     border-radius: 50%;
 }
 
@@ -221,8 +234,8 @@ h1{
     display: none;
 }
 
-.article-user-card-details h4{
-    margin-left: 1rem;
+.article-user-card-details h2{
+    margin-left: 0.7rem;
 }
 
 .single-article-user-location{
@@ -236,6 +249,11 @@ h1{
 .single-article-user-joined span,
 .single-article-user-joined p{
     margin: 0;
+    font-size: 1.2rem;
+}
+
+.single-article-user-bio{
+    font-size: 1.2rem;
 }
 
 .single-article-user-location span,
@@ -327,6 +345,7 @@ h1{
     }
     .single-article-user-card-details{
         min-width: 12rem;
+        height: -webkit-fill-available;
     }
 }
 

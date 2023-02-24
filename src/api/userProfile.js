@@ -1,6 +1,8 @@
 import axios from 'axios';
 import { USER_UPDATE } from '../features/user/userSlice';
 
+const baseUrl = "https://blog-api-c8j7.onrender.com/api";
+
 // JWT Token
 const token = JSON.parse(localStorage.getItem('token'));
 const headersList = {
@@ -13,7 +15,7 @@ const headersList = {
 export const deleteAccount = async (data) => {
     const bodyContent = JSON.stringify(data);
     const reqOptions = {
-        url: `http://localhost:5000/api/user/delete/${data.userId}`,
+        url: `${baseUrl}/user/delete/${data.userId}`,
         method: "DELETE",
         headers: headersList,
         data: bodyContent,
@@ -32,7 +34,7 @@ export const deleteAccount = async (data) => {
 export const updateProfile = async (data, profilepic, userId, username, dispatch, navigate) => {
     const config = {
         method: 'PUT',
-        url: `http://localhost:5000/api/user/update/${userId}`,
+        url: `${baseUrl}/user/update/${userId}`,
         headers: {
             'Authorization': `Bearer ${token}`, 
             'Content-Type': 'application/json'

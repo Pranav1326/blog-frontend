@@ -1,35 +1,44 @@
 import axios from 'axios';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { getAuthor } from '../../api/article';
 
-const UserCard = ({userData, BASE_URL}) => {
+const UserCard = ({userId, BASE_URL}) => {
 
     const navigate = useNavigate();
 
+    const [ user, setUser ] = useState(null);
+
+    useEffect(() => {
+        getAuthor(userId, setUser);
+    }, [])
+    
     const handleUserCardClick = async () => {
-        const baseUrl = `${BASE_URL}/user/${userData._id}`;
+        const baseUrl = `${BASE_URL}/user/${user._id}`;
         const res = await axios.get(baseUrl);
         if(res.data){
-            navigate(`/userprofile/${userData._id}`);
+            navigate(`/userprofile/${user._id}`);
         }
     }
 
+    if(!user) return <p className='no-posts-msg'>Loading...</p>;
+    
     return (
         <div className="single-article-user-card-details">
             <div className="article-user-card-details" onClick={handleUserCardClick}>
-                <img src={userData.profilepic} alt="" className={userData.profilepic !== "" ? 'single-article-user-card-profile-img' : 'single-article-user-card-profile-img-hidden'}/>
-                <h4>{userData.username}</h4>
+                <img src={user.profilepic} alt="" className={user.profilepic !== "" ? 'single-article-user-card-profile-img' : 'single-article-user-card-profile-img-hidden'}/>
+                <h2>{user.username}</h2>
             </div>
             <p className="single-article-user-bio">
-                {userData.bio !== "undefined" ? userData.bio : ""}
+                {user.bio !== "undefined" ? user.bio : ""}
             </p>
-            {userData.location !== "undefined" ? <div className="single-article-user-location">
-                {userData.location ? <span>Location</span> : ""}
-                <p>{userData.location}</p>
+            {user.location !== "undefined" ? <div className="single-article-user-location">
+                {user.location ? <span>Location</span> : ""}
+                <p>{user.location}</p>
             </div> : ""}
             <div className="single-article-user-joined">
                 <span>Joined</span>
-                <p>{new Date(userData.createdAt).toDateString()}</p>
+                <p>{new Date(user.createdAt).toDateString()}</p>
             </div>
         </div>
     );

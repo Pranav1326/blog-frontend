@@ -25,7 +25,7 @@ import { useSelector } from 'react-redux';
 
 const Main = () => {
 
-  const BASE_URL = "http://localhost:5000/api";
+  const BASE_URL = "https://blog-api-c8j7.onrender.com/api";
   const user = useSelector(state => state.userReducer.user);
   const token = useSelector(state => state.userReducer.token);
   const resetPassword = useSelector(state => state.userReducer.resetPassword);
@@ -42,7 +42,7 @@ const Main = () => {
           <Route path='/forgotpassword' element={<ForgotPassword BASE_URL={BASE_URL}/>} />
           <Route path='/authforgotpassword' element={resetPassword ? <AuthForgotPassword BASE_URL={BASE_URL}/> : <ForgotPassword BASE_URL={BASE_URL}/>} />
           <Route path='/resetpassword' element={resetPassword ? <ResetPassword BASE_URL={BASE_URL}/> : <ForgotPassword BASE_URL={BASE_URL}/>} />
-          {/* <Route path='/article/:id' element={<Article BASE_URL={BASE_URL}/>} /> */}
+          <Route path='/article/:id' element={<Article BASE_URL={BASE_URL}/>} />
           {/* <Route path='/article?' element={<Article BASE_URL={BASE_URL}/>} /> */}
           <Route path='/profile' element={user ? <Profile BASE_URL={BASE_URL}/> : <Login BASE_URL={BASE_URL}/>} />
           <Route path='/userprofile/:id' element={<UserProfile BASE_URL={BASE_URL}/>} />

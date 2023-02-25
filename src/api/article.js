@@ -1,6 +1,13 @@
 import axios from "axios";
 
 const baseUrl = "https://blog-api-c8j7.onrender.com/api";
+// JWT Token
+const token = JSON.parse(localStorage.getItem('token'));
+const headersList = {
+    "Accept": "*/*",
+    "Authorization": `Bearer ${token}`,
+    "Content-Type": "application/json" 
+}
 
 // Get all the articles
 export const getAllArticles = async () => {
@@ -27,6 +34,28 @@ export const getAuthor = async (id, setAuthor) => {
     try {
         const res = await axios.get(`${baseUrl}/user/${id}`);
         setAuthor(res.data);
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+// Delete an Aritlcle
+export const deleteArticle = async (id, data, navigate) => {
+    const reqOptions = {
+        url: `${baseUrl}/articles/delete/${id}`,
+        method: "DELETE",
+        headers: headersList,
+        data: data,
+    }
+    try {
+        const res = await axios.request(reqOptions);
+        console.log(res.data);
+        alert(res.data);
+        res.response.data && alert(res.response.data);
+        res.response.statusText && alert(res.response.statusText);
+        if(res.data.status == 200){
+            navigate('/');
+        }
     } catch (error) {
         console.log(error);
     }

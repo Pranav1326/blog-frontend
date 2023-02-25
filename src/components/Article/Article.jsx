@@ -4,7 +4,7 @@ import './article.css';
 import Taglist from '../Taglist/Taglist';
 import ReactMarkdown from 'react-markdown';
 import UserCard from '../UserCard/UserCard';
-import { getArticle, getAuthor } from '../../api/article';
+import { deleteArticle, getArticle, getAuthor } from '../../api/article';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
@@ -33,6 +33,11 @@ const Article = ({BASE_URL}) => {
             })
             .catch(err => console.log(err));
     }, []);
+    
+    const handleDelete = () => {
+        const ans = window.confirm("Are you sure! This action can't be undone!");
+        ans && deleteArticle(data._id, {authorId: data.authorId, author: data.author, articleId: data._id, role: user.role}, navigate);
+    }
     
     if(!data) return <p className='no-posts-msg'>Loading...</p>;
     
@@ -78,7 +83,7 @@ const Article = ({BASE_URL}) => {
                                     </div>
                                     <div className="single-article-delete">
                                         <button 
-                                            // onClick={handleDelete}
+                                            onClick={handleDelete}
                                         >Delete</button>
                                     </div>
                                 </div>

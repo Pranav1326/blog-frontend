@@ -1,14 +1,37 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './profile.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { logout } from '../../api/userApi';
 import { deleteAccount } from '../../api/userProfile';
+import BlogCard from '../BlogCard/BlogCard';
+import { getArticlesOfAuthor } from '../../api/article';
 
 const Profile = ({BASE_URL}) => {
     const user = useSelector(state => state.userReducer.user);
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
+    const [ userArticles, setUserArticles ] = useState(null);
+
+    useEffect(() => {
+      getArticlesOfAuthor(user.username, setUserArticles);
+    }, []);
+
+    const renderArticles = userArticles && userArticles.map((article, id) => {
+        return(
+            <BlogCard
+                key={id}
+                id={article._id}
+                author={article.author}
+                publish={new Date(article.createdAt).toDateString()}
+                title={article.title}
+                description={article.description}
+                tags={article.tags}
+                image={article.image}
+            />
+        );
+    });
     
     // Delete Button
     const handleDelete = () => {
@@ -56,12 +79,20 @@ const Profile = ({BASE_URL}) => {
                 </div>
             </section>
             <section className="profile-section-2">
-                <div className="details">
-                    <p>{user.articles.length} Post Publised</p>
+                <div className="articles-comments">
+                    <div className="details">
+                        <p>{user.articles.length} Post Publised</p>
+                    </div>
+                    <div className="details">
+                        <p>{user.comments.length} Comments</p>
+                    </div>
                 </div>
-                {/* <ProfileArticles 
-                    fetchedUser={fetchedUser}
-                /> */}
+                <div className='user-articles'>
+                    <h1 className='user-articles-title'>Articles</h1>
+                    <div className="articles">
+                        {renderArticles}
+                    </div>
+                </div>
             </section>
         </div>
     );

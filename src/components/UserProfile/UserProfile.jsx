@@ -1,19 +1,38 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { getAuthor } from '../../api/article';
-import ProfileArticles from '../ProfileArticles/ProfileArticles';
+import { getArticlesOfAuthor, getAuthor } from '../../api/article';
+import BlogCard from '../BlogCard/BlogCard';
+// import ProfileArticles from '../ProfileArticles/ProfileArticles';
 
 const UserProfile = ({BASE_URL}) => {
     
     const { id } = useParams();
     const [ user, setUser ] = useState(null);
 
+    const [ userArticles, setUserArticles ] = useState(null);
+
+    const renderArticles = userArticles && userArticles.map((article, id) => {
+        return(
+            <BlogCard
+                key={id}
+                id={article._id}
+                author={article.author}
+                publish={new Date(article.createdAt).toDateString()}
+                title={article.title}
+                description={article.description}
+                tags={article.tags}
+                image={article.image}
+            />
+        );
+    });
+    
     useEffect(() => {
         getAuthor(id, setUser);
+        user && getArticlesOfAuthor(user.username, setUserArticles);
     }, []);
     
-    if(!user) return <p className='no-posts-msg'>Loading...</p>;
+    if(!user || !userArticles) return <p className='no-posts-msg'>Loading...</p>;
     
     return (
         <div className='profile-section'>
@@ -30,14 +49,20 @@ const UserProfile = ({BASE_URL}) => {
                 </div>
             </section>
             <section className="profile-section-2">
-                <div className="details">
-                    <p>{user.articles.length} Post Publised</p>
+                <div className="articles-comments">
+                    <div className="details">
+                        <p>{user.articles.length} Post Publised</p>
+                    </div>
+                    <div className="details">
+                        <p>{user.comments.length} Comments</p>
+                    </div>
                 </div>
-                <div className="details">
-                    <p>{user.comments.length} Comments</p>
+                <div className='user-articles'>
+                    <h1 className='user-articles-title'>Articles</h1>
+                    <div className="articles">
+                        {renderArticles}
+                    </div>
                 </div>
-                {/* <ProfileArticles 
-                /> */}
             </section>
         </div>
     );

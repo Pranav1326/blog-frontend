@@ -29,6 +29,16 @@ export const getArticle = async (id, setData) => {
     }
 }
 
+// Get Articles of single Author
+export const getArticlesOfAuthor = async (username, setData) => {
+    try {
+        const res = await axios.get(`${baseUrl}/articles?user=${username}`);
+        setData(res.data);
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 // Get Author Details
 export const getAuthor = async (id, setAuthor) => {
     try {
@@ -53,7 +63,7 @@ export const deleteArticle = async (id, data, navigate) => {
         alert(res.data);
         res.response.data && alert(res.response.data);
         res.response.statusText && alert(res.response.statusText);
-        if(res.data.status == 200){
+        if(res.data.status === 200){
             navigate('/');
         }
     } catch (error) {

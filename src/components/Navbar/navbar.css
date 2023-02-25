@@ -16,16 +16,10 @@
 }
 
 .brand-name {
-    /* text-decoration: none;
-    color: #fff;
-    font-size: 2.2rem;
-    font-weight: 900;
-    text-shadow: 2px 2px 1px rgba(0, 70, 111, 1);
-    margin-left: 7.5rem;
-    -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: rgba(14, 215, 191, 0.6); */
     width: 132px;
     height: 58px;
+    display: grid;
+    place-items: center;
 }
 
 .navigation-menu {
@@ -104,15 +98,13 @@
 }
 
 .user-nav-img{
-    width: 2.7rem;
-    height: 2.7rem;
-    border: 2px solid rgb(237, 237, 237);
+    width: 3rem;
+    height: 3rem;
+    border: 1px solid rgb(255, 255, 255);
     border-radius: 50%;
 }
 
-.loggedIn a 
-
-{
+.loggedIn a{
     display: flex;
     align-items: center;
 }

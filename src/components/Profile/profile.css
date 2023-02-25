@@ -1,10 +1,15 @@
 .profile-section{
-    min-height: 20rem;
-    min-width: 26rem;
+    min-height: 26rem;
+    /* width: calc(100% - 70rem); */
+    /* min-width: 46rem; */
+    width: auto;
     align-self: center;
     display: flex;
     flex-direction: column;
     color: #fff;
+    margin-top: 5rem;
+    margin-bottom: 2rem;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.8);
 }
 
 .profile-section-1,
@@ -19,6 +24,7 @@
 }
 
 .profile-section-1{
+    box-shadow: 1px 1px 5px #000;
     border: 1px solid #fff;
     border-radius: 5px;
 }
@@ -45,11 +51,50 @@
 }
 
 .profile-section-2{
-    flex-direction: column;
+    flex-direction: row;
     justify-content: space-between;
     align-items: flex-start;
     margin-bottom: 1rem;
     margin-top: 1rem;
+    gap: 1rem;
+}
+
+.articles-comments{
+    display: flex;
+    flex-direction: column;
+}
+
+.user-articles-title{
+    font-size: 2.4rem;
+    margin: 0;
+    margin-left: 2rem;
+    text-align: center;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 1);
+}
+
+.user-articles{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-left: 1rem;
+}
+
+.articles{
+    display: flex;
+    flex-direction: column;
+    align-self: flex-end;
+    margin: 0;
+    padding: 0;
+}
+
+.blogcard{
+    margin: 0.5rem 0;
+}
+
+.blogcard:first-child{
+    margin-top: 1.3rem;
 }
 
 .profile-pic,
@@ -74,6 +119,8 @@
     border-radius: 5px;
     padding: 0.4rem 1rem;
     margin: 0.3rem 0;
+    box-shadow: 1px 1px 5px #000;
+    width: 100%;
 }
 
 .article-list{

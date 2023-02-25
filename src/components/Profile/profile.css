@@ -1,6 +1,6 @@
 .profile-section{
     min-height: 20rem;
-    /* min-width: 40rem; */
+    min-width: 26rem;
     align-self: center;
     display: flex;
     flex-direction: column;
@@ -45,7 +45,7 @@
 }
 
 .profile-section-2{
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-between;
     align-items: flex-start;
     margin-bottom: 1rem;
@@ -55,13 +55,13 @@
 .profile-pic,
 .img{
     border-radius: 50%;
-    width: 4rem;
-    height: 4rem;
+    width: 5rem;
+    height: 5rem;
 }
 
 .profile-pic{
     border: 2px solid #fff;
-    margin-top: -2rem;
+    margin-top: -2.6rem;
 }
 
 .profile-details{
@@ -73,6 +73,7 @@
     border: 1px solid #fff;
     border-radius: 5px;
     padding: 0.4rem 1rem;
+    margin: 0.3rem 0;
 }
 
 .article-list{

@@ -50,7 +50,7 @@ const Navbar = ({searchQuery, setSearchQuery}) => {
             </button>
             <div className={isNavExpanded ? "navigation-menu expanded" : "navigation-menu"}>
                 <ul>
-                    <li className='search-box'>
+                    {/* <li className='search-box'>
                         <div className="search">
                             <form action="/" method='post' onSubmit={e => e.preventDefault()}>
                                 <input 
@@ -63,7 +63,7 @@ const Navbar = ({searchQuery, setSearchQuery}) => {
                                 />
                             </form>
                         </div>
-                    </li>
+                    </li> */}
                     <li>
                         <Link to='/about'>
                             About

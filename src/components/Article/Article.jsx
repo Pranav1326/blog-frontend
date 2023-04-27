@@ -32,10 +32,10 @@ const Article = ({BASE_URL}) => {
                 }
             })
             .catch(err => console.log(err));
-
+        window.scrollTo({top: 0, behavior: 'smooth'});
         const timer = setTimeout(() => {
             axios.put(`${BASE_URL}/articles/incview/${id}`);
-            }, 10000);
+        }, 10000);
             
         return () => {
             clearInterval(timer);

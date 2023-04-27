@@ -17,7 +17,7 @@ const Articles = ({ BASE_URL, searchQuery }) => {
       setPost(response.data);
     })
     .catch((err) => console.log(err));
-    
+    window.scrollTo({top: 0, behavior: 'smooth'});
   }, [searchQuery]);
 
   if(!post) return <p className='no-posts-msg'>Loading...</p>;

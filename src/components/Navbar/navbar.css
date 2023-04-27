@@ -30,7 +30,7 @@
     display: flex;
     padding: 0;
     margin-right: 6.5rem;
-    align-items: center;
+    /* align-items: center; */
     justify-content: center;
 }
 

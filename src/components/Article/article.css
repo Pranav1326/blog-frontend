@@ -3,11 +3,35 @@
     font-size: 2rem;
 }
 
+.scroller{
+    width: fit-content;
+    align-self: center;
+    margin-bottom: 1.5rem;
+    padding: 0.4rem 1rem;
+    bottom: 2rem;
+    right: 2rem;
+    background: linear-gradient(45deg, rgba(14, 215, 191, 1), rgba(0, 70, 111, 1));
+    color: #fff;
+    font-weight: 600;
+    font-size: 1.2rem;
+    outline: none;
+    border: none;
+    border-radius:7px;
+    opacity: 0.5;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.45);
+}
+
+.scroller:hover{
+    cursor: pointer;
+    opacity: 1;
+}
+
 h1{
     color: #fff;
 }
 
 .single-article-main{
+    scroll-behavior: smooth;
     width: calc(100vw - 15rem);
     min-height: calc(100vh - 10rem);
     margin: 2rem 0;
@@ -40,6 +64,12 @@ h1{
     background-color: rgba(255, 255, 255, 0.15);
 }
 
+.single-article{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
 .single-article-user-tags{
     width: 25%;
     height: inherit;
@@ -58,6 +88,7 @@ h1{
 
 .single-article-wrapper{
     padding: 2rem;
+    padding-bottom: 0;
 }
 
 .article-user-details{
@@ -140,8 +171,9 @@ h1{
 }
 
 ::-webkit-scrollbar{
-    height: 0.5rem;         
+    height: 0.5rem;    
     width: 1rem;
+    /* background-color: rgba(200, 200, 200, 1); */
 }
 
 .single-article-content pre::-webkit-scrollbar {
@@ -204,7 +236,7 @@ h1{
 
 .single-article-user-card-details::before{
     content: '';
-    background: linear-gradient(45deg, rgba(14, 215, 191, 1), rgba(0, 70, 111, 1));;
+    background: linear-gradient(45deg, rgba(14, 215, 191, 1), rgba(0, 70, 111, 1));
     position: absolute;
     inset: 0;
     width: inherit;
@@ -399,6 +431,9 @@ h1{
     .single-article-delete button{
         font-size: 3.5vw;
     }
+    .single-user-publish-date h3{
+        font-size: 1.5rem;
+    }
     .single-article-content{
         font-size: 4vw;
         line-height: 1.8rem;
@@ -409,11 +444,13 @@ h1{
     .single-article-main {
         width: calc(100vw - 3rem);
     }
+    .single-article-user-publish-date h3{
+        font-size: 1.5rem;
+    }
     .single-article-main-user-tags-wrapper {
         width: calc(100vw - 3rem);
     }
 }
-
 
 @media screen and (max-width: 426px){
     .single-article-main {
@@ -424,7 +461,6 @@ h1{
         width: calc(100vw - 1.5rem);
     }
     .single-article-user-publish-date p,
-    .single-article-user-publish-date h3,
     .single-article-update button,
     .single-article-delete button{
         font-size: 4vw;

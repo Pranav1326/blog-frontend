@@ -4,7 +4,7 @@ import {
     Link
 } from "react-router-dom";
 
-const AuthNav = ({user, searchQuery, setSearchQuery }) => {
+const AuthNav = ({searchQuery, setSearchQuery }) => {
     const [isNavExpanded, setIsNavExpanded] = useState(false);
     // const [searchTxt, setSearchTxt] = useState("");
     return (

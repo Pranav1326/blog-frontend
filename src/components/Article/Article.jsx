@@ -27,7 +27,7 @@ const Article = ({BASE_URL}) => {
         axios.get(`${BASE_URL}/articles/${id}`)
             .then((res) => {
                 setData(res.data)
-                if(res.data.authorId === user._id){
+                if(res.data?.authorId === user?._id){
                     setIsLoggedin(true);
                 }
             })
@@ -71,7 +71,7 @@ const Article = ({BASE_URL}) => {
                                 <img src={""} alt="" className={'single-article-user-profile-img'}/>
                                 <div className="single-article-user-publish-date">
                                     <h3>{data.author}</h3>
-                                    <p>{new Date(data.createdAt).toDateString()}</p>
+                                    <p>Published on {new Date(data.createdAt).toDateString()}</p>
                                 </div>
                                 {/* Edit, Delete Buttons */}
                                 {data && isLoggedin ? 
@@ -105,6 +105,9 @@ const Article = ({BASE_URL}) => {
                                 </ReactMarkdown>
                             </div>
                         </div>
+                        <button className="scroller" onClick={() => {
+                            window.scrollTo({top: 0, behavior: 'smooth'});
+                        }}>Top ↑</button>
                     </div>
                 </div>
                 <div className="single-article-user-tags">

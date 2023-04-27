@@ -3,22 +3,22 @@ import BlogCard from '../BlogCard/BlogCard';
 import Taglist from '../Taglist/Taglist';
 import './articles.css';
 import axios from 'axios';
-import { getAllArticles } from '../../api/article';
+// import { getAllArticles } from '../../api/article';
 
 const baseUrl = "https://blog-api-c8j7.onrender.com/api/articles";
 
-const Articles = ({BASE_URL}) => {
+const Articles = ({BASE_URL, searchQuery, setSearchQuery}) => {
   const [ post, setPost ] = useState(null);
   let [ tag, setTag ] = useState("");
   const [ sort, setSort ] = useState(false);
 
   useEffect(() => {
-    axios.get(baseUrl)
+    axios.get(`${baseUrl}?user=${searchQuery}`)
     .then((response) => {
       setPost(response.data);
     })
     .catch((err) => console.log(err));
-  }, []);
+  }, [searchQuery]);
 
   if(!post) return <p className='no-posts-msg'>Loading...</p>;
   
@@ -67,6 +67,12 @@ const Articles = ({BASE_URL}) => {
     setPost(sortPost);
   }
   
+  if(post === []){
+    return(
+      <h1>No Posts!</h1>
+    );
+  }
+
   return (
     <div className="articles">
       <section className='section-1'>

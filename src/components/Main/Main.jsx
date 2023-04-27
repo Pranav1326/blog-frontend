@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React from 'react';
+import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import axios from 'axios';
@@ -25,6 +25,9 @@ import { useSelector } from 'react-redux';
 
 const Main = () => {
 
+  // Search State
+  const [ searchQuery, setSearchQuery ] = useState("");
+
   const BASE_URL = "https://blog-api-c8j7.onrender.com/api";
   const user = useSelector(state => state.userReducer.user);
   const token = useSelector(state => state.userReducer.token);
@@ -32,10 +35,13 @@ const Main = () => {
   
   return (
     <BrowserRouter>
-    {<Navbar />}
+    {<Navbar 
+      searchQuery={searchQuery}
+      setSearchQuery={setSearchQuery}
+    />}
       <div className='main'>
         <Routes>
-          <Route path='/' element={<Articles BASE_URL={BASE_URL}/>} />
+          <Route path='/' element={<Articles searchQuery={searchQuery} setSearchQuery={setSearchQuery} BASE_URL={BASE_URL}/>} />
           <Route path='/about' element={<About />}/>
           <Route path='/login' element={<Login BASE_URL={BASE_URL}/>} />
           <Route path='/register' element={<Register BASE_URL={BASE_URL}/>} />

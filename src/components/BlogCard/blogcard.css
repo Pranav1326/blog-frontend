@@ -125,15 +125,15 @@
 
 @media screen and (max-width: 560px){
     .blogcard{
-        width: 20rem;
-        height: 20rem;
+        width: 80%;
+        height: auto;
+        margin: 0 1rem;
     }
 }
 
 @media screen and (max-width: 480px) {
     .blogcard{
-        width: 18rem;
-        height: 25rem;
+        height: fit-content;
     }
     .tags ul{
         margin-left: -2.5rem;
@@ -141,10 +141,10 @@
 }
 
 @media screen and (max-width: 450px){
-    .blogcard{
+    /* .blogcard{
         width: 15rem;
         height: 25rem;
-    }
+    } */
     .tags ul{
         flex-wrap: wrap;
         gap: 0.5rem;

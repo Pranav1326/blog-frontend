@@ -5,7 +5,7 @@ import {
 } from "react-router-dom";
 import { useSelector } from 'react-redux';
 
-const Navbar = () => {
+const Navbar = ({searchQuery, setSearchQuery}) => {
     const [isNavExpanded, setIsNavExpanded] = useState(false);
     const user = useSelector(state => state.userReducer.user);
 
@@ -50,23 +50,37 @@ const Navbar = () => {
             </button>
             <div className={isNavExpanded ? "navigation-menu expanded" : "navigation-menu"}>
                 <ul>
+                    <li className='search-box'>
+                        <div className="search">
+                            <form action="/" method='post' onSubmit={e => e.preventDefault()}>
+                                <input 
+                                    type="text" 
+                                    name="search" 
+                                    id="search" 
+                                    value={searchQuery}
+                                    onInput={(e) => setSearchQuery(e.target.value)}
+                                    placeholder="Search Posts"
+                                />
+                            </form>
+                        </div>
+                    </li>
                     <li>
                         <Link to='/about'>
                             About
                         </Link>
                     </li>
-                    { !user ? <li>
+                    {/* { !user ? <li>
                         <Link to='/login'>
                             Login
                         </Link>
-                    </li> : 
-                    <>
-                        <div className='loggedIn'>
+                    </li> :  */}
+                    {/* // <> */}
+                        {/* <div className='loggedIn'>
                             <Link to='/profile'>
-                                <img src={user.profilepic ? user.profilepic : "https://w7.pngwing.com/pngs/831/88/png-transparent-user-profile-computer-icons-user-interface-mystique-miscellaneous-user-interface-design-smile-thumbnail.png"} alt="User" className='user-nav-img'/>
+                                <img src={user?.profilepic ? user.profilepic : "https://w7.pngwing.com/pngs/831/88/png-transparent-user-profile-computer-icons-user-interface-mystique-miscellaneous-user-interface-design-smile-thumbnail.png"} alt="User" className='user-nav-img'/>
                             </Link>
-                        </div> 
-                    </>}
+                        </div>  */}
+                    {/* </> */}
                 </ul>
             </div>
         </nav>

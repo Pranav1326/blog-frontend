@@ -1,6 +1,17 @@
 .no-posts-msg{
     color: #fff;
-    font-size: 2rem;
+    font-size: 3rem;
+    letter-spacing: 2px;
+    animation: loadingAnimation 0.5s ease-in-out infinite both alternate;
+}
+
+@keyframes loadingAnimation {
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
 }
 
 .articles{
@@ -9,14 +20,13 @@
 }
 
 .section-1{
-    width: 90%;
+    width: fit-content;
     display: flex;
     justify-content: flex-end;
 }
 
 .section-2{
-    width: 30%;
-    padding-left: 2rem;
+    max-width: 25%;
     margin-top: 1.9rem;
 }
 
@@ -30,12 +40,13 @@
 }
 
 .taglist{
-    margin-top: 2rem;
-    width: 15rem;
+    margin-top: 2.5rem;
+    width: fit-content;
+    min-width: 15rem;
 }
 
 .sort-new{
-    margin-top: 1.5rem;
+    margin: 1.5rem 0 1rem;
     align-self: center;
     justify-self: flex-start;
     font-size: 1.2rem;
@@ -55,7 +66,7 @@
 
 @media screen and (max-width: 900px) {
     .articles{
-        flex-direction: column;
+        flex-direction: column-reverse !important;
     }
     .section-1{
         width: 100%;
@@ -63,14 +74,21 @@
         justify-content: center;
     }
     .section-2{
-        margin-bottom: 3rem;
-        width: auto;
+        max-width: 100%;
         align-self: center;
+        margin: 2rem 2rem 0;
     }
     .cards{
-        width: auto;
+        display: flex;
+        align-items: center;
     }
     .taglist{
         margin-top: 0;
+    }
+}
+
+@media screen and (max-width: 500px){
+    .section-2{
+        margin: 2rem 1rem 0;
     }
 }

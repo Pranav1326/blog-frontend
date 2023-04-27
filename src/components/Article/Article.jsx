@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import './article.css';
-import Taglist from '../Taglist/Taglist';
+// import Taglist from '../Taglist/Taglist';
 import ReactMarkdown from 'react-markdown';
 import UserCard from '../UserCard/UserCard';
 import { deleteArticle } from '../../api/article';
@@ -121,7 +121,7 @@ const Article = ({BASE_URL}) => {
                 <div className="single-article-user-tags">
                     {data && <UserCard BASE_URL={BASE_URL} userId={data && data.authorId}/>}
                     <div className="single-article-popular-tags">
-                        <Taglist BASE_URL={BASE_URL}/>
+                        {/* <Taglist BASE_URL={BASE_URL}/> */}
                     </div>
                 </div>
             </div>

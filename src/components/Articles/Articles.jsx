@@ -3,11 +3,10 @@ import BlogCard from '../BlogCard/BlogCard';
 import Taglist from '../Taglist/Taglist';
 import './articles.css';
 import axios from 'axios';
-// import { getAllArticles } from '../../api/article';
 
 const baseUrl = "https://blog-api-c8j7.onrender.com/api/articles";
 
-const Articles = ({BASE_URL, searchQuery, setSearchQuery}) => {
+const Articles = ({ BASE_URL, searchQuery }) => {
   const [ post, setPost ] = useState(null);
   let [ tag, setTag ] = useState("");
   const [ sort, setSort ] = useState(false);
@@ -20,15 +19,6 @@ const Articles = ({BASE_URL, searchQuery, setSearchQuery}) => {
     .catch((err) => console.log(err));
     
   }, [searchQuery]);
-
-  // setTimeout(() => {
-  //   console.log("request made");
-  //   axios.get(`${baseUrl}/incview/${post._id}`)
-  //   .then((response) => {
-  //     setPost(response.data);
-  //   })
-  //   .catch((err) => console.log(err));
-  // }, 10000);
 
   if(!post) return <p className='no-posts-msg'>Loading...</p>;
   

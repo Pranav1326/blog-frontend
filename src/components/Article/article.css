@@ -377,7 +377,6 @@ h1{
     }
     .single-article-user-card-details{
         min-width: 12rem;
-        height: -webkit-fill-available;
     }
 }
 

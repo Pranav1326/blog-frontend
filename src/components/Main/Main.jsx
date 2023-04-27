@@ -1,23 +1,18 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState } from 'react';
-import { useEffect } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import axios from 'axios';
 import './main.css';
 import Login from '../Login/Login';
 import Register from '../Register/Register';
 import Articles from '../Articles/Articles';
 import Profile from '../Profile/Profile';
 import EditProfile from '../EditProfile/EditProfile';
-import CreatePost from '../CreatePost/CreatePost';
 import Article from '../Article/Article';
 import Navbar from '../Navbar/Navbar';
-import AuthNav from '../AuthNav/AuthNav';
 import ForgotPassword from '../ForgotPassword/ForgotPassword';
 import ResetPassword from '../ResetPassword/ResetPassword';
 import Error from '../Error/Error';
 import AuthForgotPassword from '../AuthForgotPassword/AuthForgotPassword';
-import UpdateArticle from '../UpdateArticle/UpdateArticle';
 import About from '../About/About';
 import UserProfile from '../UserProfile/UserProfile';
 import Footer from '../Footer/Footer';
@@ -30,7 +25,6 @@ const Main = () => {
 
   const BASE_URL = "https://blog-api-c8j7.onrender.com/api";
   const user = useSelector(state => state.userReducer.user);
-  const token = useSelector(state => state.userReducer.token);
   const resetPassword = useSelector(state => state.userReducer.resetPassword);
   
   return (

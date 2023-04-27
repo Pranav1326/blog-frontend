@@ -4,24 +4,24 @@ import './blogcard.css';
 
 const BlogCard = (props) => {
 
-  const bgImg = {
-    "background": `url(${props.image})`,
-    "width": "30rem",
-    "minHeight": "14.3rem",
-    "backgroundPosition": "center",
-    "backgroundRepeat": "no-repeat",
-    "backgroundSize": "cover",
-    "backgroundColor": "rgba(0, 0, 0, 0.6)",
-    "backgroundBlendMode": "multiply",
-    "color": "#fff",
-    "margin": "1rem 0.5rem",
-    "borderRadius": "10px",
-    "position": "relative",
-    "padding": "1.5rem",
-    "display": "flex",
-    "flexDirection": "column",
-    "justifyContent": "space-between"
-  }
+  // const bgImg = {
+  //   "background": `url(${props.image})`,
+  //   "width": "30rem",
+  //   "minHeight": "14.3rem",
+  //   "backgroundPosition": "center",
+  //   "backgroundRepeat": "no-repeat",
+  //   "backgroundSize": "cover",
+  //   "backgroundColor": "rgba(0, 0, 0, 0.6)",
+  //   "backgroundBlendMode": "multiply",
+  //   "color": "#fff",
+  //   "margin": "1rem 0.5rem",
+  //   "borderRadius": "10px",
+  //   "position": "relative",
+  //   "padding": "1.5rem",
+  //   "display": "flex",
+  //   "flexDirection": "column",
+  //   "justifyContent": "space-between"
+  // }
   
   const tagList = props.tags.map((e, id) => {
     return <li key={id}>{e}</li>;

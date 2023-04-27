@@ -32,8 +32,16 @@ const Article = ({BASE_URL}) => {
                 }
             })
             .catch(err => console.log(err));
+
+        const timer = setTimeout(() => {
+            axios.put(`${BASE_URL}/articles/incview/${id}`);
+            }, 10000);
+            
+        return () => {
+            clearInterval(timer);
+        }
     }, []);
-    
+
     const handleDelete = () => {
         const ans = window.confirm("Are you sure! This action can't be undone!");
         ans && deleteArticle(data._id, {authorId: data.authorId, author: data.author, articleId: data._id, role: user.role}, navigate);

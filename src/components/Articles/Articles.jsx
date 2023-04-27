@@ -18,7 +18,17 @@ const Articles = ({BASE_URL, searchQuery, setSearchQuery}) => {
       setPost(response.data);
     })
     .catch((err) => console.log(err));
+    
   }, [searchQuery]);
+
+  // setTimeout(() => {
+  //   console.log("request made");
+  //   axios.get(`${baseUrl}/incview/${post._id}`)
+  //   .then((response) => {
+  //     setPost(response.data);
+  //   })
+  //   .catch((err) => console.log(err));
+  // }, 10000);
 
   if(!post) return <p className='no-posts-msg'>Loading...</p>;
   

@@ -40,10 +40,10 @@ export const getArticlesOfAuthor = async (username, setData) => {
 }
 
 // Get Author Details
-export const getAuthor = async (id, setAuthor) => {
+export const getAuthor = async (id, setUser) => {
     try {
         const res = await axios.get(`${baseUrl}/user/${id}`);
-        setAuthor(res.data);
+        setUser(res.data);
     } catch (error) {
         console.log(error);
     }

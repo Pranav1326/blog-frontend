@@ -32,8 +32,8 @@ const UserProfile = ({BASE_URL}) => {
         user && getArticlesOfAuthor(user.username, setUserArticles);
     }, []);
     
-    if(!user || !userArticles) return <p className='no-posts-msg'>Loading...</p>;
-    
+    // if(!user || !userArticles) return <p className='no-posts-msg'>Loading...</p>;
+    if(user){
     return (
         <div className='profile-section'>
             <section className="profile-section-1">
@@ -66,6 +66,7 @@ const UserProfile = ({BASE_URL}) => {
             </section>
         </div>
     );
+    }
 }
 
 export default UserProfile;

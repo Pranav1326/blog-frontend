@@ -25,7 +25,10 @@ const UserCard = ({userId, BASE_URL}) => {
     
     return (
         <div className="single-article-user-card-details">
-            <div className="article-user-card-details" onClick={handleUserCardClick}>
+            <div 
+                className="article-user-card-details" 
+                // onClick={handleUserCardClick}
+            >
                 <img src={user.profilepic} alt="" className={user.profilepic !== "" ? 'single-article-user-card-profile-img' : 'single-article-user-card-profile-img-hidden'}/>
                 <h2>{user.username}</h2>
             </div>

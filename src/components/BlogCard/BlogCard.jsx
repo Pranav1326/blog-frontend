@@ -41,9 +41,9 @@ const BlogCard = (props) => {
       <div className="first">
         <div className="details-one">
           <div className="author">
-            <a href='/' id="author">
+            {/* <a href='/' id="author"> */}
               {props.author}
-            </a>
+            {/* </a> */}
           </div>
           <div className="date">
             {new Date(props.publish).toDateString()}

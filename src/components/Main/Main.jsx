@@ -16,6 +16,8 @@ import AuthForgotPassword from '../AuthForgotPassword/AuthForgotPassword';
 import About from '../About/About';
 import UserProfile from '../UserProfile/UserProfile';
 import Footer from '../Footer/Footer';
+import CreatePost from '../CreatePost/CreatePost';
+import UpdateArticle from '../UpdateArticle/UpdateArticle';
 import { useSelector } from 'react-redux';
 
 const Main = () => {
@@ -23,7 +25,9 @@ const Main = () => {
   // Search State
   const [ searchQuery, setSearchQuery ] = useState("");
 
-  const BASE_URL = "https://blog-api-c8j7.onrender.com/api";
+  // const BASE_URL = "https://blog-api-c8j7.onrender.com/api";
+  const BASE_URL = "https://blog-api-production-fc2e.up.railway.app/api";
+  // const BASE_URL = "http://localhost:5000/api";
   const user = useSelector(state => state.userReducer.user);
   const resetPassword = useSelector(state => state.userReducer.resetPassword);
   
@@ -47,8 +51,8 @@ const Main = () => {
           <Route path='/profile' element={user ? <Profile BASE_URL={BASE_URL}/> : <Login BASE_URL={BASE_URL}/>} />
           <Route path='/userprofile/:id' element={<UserProfile BASE_URL={BASE_URL}/>} />
           <Route path='/editprofile' element={user ? <EditProfile BASE_URL={BASE_URL}/> : <Login BASE_URL={BASE_URL}/>} />
-          {/* <Route path='/createpost' element={<CreatePost BASE_URL={BASE_URL}/>} /> */}
-          {/* <Route path='/articleupdate/:id' element={<UpdateArticle BASE_URL={BASE_URL}/>} /> */}
+          <Route path='/createpost' element={ user ? <CreatePost BASE_URL={BASE_URL}/> : <Login BASE_URL={BASE_URL}/>} />
+          <Route path='/articleupdate/:id' element={<UpdateArticle BASE_URL={BASE_URL}/>} />
           <Route path='*' element={<Error />} />
         </Routes>
       </div>

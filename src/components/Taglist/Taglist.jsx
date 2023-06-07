@@ -8,7 +8,7 @@ const Taglist = ({handleTag, BASE_URL}) => {
   
   const [ tags, setTags ] = useState([]);
   const [ renderTags, setRenderTags ] = useState(null);
-  const [isTagsRendered, setIsTagsRendered] = useState(false);
+  const [ isTagsRendered, setIsTagsRendered ] = useState(false);
   
   const fetchTags = async () => {
     const baseUrl = `${BASE_URL}/tags`;

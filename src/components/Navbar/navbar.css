@@ -1,12 +1,13 @@
 .navigation {
+    box-sizing: border-box;
     height: 60px;
     width: 100%;
     display: flex;
     align-items: center;
     position: sticky;
     top: 0;
-    padding: 0.5rem 0rem;
-    background: linear-gradient(90deg, rgba(0, 70, 111, 0.5), rgba(14, 215, 191, 0.5));
+    padding: 2.5rem 12rem;
+    background: linear-gradient(90deg, rgba(0, 70, 111, 0.5), #0ed7bf80);
     background-color: rgba(0, 0, 0, 0.3);
     background-blend-mode: multiply;
     color: #fff;
@@ -20,7 +21,7 @@
     height: 2rem;
     display: grid;
     place-items: center;
-    margin-left: 10rem;
+    margin-left: 1rem;
 }
 
 .brand-logo{
@@ -35,8 +36,6 @@
 .navigation-menu ul {
     display: flex;
     padding: 0;
-    margin-right: 6.5rem;
-    /* align-items: center; */
     justify-content: center;
 }
 
@@ -85,7 +84,7 @@
 .hamburger {
     border: 0;
     height: 40px;
-    width: 40px;
+    width: auto;
     padding: 0.5rem;
     border-radius: 50%;
     background-color: #088;
@@ -93,7 +92,7 @@
     transition: background-color 0.2s ease-in-out;
     position: absolute;
     top: 50%;
-    right: 25px;
+    right: 6rem;
     transform: translateY(-50%);
     display: none;
     fill: #fff;
@@ -135,8 +134,8 @@
 }
 
 @media screen and (max-width: 900px) {
-    .brand-name{
-        margin-left: 1.5rem;
+    .navigation {
+        padding: 2.5rem 5rem;
     }
     .hamburger {
       display: block;
@@ -186,13 +185,19 @@
 }
 
 @media screen and (max-width: 660px){
-    .brand-name{
-        margin-left: 3rem;
+    .navigation {
+        padding: 2.5rem 3rem;
+    }
+    .hamburger{
+        right: 4rem;
     }
 }
 
 @media screen and (max-width: 425px){
-    .brand-name{
-        margin-left: 2rem;
+    .navigation {
+        padding: 2.5rem 2rem;
+    }
+    .hamburger{
+        right: 2rem;
     }
 }

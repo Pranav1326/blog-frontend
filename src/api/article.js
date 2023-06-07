@@ -1,6 +1,8 @@
 import axios from "axios";
 
-const baseUrl = "https://blog-api-c8j7.onrender.com/api";
+// const baseUrl = "https://blog-api-c8j7.onrender.com/api";
+const baseUrl = "https://blog-api-production-fc2e.up.railway.app/api";
+// const baseUrl = "http://localhost:5000/api";
 // JWT Token
 const token = JSON.parse(localStorage.getItem('token'));
 const headersList = {
@@ -59,13 +61,49 @@ export const deleteArticle = async (id, data, navigate) => {
     }
     try {
         const res = await axios.request(reqOptions);
-        console.log(res.data);
-        alert(res.data);
-        res.response.data && alert(res.response.data);
-        res.response.statusText && alert(res.response.statusText);
-        if(res.data.status === 200){
-            navigate('/');
-        }
+        alert(res?.data);
+        navigate('/');
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+// Create an Article
+export const createArticle = async (data, navigate) => {
+    const reqOptions = {
+        url: `${baseUrl}/articles/create/`,
+        method: "POST",
+        headers: headersList,
+        data: data,
+    }
+    try {
+        await axios.request(reqOptions)
+            .then(data => {
+                console.log(data);
+                navigate(`/article/${data?.data?._id}`)
+            })
+            .catch(err => console.log(err));
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+
+// Update an article
+export const updateArticle = async (data, navigate) => {
+    const reqOptions = {
+        url: `${baseUrl}/articles/update/${data.articleid}`,
+        method: "PUT",
+        headers: headersList,
+        data: data,
+    }
+    try {
+        await axios.request(reqOptions)
+            .then(data => {
+                console.log(data);
+                navigate(`/article/${data?.data?._id}`)
+            })
+            .catch(err => console.log(err));
     } catch (error) {
         console.log(error);
     }

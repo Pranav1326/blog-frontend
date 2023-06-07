@@ -1,6 +1,5 @@
-import { computeHeadingLevel } from '@testing-library/react';
 import axios from 'axios';
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { updateProfile } from '../../api/userProfile';
@@ -24,7 +23,7 @@ const EditProfile = ({BASE_URL}) => {
 
     // Handling Input States
     const handleChange = e => {
-        const {name, value, files} = e.target;
+        const { name, value } = e.target;
         setUserData((preValue) => {
             if(name === "name"){
                 return{
@@ -77,21 +76,18 @@ const EditProfile = ({BASE_URL}) => {
     // Handle Image Input
     const handleImageInput = async e => {
         setImg(e.target.files[0]);
-        // uploadedImage = await handleFileInput();
     }
     
     // Uploading Image
-    let fileName;
     var uploadedImage;
-    const [ img, setImg ] = useState("");
+    const [ img, setImg ] = useState(null);
 
     const handleFileInput = async () => {
         const data = new FormData();
-        fileName = Date.now() + img.name;
-        data.append("name", fileName);
         data.append("file", img);
         try {
             var imgUpload = await axios.post(`https://blog-api-c8j7.onrender.com/api/imageupload`, data);
+            // var imgUpload = await axios.post(`http://localhost:5000/api/imageupload`, data);
         } catch (error) {
             console.log(error);
         }

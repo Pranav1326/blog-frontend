@@ -3,6 +3,9 @@
     flex-direction: column;
     background-color: rgba(255, 255, 255, 0.15);
     border-radius: 10px;
+    width: fit-content;
+    position: sticky;
+    top: 5.5rem;
 }
 
 .tag-title{
@@ -22,9 +25,10 @@
 }
 
 .content ul{
-    margin-left: -1.6rem;
+    margin: 0;
     display: flex;
     flex-wrap: wrap;
+    padding: 0.3rem;
 }
 
 .content ul li{

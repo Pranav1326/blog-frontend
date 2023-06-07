@@ -55,9 +55,9 @@ const BlogCard = (props) => {
           <div className="title">
             {props.title}
           </div>
-          <div className="description">
+          {/* <div className="description">
             {props.description}
-          </div>
+          </div> */}
           <div className="tags">
             <ul>
               {tagList}

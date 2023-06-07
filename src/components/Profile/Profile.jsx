@@ -47,6 +47,11 @@ const Profile = ({BASE_URL}) => {
         }
     }
     
+    // Create Post Button
+    const handleCreatePost = () => {
+        navigate('/createpost');
+    }
+
     // Logout Button
     const handleLogout = () => {
         logout(dispatch, navigate);
@@ -73,7 +78,7 @@ const Profile = ({BASE_URL}) => {
                     <div className="profile-details-btns">
                         <button id='edit-profile-btn' onClick={handleDelete}>Delete Profile</button>
                         <button id='edit-profile-btn' onClick={handleEditProfile}>Edit Profile</button>
-                        <button id='create-article-btn' > Create Article</button>
+                        <button id='create-article-btn' onClick={handleCreatePost}> Create Article</button>
                         <button id='logout-btn' onClick={handleLogout}>Logout</button>
                     </div>
                 </div>
@@ -89,7 +94,7 @@ const Profile = ({BASE_URL}) => {
                 </div>
                 <div className='user-articles'>
                     <h1 className='user-articles-title'>Articles</h1>
-                    <div className="articles">
+                    <div className="users-articles">
                         {renderArticles}
                     </div>
                 </div>

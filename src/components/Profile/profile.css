@@ -81,14 +81,15 @@
     margin-left: 1rem;
 }
 
-.articles{
+.users-articles{
     display: flex;
-    flex-direction: row;
+    flex-direction: column-reverse;
     align-self: flex-start;
     justify-content: center;
     margin: 0;
     padding: 0;
     width: 100%;
+    margin-left: 2rem;
 }
 
 .blogcard{

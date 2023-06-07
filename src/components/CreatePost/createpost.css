@@ -1,6 +1,15 @@
 .w-md-editor-text-input::selection{
+    /* color: white; */
+    background: rgb(247, 254, 120);
+}
+
+.wmde-markdown-color{
     color: white;
-    background: black;
+}
+
+.wmde-markdown-color::selection{
+    color: white;
+    background: white;
 }
 
 .create-post-main{
@@ -67,12 +76,9 @@
     align-items: flex-start;
 }
 
-.create-post-image{
-    margin: 1rem 0;
-    color: #fff;
-}
-
 .create-post-title,
+.create-post-image,
+.create-post-description,
 .create-post-tags{
     width: 100%;
     overflow: visible;
@@ -80,8 +86,11 @@
 }
 
 .create-post-title input,
+.create-post-image input,
+.create-post-description input,
 .create-post-tags input{
     margin: 0.5rem 0;
+    font-size: 1rem;
     outline: none;
     border: none;
     padding: 0.3rem 0.1rem;
@@ -93,6 +102,8 @@
 }
 
 .create-post-title input::placeholder,
+.create-post-image input::placeholder,
+.create-post-description input::placeholder,
 .create-post-tags input::placeholder{
     font-weight: 700;
 }

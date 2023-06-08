@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import './article.css';
 // import Taglist from '../Taglist/Taglist';
@@ -21,6 +20,8 @@ const Article = () => {
     const [data, setData] = useState(null);
     const [isLoggedin, setIsLoggedin] = useState(false);
     const [relatedArticles, setRelatedArticles] = useState(null);
+
+    if(!user) setIsLoggedin(false);
 
     const navigate = useNavigate();
 
@@ -48,7 +49,7 @@ const Article = () => {
         return () => {
             clearInterval(timer);
         }
-    }, []);
+    }, [id]);
 
     const handleDelete = () => {
         const ans = window.confirm("Are you sure! This action can't be undone!");
@@ -75,7 +76,7 @@ const Article = () => {
                 />
             );
         }
-        else return;
+        else return null;
     });
 
     if (!data) return <p className='no-posts-msg'>Loading...</p>;

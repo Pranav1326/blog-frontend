@@ -16,7 +16,7 @@ const Profile = ({BASE_URL}) => {
 
     useEffect(() => {
       getArticlesOfAuthor(user.username, setUserArticles);
-    }, []);
+    }, [user.username]);
 
     const renderArticles = userArticles && userArticles.map((article, id) => {
         return(

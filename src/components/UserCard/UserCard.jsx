@@ -30,7 +30,7 @@ const UserCard = ({userId, BASE_URL}) => {
                 className="article-user-card-details" 
                 // onClick={handleUserCardClick}
             >
-                <a href="https://pranav1326.github.io/pranav-portfolio" target='_blank'>
+                <a href="https://pranav1326.github.io/pranav-portfolio" rel="noreferrer" target='_blank'>
                     <img src={"https://drive.google.com/uc?id=1mSX81XYW6koJsLw3JZDI3wyzJJ169srj"} alt="" className={user.profilepic !== "" ? 'single-article-user-card-profile-img' : 'single-article-user-card-profile-img-hidden'}/>
                 </a>
             </div>
@@ -41,7 +41,7 @@ const UserCard = ({userId, BASE_URL}) => {
                 </p>
                 <div className="single-article-user-description">
                     {/* <p>{user.description}</p> */}
-                    <p>{"Hello There, I'm Pranav a passionate web designer and developer. Visit my portfolio at "}<a className='portfolio-link' target='_blank' href='https://pranav1326.github.io/pranav-portfolio'>Here</a></p>
+                    <p>{"Hello There, I'm Pranav a passionate web designer and developer. Visit my portfolio at "}<a className='portfolio-link' target='_blank' rel="noreferrer" href='https://pranav1326.github.io/pranav-portfolio'>Here</a></p>
                 </div>
                 {user.location !== "undefined" ? <div className="single-article-user-location">
                     {user.location ? <span>Location</span> : ""}

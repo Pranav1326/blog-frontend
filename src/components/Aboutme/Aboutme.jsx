@@ -21,7 +21,7 @@ const Aboutme = () => {
                             I always wanted to make a blog website by myself and write blogs about what I know about the web and technology. Also, it is an excellent way to showcase what skills, knowledge and experience I have. I will try my best to upload the articles regularly.
                         </p>
                         <p className="second">
-                            You can checkout my portfolio <a href="https://pranav1326.github.io/pranav-portfolio/" target='_blank'>here</a>
+                            You can checkout my portfolio <a href="https://pranav1326.github.io/pranav-portfolio/" target='_blank' rel="noopener noreferrer">here</a>
                         </p>
                         <p className="second">
                             Thanks for reading.

@@ -4,7 +4,6 @@ import MDEditor from '@uiw/react-md-editor';
 import { useSelector } from 'react-redux';
 import { createArticle } from '../../api/article';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 
 const CreatePost = ({BASE_URL}) => {
 

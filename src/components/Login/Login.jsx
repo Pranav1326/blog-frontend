@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import './login.css';
 import { useNavigate } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { login } from '../../api/userApi';
 
 const Login = ({BASE_URL}) => {
 
     // State
-    const error = useSelector(state => state.userReducer.error);
     const dispatch = useDispatch();
 
     // For Navigation
@@ -18,9 +17,6 @@ const Login = ({BASE_URL}) => {
         username: "",
         password: ""
     });
-
-    const [user, setUser] = useState("")
-    const [pwd, setPwd] = useState("")
     
     // Deseabling Buttons while API calls
     const [btnDisabled, setBtnDisabled] = useState(false);

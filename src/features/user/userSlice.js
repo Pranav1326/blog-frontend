@@ -66,7 +66,7 @@ export const userSlice = createSlice({
         state.token = null;
         state.isFetching = false;
         state.resetPassword = false;
-        state.forgotPasswordEmail = state.forgotPasswordEmail;
+        state.forgotPasswordEmail = null;
         state.error = false;
     },
     FORGOT_PASSWORD_FAILURE: (state) => {
@@ -82,14 +82,14 @@ export const userSlice = createSlice({
         state.token = null;
         state.isFetching = false;
         state.resetPassword = false;
-        state.forgotPasswordEmail = state.forgotPasswordEmail;
+        state.forgotPasswordEmail = null;
         state.error = true;
     },
     RESET_PASSWORD_SUCCESS: (state) => {
         state.user = null;
         state.token = null;
         state.isFetching = false;
-        state.resetPassword = state.forgotPasswordEmail;
+        state.resetPassword = null;
         state.forgotPasswordEmail = null;
         state.error = true;
     },

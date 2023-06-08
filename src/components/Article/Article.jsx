@@ -18,10 +18,7 @@ const Article = () => {
     const [isLiked, setIsLiked] = useState(false);
     const [copyStatus, setCopyStatus] = useState(false);
     const [data, setData] = useState(null);
-    const [isLoggedin, setIsLoggedin] = useState(false);
     const [relatedArticles, setRelatedArticles] = useState(null);
-
-    if(!user) setIsLoggedin(false);
 
     const navigate = useNavigate();
 
@@ -123,7 +120,7 @@ const Article = () => {
                                 <p>Published on {new Date(data.createdAt).toDateString()}</p>
                             </div>
                             {/* Edit, Delete Buttons */}
-                            {data && isLoggedin ?
+                            {data && user ?
                                 <div className="single-article-update-delete">
                                     <div className="single-article-update">
                                         <button

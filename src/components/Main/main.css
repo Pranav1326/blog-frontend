@@ -7,7 +7,7 @@
     justify-content: space-around;
     align-items: flex-start;
     position: relative;
-    padding: 0 12rem;
+    padding: 0 10%;
 }
 
 .main::before{

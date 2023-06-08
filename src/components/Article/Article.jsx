@@ -29,7 +29,7 @@ const Article = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const res = await axios.get(`${baseUrl}/articles/${id}`)
+                const res = await axios.get(`${baseUrl}/articles/${id}`);
                 setData(res.data);
                 if (res) {
                     axios.post(`${baseUrl}/articles/related`, { tags: res.data.tags })

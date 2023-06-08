@@ -18,7 +18,7 @@
 .popular-articles-posts{
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 0.3rem;
     padding: 0.3rem;
 }
 
@@ -31,4 +31,25 @@
 .popular-articles-posts>.popular-article-card:hover{
     cursor: pointer;
     background-color: rgba(0, 73, 118, 0.6);
+}
+
+@media screen and (max-width: 1024px){
+    .popular-articles-main{
+        width: 90%;
+    }
+    .popular-articles-posts{
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
+        justify-content: center;
+    }
+    .popular-article-card{
+        min-width: 18rem;
+        max-width: 22rem;
+    }
+}
+
+@media screen and (max-width: 425px){
+    .popular-articles-main{
+        width: auto;
+    }
 }

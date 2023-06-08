@@ -32,13 +32,11 @@ const PopularArticles = () => {
 
   return (
     <div className='popular-articles-main'>
-        <div className="popular-articles-title">
-          <h2>Popular Articles</h2>
-        </div>
-        <div className="popular-articles-content">
-          <div className="popular-articles-posts">
-            {renderPopularArticles}
-          </div>
+      <div className="popular-articles-title">
+        <h2>Popular Articles</h2>
+      </div>
+        <div className="popular-articles-posts">
+          {renderPopularArticles}
         </div>
     </div>
   );

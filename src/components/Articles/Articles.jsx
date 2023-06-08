@@ -14,6 +14,7 @@ const Articles = ({ BASE_URL }) => {
   const [ pages, setPages ] = useState();
   const [ search, setSearch ] = useState("");
   const [ searchedPost, setSearchedPost ] = useState();
+  const [ pagination, setPagination ] = useState(true);
   
   const navigate = useNavigate();
 
@@ -67,11 +68,13 @@ const Articles = ({ BASE_URL }) => {
     setTag(manualTag);
     if (tag === "All Posts") {
       setPost(post);
+      setPagination(true);
     }
     else {
-      await axios.get(`${BASE_URL}/articles?tag=${tag}`)
+      await axios.post(`${baseUrl}/articles/related`,{ tags: new Array(tag.trim()) })
         .then(result => {
           setPost(result.data);
+          setPagination(false);
           if (!result.data) {
             alert(`No Articles Found!`);
           }
@@ -104,10 +107,11 @@ const Articles = ({ BASE_URL }) => {
   // Handle Search
   const handleSearchChange = async (e) => {
     setSearch(e.target.value);
-    const res = await axios.get(`${baseUrl}/articles/search?search=${e.target.value}`);
-    if(res){
-      setSearchedPost(res.data);
-      console.log(res.data);
+    if(e.target.value !== ""){
+      const res = await axios.get(`${baseUrl}/articles/search?search=${e.target.value}`);
+      if(res){
+        setSearchedPost(res.data);
+      }
     }
   }
 
@@ -140,11 +144,16 @@ const Articles = ({ BASE_URL }) => {
           {/* Posts */}
           {postData}
           {/* Pagination */}
-          <div className='pagination'>
-            <button onClick={previousPage} disabled={page === 1} >Previous</button>
-            <p className='page-p'> {page} out of {pages} Pages </p>
-            <button onClick={nextPage} disabled={page === pages} >Next</button>
-          </div>
+          {
+            pagination ? 
+            <div className='pagination'>
+              <button onClick={previousPage} disabled={page === 1} >Previous</button>
+              <p className='page-p'> {page} out of {pages} Pages </p>
+              <button onClick={nextPage} disabled={page === pages} >Next</button>
+            </div>
+            :
+            null
+          }
         </div>
       </section>
       <section className="section-3">

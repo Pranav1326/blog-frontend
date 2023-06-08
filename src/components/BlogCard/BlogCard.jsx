@@ -29,7 +29,8 @@ const BlogCard = (props) => {
 
   const navigate = useNavigate();
   const handleClick = () => {
-    navigate(`/article/${props.id}`);    
+    navigate(`/article/${props.id}`); 
+    window.location.reload(true);
   }
   
   return (

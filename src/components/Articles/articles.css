@@ -31,12 +31,10 @@
 .articles{
     display: flex;
     flex-direction: row;
-    /* width: min-content; */
     gap: 1rem;
 }
 
 .section-1{
-    /* margin-top: 20rem; */
     width: fit-content;
     display: flex;
     justify-content: flex-end;   
@@ -73,7 +71,7 @@
 }
 
 .section-2{
-    min-width: 18%;
+    min-width: 10rem;
     max-width: 18%;
     margin-top: 1.9rem;
 }
@@ -173,10 +171,40 @@
     color: #fff;
 }
 
-@media screen and (max-width: 900px) {
-    .articles{
-        flex-direction: column-reverse !important;
+@media screen and (max-width: 1160px){
+    .navigation{
+        padding: 2.5rem 7% !important;
     }
+    .main{
+        padding: 0 2rem;
+    }
+}
+
+@media screen and (max-width: 1024px){
+    .articles{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .section-2{
+        max-width: 90%;
+    }
+    .section-1{
+        margin-top: -1rem;
+    }
+    .section-3{
+        margin-top: -1rem;
+        width: 100%;
+        display: grid;
+        place-items: center;
+    }
+    .cards{
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+@media screen and (max-width: 900px) {
     .section-1{
         width: 100%;
         margin-bottom: 1rem;
@@ -199,5 +227,12 @@
 @media screen and (max-width: 500px){
     .section-2{
         margin: 2rem 1rem 0;
+    }
+}
+
+@media screen and (max-width: 434px){
+    .pagination{
+        display: flex;
+        flex-direction: column;
     }
 }

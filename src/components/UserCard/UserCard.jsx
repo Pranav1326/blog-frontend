@@ -30,7 +30,9 @@ const UserCard = ({userId, BASE_URL}) => {
                 className="article-user-card-details" 
                 // onClick={handleUserCardClick}
             >
-                <img src={"https://drive.google.com/uc?id=1mSX81XYW6koJsLw3JZDI3wyzJJ169srj"} alt="" className={user.profilepic !== "" ? 'single-article-user-card-profile-img' : 'single-article-user-card-profile-img-hidden'}/>
+                <a href="https://pranav1326.github.io/pranav-portfolio" target='_blank'>
+                    <img src={"https://drive.google.com/uc?id=1mSX81XYW6koJsLw3JZDI3wyzJJ169srj"} alt="" className={user.profilepic !== "" ? 'single-article-user-card-profile-img' : 'single-article-user-card-profile-img-hidden'}/>
+                </a>
             </div>
             <div className="wrapper-user-info">
                 <h1>{user.name}</h1>

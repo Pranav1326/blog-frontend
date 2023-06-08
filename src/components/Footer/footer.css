@@ -8,4 +8,42 @@
     background-blend-mode: multiply;
     color: #fff;
     backdrop-filter: blur(5px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
 }
+
+.footer-btns{
+    width: 80%;
+    margin: 2rem 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.footer-btns>button{
+    margin: 0.5rem 1rem;
+    border: none;
+    outline: none;
+    background: none;
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: 550;
+}
+
+.footer-btns>button:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.footer>p{
+    margin: 2rem 0;
+}
+/* 
+@media screen and (max-width: 700px){
+    .footer-btns{
+        flex-direction: column;
+    }
+} */

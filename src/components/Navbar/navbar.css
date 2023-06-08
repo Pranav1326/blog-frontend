@@ -6,7 +6,6 @@
     align-items: center;
     position: sticky;
     top: 0;
-    padding: 2.5rem 12rem;
     background: linear-gradient(90deg, rgba(0, 70, 111, 0.5), #0ed7bf80);
     background-color: rgba(0, 0, 0, 0.3);
     background-blend-mode: multiply;
@@ -14,6 +13,8 @@
     z-index: 5;
     backdrop-filter: blur(5px);
     transition: 0.5s ease;
+    /* padding: 2.5rem 12rem; */
+    padding: 2.5rem 10%;
 }
 
 .brand-name {
@@ -121,11 +122,11 @@
     margin-left: 0.5rem;
 }
 
-@media screen and (max-width: 964px){
+/* @media screen and (max-width: 964px){
     .navigation-menu ul{
         margin-right: 3rem;
     }
-}
+} */
 
 @media screen and (max-width: 910px){
     .navigation-menu ul{

@@ -46,8 +46,8 @@ export const userSlice = createSlice({
         state.error = false;
     },
     USER_UPDATE: (state, action) => {
-        state.user = action.payload;
-        state.token = state.token;
+        state.user = action.payload.user;
+        state.token = action.payload.token;
         state.isFetching = false;
         state.resetPassword = false;
         state.forgotPasswordEmail = null;

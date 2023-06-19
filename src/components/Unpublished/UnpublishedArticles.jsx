@@ -14,7 +14,7 @@ const UnpublishedArticles = ({BASE_URL}) => {
             res && setPosts(res.data);
         }
         fetchPosts();
-    }, []);
+    }, [BASE_URL]);
 
     const renderPosts = posts && posts.map((post, i) => {
         let date = post.createdAt.split("T")[0];

@@ -1,7 +1,8 @@
 import axios from "axios";
+import { baseUrl } from './url';
 
 // const baseUrl = "https://blog-api-c8j7.onrender.com/api";
-const baseUrl = "https://blog-api-production-fc2e.up.railway.app/api";
+// const baseUrl = "https://blog-api-production-fc2e.up.railway.app/api";
 // const baseUrl = "http://localhost:5000/api";
 // JWT Token
 const token = JSON.parse(localStorage.getItem('token'));
@@ -63,6 +64,40 @@ export const deleteArticle = async (id, data, navigate) => {
         const res = await axios.request(reqOptions);
         alert(res?.data);
         navigate('/');
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+// Unpublish an Article
+export const unpublishArticle = async (data, navigate) => {
+    const reqOptions = {
+        url: `${baseUrl}/articles/makeunpublish`,
+        method: "POST",
+        headers: headersList,
+        data: data
+    }
+    try {
+        const res = await axios.request(reqOptions);
+        alert(res?.data);
+        navigate('/profile');
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+// Publish an Article
+export const PublishArticle = async (data, navigate) => {
+    const reqOptions = {
+        url: `${baseUrl}/articles/makepublish`,
+        method: "POST",
+        headers: headersList,
+        data: data
+    }
+    try {
+        const res = await axios.request(reqOptions);
+        alert(res?.data);
+        navigate('/profile');
     } catch (error) {
         console.log(error);
     }

@@ -22,8 +22,8 @@ const Taglist = ({handleTag, BASE_URL}) => {
 
   const renderTag = async() => {
     const sortedTags = isTagsRendered && tags.sort((a, b) => {
-      const nameA = a.tag.toLowerCase();
-      const nameB = b.tag.toLowerCase();
+      const nameA = a?.tag.toLowerCase();
+      const nameB = b?.tag.toLowerCase();
       if(nameA < nameB){
         return -1;
       }

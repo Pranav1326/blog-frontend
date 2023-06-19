@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './main.css';
 import Login from '../Login/Login';
@@ -22,33 +22,29 @@ import Aboutme from '../Aboutme/Aboutme';
 import Disclaimer from '../Disclaimer/Disclaimer';
 import PrivacyPolicy from '../PrivacyPolicy/PrivacyPolicy';
 import TermsAndCondition from '../TermsAndCondition/TermsAndCondition';
+import UnpublishedArticles from '../Unpublished/UnpublishedArticles';
 
 const Main = () => {
 
-  // Search State
-  const [ searchQuery, setSearchQuery ] = useState("");
-
   // const BASE_URL = "https://blog-api-c8j7.onrender.com/api";
-  const BASE_URL = "https://blog-api-production-fc2e.up.railway.app/api";
-  // const BASE_URL = "http://localhost:5000/api";
+  // const BASE_URL = "https://blog-api-production-fc2e.up.railway.app/api";
+  const BASE_URL = "http://localhost:5000/api";
   const user = useSelector(state => state.userReducer.user);
   // const resetPassword = useSelector(state => state.userReducer.resetPassword);
   
   return (
     <BrowserRouter>
-    {<Navbar 
-      searchQuery={searchQuery}
-      setSearchQuery={setSearchQuery}
-    />}
+    <Navbar />
       <div className='main'>
         <Routes>
-          <Route path='/' element={<Articles searchQuery={searchQuery} setSearchQuery={setSearchQuery} BASE_URL={BASE_URL}/>} />
+          <Route path='/' element={<Articles BASE_URL={BASE_URL}/>} />
           <Route path='/about' element={<About />}/>
           <Route path='/aboutme' element={<Aboutme />}/>
           <Route path='/disclaimer' element={<Disclaimer />}/>
           <Route path='/privacy-policy' element={<PrivacyPolicy />}/>
           <Route path='/terms-and-condition' element={<TermsAndCondition />}/>
           <Route path='/login' element={<Login BASE_URL={BASE_URL}/>} />
+          <Route path='/unpublished' element={<UnpublishedArticles BASE_URL={BASE_URL}/>} />
           {/* <Route path='/register' element={<Register BASE_URL={BASE_URL}/>} /> */}
           {/* <Route path='/forgotpassword' element={<ForgotPassword BASE_URL={BASE_URL}/>} /> */}
           {/* <Route path='/authforgotpassword' element={resetPassword ? <AuthForgotPassword BASE_URL={BASE_URL}/> : <ForgotPassword BASE_URL={BASE_URL}/>} /> */}

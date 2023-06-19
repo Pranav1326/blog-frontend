@@ -3,7 +3,7 @@ import './article.css';
 // import Taglist from '../Taglist/Taglist';
 import ReactMarkdown from 'react-markdown';
 import UserCard from '../UserCard/UserCard';
-import { deleteArticle } from '../../api/article';
+import { PublishArticle, deleteArticle, unpublishArticle } from '../../api/article';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
@@ -48,9 +48,22 @@ const Article = () => {
         }
     }, [id]);
 
+    // Delete an Article
     const handleDelete = () => {
         const ans = window.confirm("Are you sure! This action can't be undone!");
         ans && deleteArticle(data._id, { authorId: data.authorId, author: data.author, articleId: data._id, role: user.role }, navigate);
+    }
+
+    // Unpublish an Article
+    const handleUnpublish = () => {
+        const ans = window.confirm("Are you sure?");
+        ans && unpublishArticle({ id: data._id, authorId: data.authorId, author: data.author }, navigate);
+    }
+
+    // Publish an Article
+    const handlePublish = () => {
+        const ans = window.confirm("Are you sure?");
+        ans && PublishArticle({ id: data._id, authorId: data.authorId, author: data.author }, navigate);
     }
 
     const handleUpdate = () => {
@@ -80,7 +93,7 @@ const Article = () => {
 
     return (
         <div className='single-article-main'>
-            {/* Like & Share Buttons */}
+            {/* Like & Share */}
             <div className="single-article-btns">
                 <div className="single-article-like-btn" onClick={() => setIsLiked(!isLiked)}>
                     {isLiked ?
@@ -131,6 +144,18 @@ const Article = () => {
                                         <button
                                             onClick={handleDelete}
                                         >Delete</button>
+                                    </div>
+                                    <div className="single-article-delete">
+                                        {
+                                            data.published ?
+                                            <button
+                                                onClick={handleUnpublish}
+                                            >Unpublish</button>
+                                            :
+                                            <button
+                                                onClick={handlePublish}
+                                            >Publish</button>
+                                        }
                                     </div>
                                 </div>
                                 :

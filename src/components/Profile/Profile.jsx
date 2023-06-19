@@ -29,6 +29,11 @@ const Profile = ({BASE_URL}) => {
         navigate('/createpost');
     }
 
+    // Unpublished Articles Page Button
+    const handleUnpublishedPosts = () => {
+        navigate('/unpublished');
+    }
+
     // Logout Button
     const handleLogout = () => {
         logout(dispatch, navigate);
@@ -53,10 +58,11 @@ const Profile = ({BASE_URL}) => {
                     <p className='user-details'>Location: {user.location}</p>
                     <p className='user-details'>Work: {user.work}</p>
                     <div className="profile-details-btns">
-                        <button id='edit-profile-btn' onClick={handleDelete}>Delete Profile</button>
-                        <button id='edit-profile-btn' onClick={handleEditProfile}>Edit Profile</button>
-                        <button id='create-article-btn' onClick={handleCreatePost}> Create Article</button>
-                        <button id='logout-btn' onClick={handleLogout}>Logout</button>
+                        <button id='edit-profile-btn' onClick={handleDelete}> Delete Profile </button>
+                        <button id='edit-profile-btn' onClick={handleEditProfile}> Edit Profile </button>
+                        <button id='create-article-btn' onClick={handleCreatePost}> Create Article </button>
+                        <button id='create-article-btn' onClick={handleUnpublishedPosts}> Unpublished Articles </button>
+                        <button id='logout-btn' onClick={handleLogout}> Logout </button>
                     </div>
                 </div>
             </section>

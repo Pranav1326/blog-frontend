@@ -7,7 +7,7 @@ import { baseUrl } from '../../api/url';
 import RelatedArticles from '../PopularArticles/PopularArticles';
 import { useNavigate } from 'react-router-dom';
 
-const Articles = ({ BASE_URL }) => {
+const Articles = () => {
   const [ post, setPost ] = useState(null);
   let [ tag, setTag ] = useState("");
   const [ page, setPage ] = useState(1);
@@ -121,7 +121,7 @@ const Articles = ({ BASE_URL }) => {
       {/* <div className="blog-bg"></div> */}
       <section className="section-2">
         <div className="taglist">
-          <Taglist BASE_URL={BASE_URL} handleTag={handleTag} />
+          <Taglist handleTag={handleTag} />
         </div>
       </section>
       <section className='section-1'>

@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react';
 import './unpublishedarticles.css';
 import axios from 'axios';
 import BlogCard from '../BlogCard/BlogCard';
+import { baseUrl as BASE_URL } from '../../api/url';
 
-const UnpublishedArticles = ({BASE_URL}) => {
+const UnpublishedArticles = () => {
 
     const [ posts, setPosts ] = useState([]);
 
@@ -14,7 +15,7 @@ const UnpublishedArticles = ({BASE_URL}) => {
             res && setPosts(res.data);
         }
         fetchPosts();
-    }, [BASE_URL]);
+    }, []);
 
     const renderPosts = posts && posts.map((post, i) => {
         let date = post.createdAt.split("T")[0];

@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { logout } from '../../api/userApi';
 import { deleteAccount } from '../../api/userProfile';
 
-const Profile = ({BASE_URL}) => {
+const Profile = () => {
     const user = useSelector(state => state.userReducer.user);
     const dispatch = useDispatch();
     const navigate = useNavigate();

@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { updateProfile } from '../../api/userProfile';
 import './editprofile.css';
 
-const EditProfile = ({BASE_URL}) => {
+const EditProfile = () => {
     const user = useSelector(state => state.userReducer.user);
     const navigate = useNavigate();
     const dispatch = useDispatch();

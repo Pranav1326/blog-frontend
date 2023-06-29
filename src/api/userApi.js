@@ -1,7 +1,8 @@
 import axios from 'axios';
 import { LOGIN_START, LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT, FORGOT_PASSWORD, FORGOT_PASSWORD_SUCCESS ,FORGOT_PASSWORD_FAILURE, RESET_PASSWORD_SUCCESS, RESET_PASSWORD, RESET_PASSWORD_FAILURE } from '../features/user/userSlice';
 
-const baseUrl = "https://blog-api-c8j7.onrender.com/api";
+import { baseUrl } from './url';
+// const baseUrl = "https://blog-api-c8j7.onrender.com/api";
 
 // Login
 export const login = async (data, dispatch, navigate) => {

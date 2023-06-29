@@ -103,13 +103,13 @@
 .profile-pic,
 .img{
     border-radius: 50%;
-    width: 5rem;
-    height: 5rem;
+    width: 10rem;
+    height: 10rem;
 }
 
 .profile-pic{
     border: 2px solid #fff;
-    margin-top: -2.6rem;
+    margin-top: -5rem;
 }
 
 .profile-details{

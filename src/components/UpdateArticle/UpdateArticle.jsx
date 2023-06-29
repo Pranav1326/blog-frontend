@@ -7,8 +7,9 @@ import { useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { createArticle, updateArticle } from '../../api/article';
 import axios from 'axios';
+import { baseUrl as BASE_URL } from '../../api/url';
 
-const UpdateArticle = ({BASE_URL}) => {
+const UpdateArticle = () => {
     // User
     const user = useSelector(state => state.userReducer.user);
 

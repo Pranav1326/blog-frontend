@@ -26,9 +26,6 @@ import UnpublishedArticles from '../Unpublished/UnpublishedArticles';
 
 const Main = () => {
 
-  // const BASE_URL = "https://blog-api-c8j7.onrender.com/api";
-  // const BASE_URL = "https://blog-api-production-fc2e.up.railway.app/api";
-  const BASE_URL = "http://localhost:5000/api";
   const user = useSelector(state => state.userReducer.user);
   // const resetPassword = useSelector(state => state.userReducer.resetPassword);
   
@@ -37,25 +34,25 @@ const Main = () => {
     <Navbar />
       <div className='main'>
         <Routes>
-          <Route path='/' element={<Articles BASE_URL={BASE_URL}/>} />
+          <Route path='/' element={<Articles />} />
           <Route path='/about' element={<About />}/>
           <Route path='/aboutme' element={<Aboutme />}/>
           <Route path='/disclaimer' element={<Disclaimer />}/>
           <Route path='/privacy-policy' element={<PrivacyPolicy />}/>
           <Route path='/terms-and-condition' element={<TermsAndCondition />}/>
-          <Route path='/login' element={<Login BASE_URL={BASE_URL}/>} />
-          <Route path='/unpublished' element={<UnpublishedArticles BASE_URL={BASE_URL}/>} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/unpublished' element={<UnpublishedArticles />} />
           {/* <Route path='/register' element={<Register BASE_URL={BASE_URL}/>} /> */}
           {/* <Route path='/forgotpassword' element={<ForgotPassword BASE_URL={BASE_URL}/>} /> */}
           {/* <Route path='/authforgotpassword' element={resetPassword ? <AuthForgotPassword BASE_URL={BASE_URL}/> : <ForgotPassword BASE_URL={BASE_URL}/>} /> */}
           {/* <Route path='/resetpassword' element={resetPassword ? <ResetPassword BASE_URL={BASE_URL}/> : <ForgotPassword BASE_URL={BASE_URL}/>} /> */}
-          <Route path='/article/:id' element={<Article BASE_URL={BASE_URL}/>} />
+          <Route path='/article/:id' element={<Article />} />
           {/* <Route path='/article?' element={<Article BASE_URL={BASE_URL}/>} /> */}
-          <Route path='/profile' element={user ? <Profile BASE_URL={BASE_URL}/> : <Login BASE_URL={BASE_URL}/>} />
+          <Route path='/profile' element={user ? <Profile /> : <Login />} />
           {/* <Route path='/userprofile/:id' element={<UserProfile BASE_URL={BASE_URL}/>} /> */}
-          <Route path='/editprofile' element={user ? <EditProfile BASE_URL={BASE_URL}/> : <Login BASE_URL={BASE_URL}/>} />
-          <Route path='/createpost' element={ user ? <CreatePost BASE_URL={BASE_URL}/> : <Login BASE_URL={BASE_URL}/>} />
-          <Route path='/articleupdate/:id' element={<UpdateArticle BASE_URL={BASE_URL}/>} />
+          <Route path='/editprofile' element={user ? <EditProfile /> : <Login />} />
+          <Route path='/createpost' element={ user ? <CreatePost /> : <Login />} />
+          <Route path='/articleupdate/:id' element={<UpdateArticle />} />
           <Route path='*' element={<Error />} />
         </Routes>
       </div>

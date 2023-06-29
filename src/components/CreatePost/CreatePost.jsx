@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import { createArticle } from '../../api/article';
 import { useNavigate } from 'react-router-dom';
 
-const CreatePost = ({BASE_URL}) => {
+const CreatePost = () => {
 
     // User
     const user = useSelector(state => state.userReducer.user);

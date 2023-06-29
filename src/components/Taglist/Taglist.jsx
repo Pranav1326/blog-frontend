@@ -3,8 +3,9 @@ import axios from 'axios';
 import React, { useEffect } from 'react';
 import { useState } from 'react';
 import './taglist.css';
+import { baseUrl as BASE_URL } from '../../api/url';
 
-const Taglist = ({handleTag, BASE_URL}) => {
+const Taglist = ({ handleTag }) => {
   
   const [ tags, setTags ] = useState([]);
   const [ renderTags, setRenderTags ] = useState(null);

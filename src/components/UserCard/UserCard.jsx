@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 // import { useNavigate } from 'react-router-dom';
 import { getAuthor } from '../../api/article';
 
-const UserCard = ({userId, BASE_URL}) => {
+const UserCard = ({ userId }) => {
 
     // const navigate = useNavigate();
 

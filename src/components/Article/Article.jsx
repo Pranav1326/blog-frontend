@@ -9,6 +9,7 @@ import { useSelector } from 'react-redux';
 import axios from 'axios';
 import BlogCard from '../BlogCard/BlogCard';
 import { baseUrl } from '../../api/url';
+import { useCookies } from 'react-cookie';
 
 const Article = () => {
 
@@ -20,9 +21,17 @@ const Article = () => {
     const [data, setData] = useState(null);
     const [relatedArticles, setRelatedArticles] = useState(null);
 
-    const navigate = useNavigate();
-
     const { id } = useParams();
+    
+    // Cookies
+    const [cookies, setCookie] = useCookies([id]);
+
+    // Set the cookie
+    const setCookieTrue = () => {
+        setCookie(id, 'true', { path: '/' });
+    };
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchData = async () => {
@@ -39,14 +48,14 @@ const Article = () => {
         }
         fetchData();
         window.scrollTo({ top: 0, behavior: 'smooth' });
-        const timer = setTimeout(() => {
-            axios.put(`${baseUrl}/articles/incview/${id}`);
-        }, 10000);
 
-        return () => {
-            clearInterval(timer);
+        const cookieValue = cookies[id];
+        if(!cookieValue){
+            axios.put(`${baseUrl}/articles/incview/${id}`);
+            setCookieTrue();
         }
-    }, [id]);
+        // eslint-disable-next-line
+    }, [ id ]);
 
     // Delete an Article
     const handleDelete = () => {
@@ -148,13 +157,13 @@ const Article = () => {
                                     <div className="single-article-delete">
                                         {
                                             data.published ?
-                                            <button
-                                                onClick={handleUnpublish}
-                                            >Unpublish</button>
-                                            :
-                                            <button
-                                                onClick={handlePublish}
-                                            >Publish</button>
+                                                <button
+                                                    onClick={handleUnpublish}
+                                                >Unpublish</button>
+                                                :
+                                                <button
+                                                    onClick={handlePublish}
+                                                >Publish</button>
                                         }
                                     </div>
                                 </div>
@@ -162,6 +171,13 @@ const Article = () => {
                                 <></>
                             }
                         </div>
+                        {
+                            user ?
+                                <div className="single-article-view-count">
+                                    <p>Views: {data.viewCount}</p>
+                                </div>
+                                : ""
+                        }
                         <div className="single-article-wrapper">
 
                             {/* Tags */}
@@ -184,10 +200,10 @@ const Article = () => {
                 </div>
                 <div className="single-article-user-tags">
                     {/* User Information */}
-                    {data && <UserCard BASE_URL={baseUrl} userId={data && data.authorId} />}
+                    {data && <UserCard userId={data && data.authorId} />}
                     {/* Tags */}
                     <div className="single-article-popular-tags">
-                        {/* <Taglist BASE_URL={BASE_URL}/> */}
+                        {/* <Taglist /> */}
                     </div>
                 </div>
                 <div className="related-articles">

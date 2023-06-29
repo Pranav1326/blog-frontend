@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { login } from '../../api/userApi';
 
-const Login = ({BASE_URL}) => {
+const Login = () => {
 
     // State
     const dispatch = useDispatch();

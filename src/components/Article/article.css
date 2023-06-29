@@ -163,6 +163,15 @@ h1{
     color: #000;
 }
 
+.single-article-view-count{
+    padding: 0 2rem;
+}
+
+.single-article-view-count p{
+    font-weight: 600;
+    font-size: 1.3rem;
+}
+
 .single-article-content{
     font-size: 1.5rem;
     line-height: 2rem;

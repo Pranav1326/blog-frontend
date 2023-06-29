@@ -3,25 +3,15 @@ import './profile.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { logout } from '../../api/userApi';
-import { deleteAccount } from '../../api/userProfile';
 
 const Profile = () => {
     const user = useSelector(state => state.userReducer.user);
     const dispatch = useDispatch();
     const navigate = useNavigate();
     
-    // Delete Button
-    const handleDelete = () => {
-        const userChoice = window.confirm(`Are you sure? This action can't be undone.`);
-        if(userChoice){
-            const userDetails = {
-                username: user.username,
-                email: user.email,
-                userId: user._id
-            };
-            deleteAccount(userDetails);
-            logout(dispatch, navigate);
-        }
+    // Change Password Button
+    const handleChangePassword = () => {
+        navigate('/changepassword');
     }
     
     // Create Post Button
@@ -58,7 +48,7 @@ const Profile = () => {
                     <p className='user-details'>Location: {user.location}</p>
                     <p className='user-details'>Work: {user.work}</p>
                     <div className="profile-details-btns">
-                        <button id='edit-profile-btn' onClick={handleDelete}> Delete Profile </button>
+                        <button id='edit-profile-btn' onClick={handleChangePassword}> Change Password </button>
                         <button id='edit-profile-btn' onClick={handleEditProfile}> Edit Profile </button>
                         <button id='create-article-btn' onClick={handleCreatePost}> Create Article </button>
                         <button id='create-article-btn' onClick={handleUnpublishedPosts}> Unpublished Articles </button>

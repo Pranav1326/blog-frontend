@@ -23,6 +23,7 @@ import Disclaimer from '../Disclaimer/Disclaimer';
 import PrivacyPolicy from '../PrivacyPolicy/PrivacyPolicy';
 import TermsAndCondition from '../TermsAndCondition/TermsAndCondition';
 import UnpublishedArticles from '../Unpublished/UnpublishedArticles';
+import ChangePassword from '../ChangePassword/ChangePassword';
 
 const Main = () => {
 
@@ -48,8 +49,9 @@ const Main = () => {
           {/* <Route path='/resetpassword' element={resetPassword ? <ResetPassword BASE_URL={BASE_URL}/> : <ForgotPassword BASE_URL={BASE_URL}/>} /> */}
           <Route path='/article/:id' element={<Article />} />
           {/* <Route path='/article?' element={<Article BASE_URL={BASE_URL}/>} /> */}
-          <Route path='/profile' element={user ? <Profile /> : <Login />} />
           {/* <Route path='/userprofile/:id' element={<UserProfile BASE_URL={BASE_URL}/>} /> */}
+          <Route path='/profile' element={user ? <Profile /> : <Login />} />
+          <Route path='/changepassword' element={user ? <ChangePassword /> : <Login />} />
           <Route path='/editprofile' element={user ? <EditProfile /> : <Login />} />
           <Route path='/createpost' element={ user ? <CreatePost /> : <Login />} />
           <Route path='/articleupdate/:id' element={<UpdateArticle />} />

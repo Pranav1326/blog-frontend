@@ -14,7 +14,6 @@ export const login = async (data, dispatch, navigate) => {
         localStorage.setItem("token", JSON.stringify(res.data.token));
         navigate('/');
     } catch (error) {
-        console.log(error);
         error && alert(error.response.data);
         dispatch(LOGIN_FAILURE());
     }
@@ -32,11 +31,9 @@ export const logout = async (dispatch, navigate) => {
 export const register = async (data, navigate) => {
     try{
         const res = await axios.post(`${baseUrl}/user/register`, data);
-        console.log(res);
-        navigate('/login');
+        res && navigate('/login');
     } catch (err) {
         err && alert(err.response.data);
-        console.log(err);
     }
 }
 
@@ -49,7 +46,6 @@ export const forgotPassword = async (data, dispatch, navigate) => {
         navigate('/authforgotpassword');
     } catch (error) {
         error && alert(error.response.data);
-        console.log(error);
         dispatch(FORGOT_PASSWORD_FAILURE());
     }
 }
@@ -64,7 +60,6 @@ export const authenticateOtp = async (data, dispatch, navigate) => {
         }
     } catch (error) {
         error && alert(error.response.data);
-        console.log(error);
         dispatch(FORGOT_PASSWORD_FAILURE());
     }
 }
@@ -81,7 +76,6 @@ export const resetPasswordAuth = async (data, dispatch, navigate) => {
         }
     } catch (error) {
         error && alert(error.response.data);
-        console.log(error);
         dispatch(RESET_PASSWORD_FAILURE());
     }
 }

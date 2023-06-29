@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { USER_UPDATE } from '../features/user/userSlice';
-
-const baseUrl = "https://blog-api-c8j7.onrender.com/api";
+import { baseUrl } from './url';
 
 // JWT Token
 const token = JSON.parse(localStorage.getItem('token'));
@@ -22,11 +21,29 @@ export const deleteAccount = async (data) => {
     }
     try{
         const response = await axios.request(reqOptions);
-        console.log(response);
         alert(response.data);
     } catch (err) {
         err && alert(err.response.data);
-        console.log(err);
+    }
+}
+
+// User Change Password
+export const changePassword = async (data, navigate) => {
+    const bodyContent = JSON.stringify(data);
+    const reqOptions = {
+        url: `${baseUrl}/user/changepassword`,
+        method: "POST",
+        headers: headersList,
+        data: bodyContent,
+    }
+    try{
+        const response = await axios.request(reqOptions);
+        alert(response?.data);
+        if(response.status){
+            navigate('/profile');
+        }
+    } catch (err) {
+        err && alert(err?.response?.data?.message);
     }
 }
 
@@ -50,6 +67,5 @@ export const updateProfile = async (data, profilepic, userId, username, dispatch
         }
     } catch (err) {
         err && alert(err.response.data);
-        console.log(err);
     }
 }

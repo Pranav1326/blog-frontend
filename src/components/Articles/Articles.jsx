@@ -31,9 +31,10 @@ const Articles = () => {
       }
     }
     fetchData();
+    console.log(post);
   }, [page]);
 
-  if (!post) return <p className='no-posts-msg'>Loading...</p>;
+  if (!post) return <p className='no-posts-msg'>Please wait this might take a minute...</p>;
 
   const postData = post && post.map((e, id) => {
     let date = e.createdAt.split("T")[0];

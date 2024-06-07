@@ -4,14 +4,15 @@ import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import './authForgotPassword.css';
+import { baseUrl } from '../../api/url';
 
-const AuthForgotPassword = ({BASE_URL}) => {
+const AuthForgotPassword = () => {
 
     const resetPassword = useSelector(state => state.userReducer.resetPassword);
     
     const navigate = useNavigate();
     const [otp, setOtp] = useState("");
-    const baseUrl = `${BASE_URL}/user/otpauth`;
+    const url = `${baseUrl}/user/otpauth`;
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -20,7 +21,7 @@ const AuthForgotPassword = ({BASE_URL}) => {
         }
         else{
             try {
-                const res = await axios.post(baseUrl, {otp: otp});
+                const res = await axios.post(url, {otp: otp});
                 alert(res.data);
                 navigate('/resetpassword');
             } catch (error) {

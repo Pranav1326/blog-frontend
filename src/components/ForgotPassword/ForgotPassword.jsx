@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { forgotPassword } from '../../api/userApi';
 import './forgotPassword.css';
 
-const ForgotPassword = ({BASE_URL}) => {
+const ForgotPassword = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [ userData, setUserData ] = useState();

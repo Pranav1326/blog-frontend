@@ -48,7 +48,7 @@ export const changePassword = async (data, navigate) => {
 }
 
 // User Data Update
-export const updateProfile = async (data, profilepic, userId, username, dispatch, navigate) => {
+export const updateProfile = async (data, userId, username, dispatch, navigate) => {
     const config = {
         method: 'PUT',
         url: `${baseUrl}/user/update/${userId}`,
@@ -56,7 +56,7 @@ export const updateProfile = async (data, profilepic, userId, username, dispatch
             'Authorization': `Bearer ${token}`, 
             'Content-Type': 'application/json'
         },
-        data : {...data, profilepic, userId}
+        data : {...data, userId}
     };
     try{
         const response = await axios.request(config);
@@ -66,6 +66,7 @@ export const updateProfile = async (data, profilepic, userId, username, dispatch
             navigate('/profile');
         }
     } catch (err) {
-        err && alert(err.response.data);
+        err && alert(err?.response?.data);
+        console.log(err);
     }
 }

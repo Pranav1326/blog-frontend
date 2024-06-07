@@ -97,13 +97,20 @@ const EditProfile = () => {
     // Saving Form Data
     const handleSubmit = async e => {
         e.preventDefault();
-        if(img){
-            uploadedImage = await handleFileInput();
-        }
-        else{
-            uploadedImage = user.profilepic;
-        }
-        updateProfile(userData, uploadedImage, user._id, user.username, dispatch, navigate);
+        const data = new FormData();
+        data.append('name', userData.name);
+        data.append('email', userData.email);
+        data.append('location', userData.location);
+        data.append('bio', userData.bio);
+        data.append('work', userData.work);
+        data.append('profilepic', img);
+        // if(img){
+        //     uploadedImage = await handleFileInput();
+        // }
+        // else{
+            // uploadedImage = user.profilepic;
+        // }
+        updateProfile(data, user._id, user.username, dispatch, navigate);
     }
     
     return (

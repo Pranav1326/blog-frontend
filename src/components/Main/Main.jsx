@@ -8,12 +8,12 @@ import Profile from '../Profile/Profile';
 import EditProfile from '../EditProfile/EditProfile';
 import Article from '../Article/Article';
 import Navbar from '../Navbar/Navbar';
-// import ForgotPassword from '../ForgotPassword/ForgotPassword';
-// import ResetPassword from '../ResetPassword/ResetPassword';
+import ForgotPassword from '../ForgotPassword/ForgotPassword';
+import ResetPassword from '../ResetPassword/ResetPassword';
 import Error from '../Error/Error';
-// import AuthForgotPassword from '../AuthForgotPassword/AuthForgotPassword';
+import AuthForgotPassword from '../AuthForgotPassword/AuthForgotPassword';
 import About from '../About/About';
-// import UserProfile from '../UserProfile/UserProfile';
+import UserProfile from '../UserProfile/UserProfile';
 import Footer from '../Footer/Footer';
 import CreatePost from '../CreatePost/CreatePost';
 import UpdateArticle from '../UpdateArticle/UpdateArticle';
@@ -28,7 +28,7 @@ import ChangePassword from '../ChangePassword/ChangePassword';
 const Main = () => {
 
   const user = useSelector(state => state.userReducer.user);
-  // const resetPassword = useSelector(state => state.userReducer.resetPassword);
+  const resetPassword = useSelector(state => state.userReducer.resetPassword);
   
   return (
     <BrowserRouter>
@@ -44,9 +44,9 @@ const Main = () => {
           <Route path='/login' element={<Login />} />
           <Route path='/unpublished' element={<UnpublishedArticles />} />
           {/* <Route path='/register' element={<Register BASE_URL={BASE_URL}/>} /> */}
-          {/* <Route path='/forgotpassword' element={<ForgotPassword BASE_URL={BASE_URL}/>} /> */}
-          {/* <Route path='/authforgotpassword' element={resetPassword ? <AuthForgotPassword BASE_URL={BASE_URL}/> : <ForgotPassword BASE_URL={BASE_URL}/>} /> */}
-          {/* <Route path='/resetpassword' element={resetPassword ? <ResetPassword BASE_URL={BASE_URL}/> : <ForgotPassword BASE_URL={BASE_URL}/>} /> */}
+          <Route path='/forgotpassword' element={<ForgotPassword />} />
+          <Route path='/authforgotpassword' element={resetPassword ? <AuthForgotPassword /> : <ForgotPassword />} />
+          <Route path='/resetpassword' element={resetPassword ? <ResetPassword /> : <ForgotPassword />} />
           <Route path='/article/:id' element={<Article />} />
           {/* <Route path='/article?' element={<Article BASE_URL={BASE_URL}/>} /> */}
           {/* <Route path='/userprofile/:id' element={<UserProfile BASE_URL={BASE_URL}/>} /> */}

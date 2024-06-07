@@ -28,7 +28,6 @@
 .basic-details{
     display: flex;
     flex-direction: column;
-    margin-top: 1rem;
 }
 
 .user-details h1,

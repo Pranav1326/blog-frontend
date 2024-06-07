@@ -1,13 +1,20 @@
-import React from 'react';
-import './profile.css';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { logout } from '../../api/userApi';
 
+import './profile.css';
+import BlogCard from '../BlogCard/BlogCard';
+import axios from 'axios';
+import { baseUrl } from '../../api/url';
+
 const Profile = () => {
+
     const user = useSelector(state => state.userReducer.user);
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    
+    const [ articles, setArticles ] = useState(null);
     
     // Change Password Button
     const handleChangePassword = () => {
@@ -34,6 +41,34 @@ const Profile = () => {
         navigate('/editprofile');
     }
     
+    const renderArticles = articles && articles.articles.map(e => {
+        let date = e.createdAt.split("T")[0];
+        return (
+            <BlogCard
+                key={e._id}
+                id={e._id}
+                author={e.author}
+                publish={date}
+                title={e.title}
+                description={e.description}
+                tags={e.tags}
+                image={e.image}
+            />
+        );
+    });
+    
+    useEffect(() => {
+        const fetchArticles = async () => {
+            try {
+                const res = await axios.get(`${baseUrl}/articles`);
+                res && setArticles(res.data);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        fetchArticles();
+    }, []);
+    
     return (
         <div className='profile-section'>
             <section className="profile-section-1">
@@ -41,12 +76,10 @@ const Profile = () => {
                     <img src={user.profilepic ? user.profilepic : "https://w7.pngwing.com/pngs/831/88/png-transparent-user-profile-computer-icons-user-interface-mystique-miscellaneous-user-interface-design-smile-thumbnail.png"} alt="User" className='img'/>
                 </div>
                 <div className="profile-details">
-                    <p className='user-details'>{user.name}</p>
-                    <p className='user-details'>Email: {user.email}</p>
-                    <p className='user-details'>Bio: {user.bio}</p>
-                    <p className='user-details'>Joined: {new Date(user.createdAt).toDateString()}</p>
-                    <p className='user-details'>Location: {user.location}</p>
-                    <p className='user-details'>Work: {user.work}</p>
+                    <p className='user-details user-details-name'>{user.name}</p>
+                    <p className='user-details user-details-joined'>Joined: {new Date(user.createdAt).toDateString()}</p>
+                    <p className='user-details user-details-email'>{user.email}</p>
+                    <p className='user-details'>{user.bio}</p>
                     <div className="profile-details-btns">
                         <button id='edit-profile-btn' onClick={handleChangePassword}> Change Password </button>
                         <button id='edit-profile-btn' onClick={handleEditProfile}> Edit Profile </button>
@@ -55,22 +88,20 @@ const Profile = () => {
                         <button id='logout-btn' onClick={handleLogout}> Logout </button>
                     </div>
                 </div>
-            </section>
-            <section className="profile-section-2">
                 <div className="articles-comments">
                     <div className="details">
-                        <p>{user.articles.length} Post Publised</p>
+                        <p><span>{user.articles.length}</span> Post Publised</p>
                     </div>
-                    <div className="details">
+                    {/* <div className="details">
                         <p>{user.comments.length} Comments</p>
-                    </div>
+                    </div> */}
                 </div>
-                {/* <div className='user-articles'>
-                    <h1 className='user-articles-title'>Articles</h1>
-                    <div className="users-articles">
-                        {renderArticles}
-                    </div>
-                </div> */}
+            </section>
+            <section className="profile-section-2">
+                <h1 className='user-articles-title'>Articles</h1>
+                <div className="users-articles">
+                    {renderArticles}
+                </div>
             </section>
         </div>
     );

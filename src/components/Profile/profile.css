@@ -1,11 +1,8 @@
 .profile-section{
     min-height: 26rem;
-    /* width: calc(100% - 70rem); */
-    /* min-width: 46rem; */
-    width: auto;
-    align-self: center;
+    width: 100vw;
+    justify-content: space-between;
     display: flex;
-    flex-direction: column;
     color: #fff;
     margin-top: 5rem;
     margin-bottom: 2rem;
@@ -14,7 +11,6 @@
 
 .profile-section-1,
 .profile-section-2{
-    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -24,76 +20,89 @@
 }
 
 .profile-section-1{
+    margin-top: 2rem;
+    width: 24rem;
+    height: fit-content;
     box-shadow: 1px 1px 5px #000;
     border: 1px solid #fff;
     border-radius: 5px;
 }
 
+.user-details{
+    margin: 0.3rem;
+}
+
+.user-details-name{
+    font-size: 2rem;
+    margin: 0;
+    font-weight: 900;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-shadow: 2px -2px 0px #099;
+}
+
+.user-details-joined{
+    font-size: 0.7rem;
+    color: #999;
+    margin: 0;
+}
+
+.profile-details-btns{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
 #edit-profile-btn,
 #create-article-btn,
 #logout-btn{
-    background-color: rgba(255, 255, 255, 1);
-    color: rgba(0, 0, 0, 1);
-    border: none;
+    background-color: transparent;
+    color: rgba(255, 255, 255, 1);
+    border: 1px solid rgba(255, 255, 255, 1);
     padding: 0.5rem 1rem;
     font-size: 1.2rem;
-    font-weight: 500;
-    border-radius: 5px;
-    margin: 0 1rem;
+    font-weight: 600;
+    border-radius: 4px;
 }
 
 #edit-profile-btn:hover,
 #create-article-btn:hover,
 #logout-btn:hover{
     cursor: pointer;
-    color: rgba(255, 255, 255, 1);
-    background-color: rgba(0, 0, 0, 1);
+    background-color: rgba(255, 255, 255, 1);
+    color: rgba(0, 0, 0, 1);
 }
 
 .profile-section-2{
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 1rem;
-    margin-top: 1rem;
-    gap: 1rem;
+    height: 70vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+    gap: 0.5rem;
 }
 
 .articles-comments{
     display: flex;
     flex-direction: column;
+    width: inherit;
 }
 
 .user-articles-title{
     font-size: 2.4rem;
-    margin: 0;
-    margin-left: 2rem;
+    margin-top: 0;
+    margin-bottom: 0;
     text-align: center;
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 1);
 }
 
-.user-articles{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    margin-left: 1rem;
-}
-
 .users-articles{
-    display: flex;
-    flex-direction: column-reverse;
-    align-self: flex-start;
-    justify-content: center;
     margin: 0;
     padding: 0;
-    width: 100%;
-    margin-left: 2rem;
-}
-
-.blogcard{
-    margin: 0.5rem 0;
+    overflow-y: scroll;
+    margin-top: -1rem;
 }
 
 .blogcard:first-child{
@@ -103,13 +112,13 @@
 .profile-pic,
 .img{
     border-radius: 50%;
-    width: 10rem;
-    height: 10rem;
+    width: 8rem;
+    height: 8rem;
 }
 
 .profile-pic{
     border: 2px solid #fff;
-    margin-top: -5rem;
+    margin-top: -4rem;
 }
 
 .profile-details{
@@ -121,9 +130,13 @@
     border: 1px solid #fff;
     border-radius: 5px;
     padding: 0.4rem 1rem;
-    margin: 0.3rem 0;
     box-shadow: 1px 1px 5px #000;
-    width: 100%;
+}
+
+.details>p>span{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-shadow: 1px -2px 0px #099;
+    font-weight: 900;
 }
 
 .article-list{

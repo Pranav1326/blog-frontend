@@ -62,7 +62,12 @@ const Navbar = () => {
                                 <img src={user.profilepic} alt="User" className='user-nav-img'/>
                             </Link>
                         </div>
-                        : null 
+                        : 
+                        <li>
+                            <Link to='/login'>
+                                Login
+                            </Link>
+                        </li> 
                     }
                 </ul>
             </div>

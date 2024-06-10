@@ -193,10 +193,8 @@ const Article = () => {
                                 </ReactMarkdown>
                             </div>
                         </div>
-                        <button className="scroller" onClick={() => {
-                            window.scrollTo({ top: 0, behavior: 'smooth' });
-                        }}>Top ↑</button>
                     </div>
+                    
                 </div>
                 <div className="single-article-user-tags">
                     {/* User Information */}
@@ -212,6 +210,9 @@ const Article = () => {
                         {renderRelatedPosts}
                     </div>
                 </div>
+                <button className="scroller" onClick={() => {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}>Top ↑</button>
             </div>
         </div>
     );

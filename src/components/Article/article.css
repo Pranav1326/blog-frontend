@@ -4,11 +4,13 @@
 }
 
 .scroller{
+    position: fixed;
+    z-index: 10;
     width: fit-content;
     align-self: center;
     margin-bottom: 1.5rem;
     padding: 0.4rem 1rem;
-    bottom: 2rem;
+    bottom: 0;
     right: 2rem;
     background: linear-gradient(45deg, rgba(14, 215, 191, 1), rgba(0, 70, 111, 1));
     color: #fff;
@@ -32,7 +34,7 @@ h1{
 
 .single-article-main{
     scroll-behavior: smooth;
-    width: calc(100vw - 15rem);
+    width: calc(100vw - 19rem);
     min-height: calc(100vh - 10rem);
     margin: 2rem 0;
     display: flex;
@@ -247,7 +249,7 @@ h1{
 }
 
 .single-article-user-card-details{
-    border-radius: 10px;
+    border-radius: 5px;
     padding: 1rem;
     position: relative;
     background-color: rgba(0, 0, 0, 0.5);
@@ -415,16 +417,12 @@ h1{
 
 @media screen and (max-width: 1260px){
     .single-article-main{
-        width: calc(100vw - 10rem);
+        width: calc(100vw - 7rem);
     }
 }
 
 @media screen and (max-width: 1024px){
-    .single-article-main{
-        width: calc(100vw - 5rem);
-    }
     .single-article-main-user-tags-wrapper{
-        width: calc(100vw - 10rem);
         flex-direction: column;
     }
     .single-article-main-box{
@@ -457,9 +455,6 @@ h1{
 }
 
 @media screen and (max-width: 740px){
-    .single-article-main-user-tags-wrapper {
-        width: calc(100vw - 8rem);
-    }
     .crayons-icon {
         width: 2rem;
     }
@@ -470,9 +465,6 @@ h1{
 }
 
 @media screen and (max-width: 640px){
-    .single-article-main-user-tags-wrapper {
-        width: calc(100vw - 7rem);
-    }
     .single-article-tags {
         flex-wrap: wrap;
         gap: 1rem;
@@ -498,9 +490,6 @@ h1{
     .single-article-btns{
         display: none;
     }
-    .single-article-main-user-tags-wrapper {
-        width: calc(100vw - 5rem);
-    }
     .single-article-user-tags {
         flex-direction: column;
     }
@@ -520,6 +509,13 @@ h1{
         font-size: 4vw;
         line-height: 1.8rem;
     }
+    .article-user-details{
+        flex-direction: column;
+        gap: 1rem;
+    }
+    .single-article-update-delete{
+        margin-left: -0.5rem;
+    }
 }
 
 @media screen and (max-width: 460px){
@@ -530,16 +526,13 @@ h1{
         font-size: 1.5rem;
     }
     .single-article-main-user-tags-wrapper {
-        width: calc(100vw - 3rem);
+        width: calc(100vw - 5rem);
     }
 }
 
 @media screen and (max-width: 426px){
     .single-article-main {
         margin-top: 0.75rem;
-        width: calc(100vw - 1.5rem);
-    }
-    .single-article-main-user-tags-wrapper {
         width: calc(100vw - 1.5rem);
     }
     .single-article-user-publish-date p,
@@ -552,5 +545,10 @@ h1{
     }
     .single-article-wrapper {
         padding: 0.7rem;
+    }
+    .single-article-title,
+    .article-user-details,
+    .single-article-view-count{
+        padding: 0 1rem;
     }
 }

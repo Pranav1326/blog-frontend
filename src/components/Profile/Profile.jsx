@@ -16,6 +16,22 @@ const Profile = () => {
     
     const [ articles, setArticles ] = useState(null);
     
+    // Pagination
+    const [ page, setPage ] = useState(1);
+    const [ pages, setPages ] = useState();
+
+    // Previous Page
+    const previousPage = async () => {
+        setPage(page => page - 1);
+    }
+
+    // Next Page
+    const nextPage = async () => {
+        if(pages > page){
+            setPage(page => page + 1);
+        }
+    }
+    
     // Change Password Button
     const handleChangePassword = () => {
         navigate('/changepassword');
@@ -33,7 +49,8 @@ const Profile = () => {
 
     // Logout Button
     const handleLogout = () => {
-        logout(dispatch, navigate);
+        const confirmLogout = window.confirm("Are you sure to logout?");
+        confirmLogout && logout(dispatch, navigate);
     }
     
     // Edit Profile Button
@@ -41,7 +58,7 @@ const Profile = () => {
         navigate('/editprofile');
     }
     
-    const renderArticles = articles && articles.articles.map(e => {
+    const renderArticles = articles && articles.map(e => {
         let date = e.createdAt.split("T")[0];
         return (
             <BlogCard
@@ -60,14 +77,16 @@ const Profile = () => {
     useEffect(() => {
         const fetchArticles = async () => {
             try {
-                const res = await axios.get(`${baseUrl}/articles`);
-                res && setArticles(res.data);
+                const res = await axios.get(`${baseUrl}/articles?page=${page}`);
+                res && setPage(res.data.page);
+                res && setPages(res.data.pages);
+                res && setArticles(res.data.articles);
             } catch (error) {
                 console.log(error);
             }
         }
         fetchArticles();
-    }, []);
+    }, [ page ]);
     
     return (
         <div className='profile-section'>
@@ -100,8 +119,17 @@ const Profile = () => {
             <section className="profile-section-2">
                 <h1 className='user-articles-title'>Articles</h1>
                 <div className="users-articles">
+                    {/* Posts */}
                     {renderArticles}
                 </div>
+                {/* Pagination */}
+                {
+                    <div className='pagination'>
+                        <button onClick={previousPage} disabled={page === 1} >Previous</button>
+                        <p className='page-p'> {page} out of {pages} Pages </p>
+                        <button onClick={nextPage} disabled={page === pages} >Next</button>
+                    </div>
+                }
             </section>
         </div>
     );

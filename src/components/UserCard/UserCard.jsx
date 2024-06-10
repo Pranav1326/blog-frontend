@@ -31,7 +31,7 @@ const UserCard = ({ userId }) => {
                 // onClick={handleUserCardClick}
             >
                 <a href="https://pranav1326.github.io/pranav-portfolio" rel="noreferrer" target='_blank'>
-                    <img src={"https://drive.google.com/uc?id=1mSX81XYW6koJsLw3JZDI3wyzJJ169srj"} alt="" className={user.profilepic !== "" ? 'single-article-user-card-profile-img' : 'single-article-user-card-profile-img-hidden'}/>
+                    <img src={"https://pranav1326.github.io/pranav-portfolio/images/Pranav.jpeg"} alt="" className={user.profilepic !== "" ? 'single-article-user-card-profile-img' : 'single-article-user-card-profile-img-hidden'}/>
                 </a>
             </div>
             <div className="wrapper-user-info">

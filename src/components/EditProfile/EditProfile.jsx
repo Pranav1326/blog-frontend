@@ -1,4 +1,3 @@
-import axios from 'axios';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -10,7 +9,6 @@ const EditProfile = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     // name, email, username, location, bio, work | profile-pic
-    // req: body{userId, info}, params{userId}
     
     // User's Data State 
     const [ userData, setUserData] = useState({
@@ -19,98 +17,18 @@ const EditProfile = () => {
         location: user.location,
         bio: user.bio,
         work: user.work,
+        profilepic: user.profilepic
     })
 
-    // Handling Input States
     const handleChange = e => {
         const { name, value } = e.target;
-        setUserData((preValue) => {
-            if(name === "name"){
-                return{
-                    name: value,
-                    email: preValue.email,
-                    location: preValue.location,
-                    bio: preValue.bio,
-                    work: preValue.work,
-                };
-            }
-            else if(name === "email"){
-                return{
-                    name: preValue.name,
-                    email: value,
-                    location: preValue.location,
-                    bio: preValue.bio,
-                    work: preValue.work,
-                };
-            }
-            else if(name === "location"){
-                return{
-                    name: preValue.name,
-                    email: preValue.email,
-                    location: value,
-                    bio: preValue.bio,
-                    work: preValue.work,
-                };
-            }
-            else if(name === "bio"){
-                return{
-                    name: preValue.name,
-                    email: preValue.email,
-                    location: preValue.location,
-                    bio: value,
-                    work: preValue.work,
-                };
-            }
-            else if(name === "work"){
-                return{
-                    name: preValue.name,
-                    email: preValue.email,
-                    location: preValue.location,
-                    bio: preValue.bio,
-                    work: value,
-                };
-            }
-        });
-    }
-    
-    // Handle Image Input
-    const handleImageInput = async e => {
-        setImg(e.target.files[0]);
-    }
-    
-    // Uploading Image
-    var uploadedImage;
-    const [ img, setImg ] = useState(null);
-
-    const handleFileInput = async () => {
-        const data = new FormData();
-        data.append("file", img);
-        try {
-            var imgUpload = await axios.post(`https://blog-api-c8j7.onrender.com/api/imageupload`, data);
-            // var imgUpload = await axios.post(`http://localhost:5000/api/imageupload`, data);
-        } catch (error) {
-            console.log(error);
-        }
-        return imgUpload.data.path;
+        setUserData({ ...userData, [name]: value });
     }
     
     // Saving Form Data
     const handleSubmit = async e => {
         e.preventDefault();
-        const data = new FormData();
-        data.append('name', userData.name);
-        data.append('email', userData.email);
-        data.append('location', userData.location);
-        data.append('bio', userData.bio);
-        data.append('work', userData.work);
-        data.append('profilepic', img);
-        // if(img){
-        //     uploadedImage = await handleFileInput();
-        // }
-        // else{
-            // uploadedImage = user.profilepic;
-        // }
-        updateProfile(data, user._id, user.username, dispatch, navigate);
+        updateProfile(userData, user._id, user.username, dispatch, navigate);
     }
     
     return (
@@ -134,7 +52,8 @@ const EditProfile = () => {
                                 <p className="warning">*Username cannot be changed after user is created</p>
                             </div>
                             <div className="image-profile">
-                                <input type="file" name="profileImage" id="profile-image" onChange={handleImageInput} />
+                                <label htmlFor="profilepic">ProfilePic URL</label>
+                                <input type="text" name="profilepic" value={userData.profilepic} onChange={handleChange}  />
                             </div>
                         </div>
                     </div>
